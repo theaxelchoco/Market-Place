@@ -50,9 +50,9 @@
             android:id="@+id/errorLabel"
             android:layout_width="207dp"
             android:layout_height="wrap_content"
-            android:text="Passwords must match"
-            android:textColor="#DC1616"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="@string/EMPTY_STRING"
+            android:textColor="#DC1616" />
 
     </LinearLayout>
 
