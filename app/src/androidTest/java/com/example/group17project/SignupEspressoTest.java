@@ -57,7 +57,7 @@ public class SignupEspressoTest {
 
     @Test
     public void checkIfEmailIsEmpty(){
-        onView(withId(R.id.emailReg)).perform(typeText(" "));
+        onView(withId(R.id.emailReg)).perform(typeText(""));
         onView(withId(R.id.passwordReg)).perform(typeText("AbC123"));
         onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"));
         onView(withId(R.id.signupButton)).perform(click());
