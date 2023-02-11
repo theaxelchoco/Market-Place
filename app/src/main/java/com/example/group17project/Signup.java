@@ -1,5 +1,6 @@
 package com.example.group17project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ValueEventListener;
 
 import com.google.firebase.database.DatabaseReference;
@@ -122,6 +124,27 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
     protected void setMessage(String message){
         TextView errorLabel = findViewById(R.id.errorLabel);
         errorLabel.setText(message);
+    }
+
+    //yet to be done
+    protected Task<Void> saveEmailToFirebase(String email) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance(url);
+        DatabaseReference emailRef = database.getReference("Email");
+
+        emailRef.setValue(email);
+        return null;
+    }
+
+    protected Task<Void> savePasswordToFirebase(String password) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance(url);
+        DatabaseReference passwordRef = database.getReference("Password");
+
+        passwordRef.setValue(password);
+        return null;
+    }
+
+    protected boolean isEmailAlreadyUsed(String email){
+        return false;
     }
 
 }
