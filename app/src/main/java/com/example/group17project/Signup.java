@@ -2,8 +2,10 @@ package com.example.group17project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.PatternsCompat;
 
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,7 +42,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         String email = getEmail();
         String password = getPassword();
         String confirmPassword = getConfirmPassword();
-        String errorMessage = new String();
+        String errorMessage;
 
         if(isEmptyEmail(email)){
             errorMessage = getResources().getString(R.string.EMPTY_EMAIL).trim();
@@ -93,13 +95,6 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         return email.isEmpty();
     }
 
-    protected boolean isValidEmailAddress(String email){
-        if(!email.contains("@")){
-            return false;
-        }
-        return true;
-    }
-
     protected boolean isEmptyPassword(String password){
         return password.isEmpty();
     }
@@ -108,17 +103,15 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         return confirmPassword.isEmpty();
     }
 
+    protected boolean isValidEmailAddress(String email){
+        return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
     protected boolean isValidPassword(String password){
-        if(password.length()<6){
-            return false;
-        }
-        return true;
+        return password.length() >= 6 && password.matches("[A-Za-z0-9]*");
     }
     protected boolean isPasswordMatch(String password, String confirmPassword){
-        if(password.equals(confirmPassword)){
-            return true;
-        }
-        return false;
+        return password.equals(confirmPassword);
     }
 
     protected void setMessage(String message){
