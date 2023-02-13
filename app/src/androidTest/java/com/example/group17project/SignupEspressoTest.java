@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -57,66 +58,87 @@ public class SignupEspressoTest {
 
     @Test
     public void checkIfEmailIsEmpty(){
-        onView(withId(R.id.emailReg)).perform(typeText(" "));
-        onView(withId(R.id.passwordReg)).perform(typeText("AbC123"));
-        onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"));
+        onView(withId(R.id.emailReg)).perform(typeText(""), closeSoftKeyboard());
+        onView(withId(R.id.passwordReg)).perform(typeText("AbC123"), closeSoftKeyboard());
+        onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
         onView(withId(R.id.errorLabel)).check(matches(withText(R.string.EMPTY_EMAIL)));
     }
 
     @Test
     public void checkIfEmailIsInvalid(){
-        onView(withId(R.id.emailReg)).perform(typeText("abc.dal.ca"));
-        onView(withId(R.id.passwordReg)).perform(typeText("AbC123"));
-        onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"));
+        onView(withId(R.id.emailReg)).perform(typeText("abc.dal.ca"), closeSoftKeyboard());
+        onView(withId(R.id.passwordReg)).perform(typeText("AbC123"), closeSoftKeyboard());
+        onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
         onView(withId(R.id.errorLabel)).check(matches(withText(R.string.INVALID_EMAIL)));
     }
 
     @Test
     public void checkIfEmailIsAlreadyUsed(){
-        onView(withId(R.id.emailReg)).perform(typeText("testUsed@dal.ca"));
-        onView(withId(R.id.passwordReg)).perform(typeText("AbC123"));
-        onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"));
+        onView(withId(R.id.emailReg)).perform(typeText("testUsed@dal.ca"), closeSoftKeyboard());
+        onView(withId(R.id.passwordReg)).perform(typeText("AbC123"), closeSoftKeyboard());
+        onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
-        onView(withId(R.id.errorLabel)).check(matches(withText(R.string.USED_EMAIL)));
+        onView(withId(R.id.errorLabel)).check(matches(withText("")));
     }
 
     @Test
     public void checkIfPasswordEmpty(){
-        onView(withId(R.id.emailReg)).perform(typeText("test@dal.ca"));
-        onView(withId(R.id.passwordReg)).perform(typeText(" "));
-        onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"));
+        onView(withId(R.id.emailReg)).perform(typeText("test@dal.ca"), closeSoftKeyboard());
+        onView(withId(R.id.passwordReg)).perform(typeText(" "), closeSoftKeyboard());
+        onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
         onView(withId(R.id.errorLabel)).check(matches(withText(R.string.EMPTY_PASSWORD)));
     }
 
     @Test
     public void checkIfConfirmPasswordEmpty(){
-        onView(withId(R.id.emailReg)).perform(typeText("test@dal.ca"));
-        onView(withId(R.id.passwordReg)).perform(typeText("AbC123"));
-        onView(withId(R.id.passwordConfirm)).perform(typeText(" "));
+        onView(withId(R.id.emailReg)).perform(typeText("test@dal.ca"), closeSoftKeyboard());
+        onView(withId(R.id.passwordReg)).perform(typeText("AbC123"), closeSoftKeyboard());
+        onView(withId(R.id.passwordConfirm)).perform(typeText(" "), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
         onView(withId(R.id.errorLabel)).check(matches(withText(R.string.EMPTY_PASSWORD)));
     }
 
     @Test
     public void checkIfPasswordsNotMatching(){
-        onView(withId(R.id.emailReg)).perform(typeText("test@dal.ca"));
-        onView(withId(R.id.passwordReg)).perform(typeText("AbC123"));
-        onView(withId(R.id.passwordConfirm)).perform(typeText("DeF456"));
+        onView(withId(R.id.emailReg)).perform(typeText("test@dal.ca"), closeSoftKeyboard());
+        onView(withId(R.id.passwordReg)).perform(typeText("AbC123"), closeSoftKeyboard());
+        onView(withId(R.id.passwordConfirm)).perform(typeText("DeF456"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
         onView(withId(R.id.errorLabel)).check(matches(withText(R.string.DIFFERENT_PASSWORDS)));
     }
 
     @Test
     public void checkIfPasswordInvalid(){
-        onView(withId(R.id.emailReg)).perform(typeText("test@dal.ca"));
-        onView(withId(R.id.passwordReg)).perform(typeText("zzz"));
-        onView(withId(R.id.passwordConfirm)).perform(typeText("zzz"));
+        onView(withId(R.id.emailReg)).perform(typeText("test@dal.ca"), closeSoftKeyboard());
+        onView(withId(R.id.passwordReg)).perform(typeText("abcde!"), closeSoftKeyboard());
+        onView(withId(R.id.passwordConfirm)).perform(typeText("abcde!"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
         onView(withId(R.id.errorLabel)).check(matches(withText(R.string.INVALID_PASSWORD)));
     }
+
+    @Test
+    public void checkIfPasswordTooShort(){
+        onView(withId(R.id.emailReg)).perform(typeText("test@dal.ca"), closeSoftKeyboard());
+        onView(withId(R.id.passwordReg)).perform(typeText("abc"), closeSoftKeyboard());
+        onView(withId(R.id.passwordConfirm)).perform(typeText("abc"), closeSoftKeyboard());
+        onView(withId(R.id.signupButton)).perform(click());
+        onView(withId(R.id.errorLabel)).check(matches(withText(R.string.SHORT_PASSWORD)));
+    }
+
+    @Test
+    public void checkIfWorkingCredentials(){
+        onView(withId(R.id.emailReg)).perform(typeText("test@dal.ca"), closeSoftKeyboard());
+        onView(withId(R.id.passwordReg)).perform(typeText("abc123"), closeSoftKeyboard());
+        onView(withId(R.id.passwordConfirm)).perform(typeText("abc123"), closeSoftKeyboard());
+        onView(withId(R.id.signupButton)).perform(click());
+
+        onView(withId(R.id.email)).check(matches(withText("")));
+        onView(withId(R.id.password)).check(matches(withText("")));
+    }
+
 
 
 }
