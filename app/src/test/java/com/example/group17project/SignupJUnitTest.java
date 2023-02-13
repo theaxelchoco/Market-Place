@@ -41,7 +41,7 @@ public class SignupJUnitTest {
 
     @Test
     public void checkIfPasswordValid() {
-        assertFalse(signup.isValidPassword("12345"));
+        assertFalse(signup.isValidPassword("abc!de"));
         assertTrue(signup.isValidPassword("123456"));
     }
 

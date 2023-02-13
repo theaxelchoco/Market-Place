@@ -80,7 +80,6 @@ public class SignupEspressoTest {
         onView(withId(R.id.passwordReg)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
-        //onView(withText(R.string.)).inRoot(withDecorView(not(is(mActivityRule.getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()))
         onView(withId(R.id.errorLabel)).check(matches(withText("")));
     }
 
@@ -127,6 +126,17 @@ public class SignupEspressoTest {
         onView(withId(R.id.passwordConfirm)).perform(typeText("abc"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
         onView(withId(R.id.errorLabel)).check(matches(withText(R.string.SHORT_PASSWORD)));
+    }
+
+    @Test
+    public void checkIfWorkingCredentials(){
+        onView(withId(R.id.emailReg)).perform(typeText("test@dal.ca"), closeSoftKeyboard());
+        onView(withId(R.id.passwordReg)).perform(typeText("abc123"), closeSoftKeyboard());
+        onView(withId(R.id.passwordConfirm)).perform(typeText("abc123"), closeSoftKeyboard());
+        onView(withId(R.id.signupButton)).perform(click());
+
+        onView(withId(R.id.email)).check(matches(withText("")));
+        onView(withId(R.id.password)).check(matches(withText("")));
     }
 
 

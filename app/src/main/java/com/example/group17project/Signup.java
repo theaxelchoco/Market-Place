@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.util.PatternsCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +43,11 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         databaseRef.child("users").child("testUsed@dal,ca").child("password").setValue("AbC123");
 
 
+    }
+
+    public void backButton(View view){
+        Intent i = new Intent(Signup.this, LoginLanding.class);
+        startActivity(i);
     }
 
     @Override
@@ -84,12 +90,16 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.hasChild(encodeUserEmail(email))){
-                        Toast.makeText(Signup.this, R.string.USED_EMAIL, Toast.LENGTH_SHORT).show();
+                        userExistToast = Toast.makeText(Signup.this, R.string.USED_EMAIL, Toast.LENGTH_SHORT);
+                        userExistToast.show();
                     }
                     else{
                         databaseRef.child("users").child(encodeUserEmail(email)).child("password").setValue(password);
-                        loginToast = Toast.makeText(Signup.this, "Sign up Successfully! Press back to login.", Toast.LENGTH_SHORT);
+                        loginToast = Toast.makeText(Signup.this, "Sign up Successfully! Login now!", Toast.LENGTH_SHORT);
                         loginToast.show();
+                        Intent i = new Intent(Signup.this, LoginLanding.class);
+                        startActivity(i);
+
                     }
                 }
 
