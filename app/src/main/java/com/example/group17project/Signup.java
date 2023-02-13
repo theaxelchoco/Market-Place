@@ -5,13 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.util.PatternsCompat;
 
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import com.google.firebase.database.DatabaseReference;
@@ -19,10 +20,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Signup extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String url = "https://w23-csci3130-group-17-default-rtdb.firebaseio.com/";
-    FirebaseDatabase database = null;
-    DatabaseReference emailRef = null;
-    DatabaseReference passwordRef = null;
+
+    DatabaseReference databaseRef = null;
+    Toast loginToast;
+    Toast userExistToast;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +34,14 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         Button signupButton = findViewById(R.id.signupButton);
         signupButton.setOnClickListener(this);
 
-        database = FirebaseDatabase.getInstance(url);
-        emailRef = database.getReference("Email") ;
-        passwordRef = database.getReference("Password");
+        databaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
+
+
+        //Used for testing and constant existing user. Remove during actual app launch
+        databaseRef.child("users").removeValue();
+        databaseRef.child("users").child("testUsed@dal,ca").child("password").setValue("AbC123");
+
+
     }
 
     @Override
@@ -42,37 +49,67 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         String email = getEmail();
         String password = getPassword();
         String confirmPassword = getConfirmPassword();
-        String errorMessage;
+        String errorMessage = "";
 
         if(isEmptyEmail(email)){
             errorMessage = getResources().getString(R.string.EMPTY_EMAIL).trim();
-            setMessage(errorMessage);
+
         }
         else if(!isValidEmailAddress(email)){
             errorMessage = getResources().getString(R.string.INVALID_EMAIL).trim();
-            setMessage(errorMessage);
+
         }
         else if(isEmptyPassword(password)){
             errorMessage = getResources().getString(R.string.EMPTY_PASSWORD).trim();
-            setMessage(errorMessage);
+
         }
-        else if(isEmptyConfirmPassword(confirmPassword)){
-            errorMessage = getResources().getString(R.string.EMPTY_PASSWORD).trim();
-            setMessage(errorMessage);
+        else if(passwordTooShort(password)){
+            errorMessage = getResources().getString(R.string.SHORT_PASSWORD).trim();
+
         }
         else if(!isValidPassword(password)){
             errorMessage = getResources().getString(R.string.INVALID_PASSWORD).trim();
-            setMessage(errorMessage);
+
+        }
+        else if(isEmptyConfirmPassword(confirmPassword)){
+            errorMessage = getResources().getString(R.string.EMPTY_PASSWORD).trim();
+
         }
         else if(!isPasswordMatch(password,confirmPassword)){
             errorMessage = getResources().getString(R.string.DIFFERENT_PASSWORDS).trim();
-            setMessage(errorMessage);
+
         }
         else{
-            setMessage("Sign up Successfully!");
+            databaseRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.hasChild(encodeUserEmail(email))){
+                        Toast.makeText(Signup.this, R.string.USED_EMAIL, Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        databaseRef.child("users").child(encodeUserEmail(email)).child("password").setValue(password);
+                        loginToast = Toast.makeText(Signup.this, "Sign up Successfully! Press back to login.", Toast.LENGTH_SHORT);
+                        loginToast.show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+
+            });
+
         }
+        setMessage(errorMessage);
+    }
 
+    static String encodeUserEmail(String email){
+        return email.replace(".", ",");
+    }
 
+    static String decodeUserEmail(String email){
+        return email.replace(",", ".");
     }
 
     //methods for checking matched-pair
@@ -108,7 +145,11 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
     }
 
     protected boolean isValidPassword(String password){
-        return password.length() >= 6 && password.matches("[A-Za-z0-9]*");
+        return password.matches("[A-Za-z0-9]*");
+    }
+
+    protected boolean passwordTooShort(String password){
+        return password.length() < 6;
     }
     protected boolean isPasswordMatch(String password, String confirmPassword){
         return password.equals(confirmPassword);
@@ -119,25 +160,5 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         errorLabel.setText(message);
     }
 
-    //yet to be done
-    protected Task<Void> saveEmailToFirebase(String email) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance(url);
-        DatabaseReference emailRef = database.getReference("Email");
-
-        emailRef.setValue(email);
-        return null;
-    }
-
-    protected Task<Void> savePasswordToFirebase(String password) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance(url);
-        DatabaseReference passwordRef = database.getReference("Password");
-
-        passwordRef.setValue(password);
-        return null;
-    }
-
-    protected boolean isEmailAlreadyUsed(String email){
-        return false;
-    }
 
 }

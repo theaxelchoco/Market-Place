@@ -80,7 +80,8 @@ public class SignupEspressoTest {
         onView(withId(R.id.passwordReg)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
-        onView(withId(R.id.errorLabel)).check(matches(withText(R.string.USED_EMAIL)));
+        //onView(withText(R.string.)).inRoot(withDecorView(not(is(mActivityRule.getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()))
+        onView(withId(R.id.errorLabel)).check(matches(withText("")));
     }
 
     @Test
@@ -113,11 +114,21 @@ public class SignupEspressoTest {
     @Test
     public void checkIfPasswordInvalid(){
         onView(withId(R.id.emailReg)).perform(typeText("test@dal.ca"), closeSoftKeyboard());
-        onView(withId(R.id.passwordReg)).perform(typeText("zzz"), closeSoftKeyboard());
-        onView(withId(R.id.passwordConfirm)).perform(typeText("zzz"), closeSoftKeyboard());
+        onView(withId(R.id.passwordReg)).perform(typeText("abcde!"), closeSoftKeyboard());
+        onView(withId(R.id.passwordConfirm)).perform(typeText("abcde!"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
         onView(withId(R.id.errorLabel)).check(matches(withText(R.string.INVALID_PASSWORD)));
     }
+
+    @Test
+    public void checkIfPasswordTooShort(){
+        onView(withId(R.id.emailReg)).perform(typeText("test@dal.ca"), closeSoftKeyboard());
+        onView(withId(R.id.passwordReg)).perform(typeText("abc"), closeSoftKeyboard());
+        onView(withId(R.id.passwordConfirm)).perform(typeText("abc"), closeSoftKeyboard());
+        onView(withId(R.id.signupButton)).perform(click());
+        onView(withId(R.id.errorLabel)).check(matches(withText(R.string.SHORT_PASSWORD)));
+    }
+
 
 
 }

@@ -3,8 +3,9 @@
     <string name="EMPTY_STRING" />
     <string name="EMPTY_EMAIL">Please enter an email id to sign up with.</string>
     <string name="INVALID_EMAIL">Please enter a valid email address.</string>
-    <string name="USED_EMAIL">This email already has an account! Please log in, or use a different email for registration.</string>
+    <string name="USED_EMAIL">This email already has an account! Please log in, or use a different email.</string>
     <string name="EMPTY_PASSWORD">Please enter a password for your account.</string>
     <string name="DIFFERENT_PASSWORDS">Please make sure both passwords are matching!</string>
-    <string name="INVALID_PASSWORD">Password must contain at least 6 characters. Allowed characters [A–Za–z0–9]</string>
+    <string name="INVALID_PASSWORD">Password may only contain allowing characters [A–Za–z0–9]</string>
+    <string name="SHORT_PASSWORD">Password must contain 6 or more characters.</string>
 </resources>

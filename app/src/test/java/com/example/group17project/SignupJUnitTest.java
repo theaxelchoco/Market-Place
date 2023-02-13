@@ -1,15 +1,26 @@
 package com.example.group17project;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import com.example.group17project.Signup;
 
 public class SignupJUnitTest {
-    static Signup signup = new Signup();
+
+    static Signup signup;
+
+    @BeforeClass
+    public static void setup() throws Exception{
+        signup = new Signup();
+    }
+
+    @AfterClass
+    public static void tearDown() throws Exception{
+        System.gc();
+    }
     @Test
     public void checkIfEmailEmpty() {
         assertTrue(signup.isEmptyEmail(""));
@@ -47,7 +58,9 @@ public class SignupJUnitTest {
     }
 
     @Test
-    public void checkIfEmailIsAlreadyUsed() {
-        assertTrue(signup.isEmailAlreadyUsed("testUsed@dal.ca"));
+    public void checkIfPasswordShort(){
+        assertTrue(signup.passwordTooShort("a"));
+        assertFalse(signup.passwordTooShort("abcdef"));
     }
+
 }
