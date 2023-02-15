@@ -1,11 +1,14 @@
 package com.example.group17project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.PatternsCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,20 +34,48 @@ public class LoginLanding extends AppCompatActivity {
         startActivity(i);
     }
     public void onClick(View view){
+        String email = getEmail();
+        String password = getPassword();
+        String errorMessage = "";
 
+        if(isEmptyEmail(email)){
+            errorMessage = getResources().getString(R.string.EMPTY_EMAIL_LOGIN).trim();
+        }
+        else if(!isValidEmailAddress(email)){
+            errorMessage = getResources().getString(R.string.INVALID_EMAIL).trim();
+        }
+        else if(isEmptyPassword(password)){
+            errorMessage = getResources().getString(R.string.EMPTY_PASSWORD_LOGIN).trim();
+        }
+
+        setMessage(errorMessage);
     }
-    protected boolean isEmptyEmail(String email){
 
-        return false;
+
+    protected void setMessage(String message){
+        TextView errorLabel = findViewById(R.id.errorLblLogin);
+        errorLabel.setText(message);
+    }
+
+    protected String getEmail(){
+        EditText email =findViewById(R.id.emailLogin);
+        return email.getText().toString().trim();
+    }
+
+    protected String getPassword(){
+        EditText password =findViewById(R.id.passwordLogin);
+        return password.getText().toString().trim();
+    }
+
+    protected boolean isEmptyEmail(String email) {
+        return email.isEmpty();
     }
 
     protected boolean isValidEmailAddress(String email){
-
-        return false;
+        return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     protected boolean isEmptyPassword(String password){
-
-        return false;
+        return password.isEmpty();
     }
 }
