@@ -43,6 +43,7 @@
             android:layout_width="314dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:onClick="onClick"
             android:text="Login" />
 
         <Button
@@ -50,6 +51,7 @@
             android:layout_width="314dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:onClick="signupButtonOnClick"
             android:text="Sign Up" />
     </LinearLayout>
 

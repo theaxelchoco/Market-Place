@@ -2,7 +2,9 @@ package com.example.group17project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.database.DatabaseReference;
@@ -18,11 +20,19 @@ public class LoginLanding extends AppCompatActivity {
 
         Button signupButton = findViewById(R.id.signup);
         Button loginButton = findViewById(R.id.loginBtn);
+        loginButton.setOnClickListener(this::onClick);
 
         databaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
 
     }
 
+    public void signupButtonOnClick(View view){
+        Intent i = new Intent(LoginLanding.this, Signup.class);
+        startActivity(i);
+    }
+    public void onClick(View view){
+
+    }
     protected boolean isEmptyEmail(String email){
 
         return false;
