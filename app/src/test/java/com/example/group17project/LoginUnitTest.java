@@ -1,37 +1,41 @@
 package com.example.group17project;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class LoginUnitTest {
-    @Test
-    public void testCorrectCredentialsLogin() {
-        // Create an instance of the login page
-        LoginPage loginPage = new LoginPage();
 
-        // Enter the correct email address
-        loginPage.enterEmailAddress("example@email.com");
+    static LoginLanding login;
 
-        // Enter the correct password
-        loginPage.enterPassword("password");
+    @BeforeClass
+    public static void setLogin() throws Exception{
+        login = new LoginLanding();
+    }
 
-        // Tap the login button
-        loginPage.clickLoginButton();
-
-        // Check if the application opens with the associated profile
-        assertTrue(loginPage.isProfileDisplayed());
+    @AfterClass
+    public static void tearDown(){
+        System.gc();
     }
 
     @Test
-    public void testIncorrectCredentials() {
-        LoginPage loginPage = new LoginPage();
-
-        String email = "incorrect@email.com";
-        String password = "incorrect";
-        String errorMessage = loginPage.login(email, password);
-
-        assertEquals("Invalid email/password. Please try again.", errorMessage);
+    public void checkIfEmailEmpty(){
+        assertTrue(login.isEmptyEmail(""));
+        assertFalse(login.isEmptyEmail("123@dal.ca"));
     }
+
+    @Test
+    public void checkIfEmailValid() {
+        assertTrue(login.isValidEmailAddress("qx748086@dal.ca"));
+        assertFalse(login.isValidEmailAddress("qx748086dal.ca"));
+    }
+
+    @Test
+    public void checkIfPasswordEmpty() {
+        assertTrue(login.isEmptyPassword(""));
+        assertFalse(login.isEmptyPassword("abc12345"));
+    }
+
 }

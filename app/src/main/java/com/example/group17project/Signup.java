@@ -114,11 +114,11 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         setMessage(errorMessage);
     }
 
-    static String encodeUserEmail(String email){
+    public static String encodeUserEmail(String email){
         return email.replace(".", ",");
     }
 
-    static String decodeUserEmail(String email){
+    public static String decodeUserEmail(String email){
         return email.replace(",", ".");
     }
 
@@ -166,7 +166,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
     }
 
     protected void setMessage(String message){
-        TextView errorLabel = findViewById(R.id.errorLabel);
+        TextView errorLabel = findViewById(R.id.errorLabelReg);
         errorLabel.setText(message);
     }
 

@@ -15,7 +15,7 @@
         tools:layout_editor_absoluteY="57dp">
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/emailLogin"
             android:layout_width="369dp"
             android:layout_height="97dp"
             android:layout_margin="16dp"
@@ -24,15 +24,22 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/passwordLogin"
             android:layout_width="369dp"
             android:layout_height="97dp"
             android:layout_margin="16dp"
             android:hint="Password"
             android:inputType="textPassword" />
 
+        <TextView
+            android:id="@+id/errorLblLogin"
+            android:layout_width="207dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#DC1616" />
+
         <Button
-            android:id="@+id/login"
+            android:id="@+id/loginBtn"
             android:layout_width="314dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"

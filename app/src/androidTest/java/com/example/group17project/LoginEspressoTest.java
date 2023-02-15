@@ -1,12 +1,14 @@
 package com.example.group17project;
 
 
-import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -14,6 +16,11 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertEquals;
 
+import android.content.Context;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 /**
@@ -24,34 +31,85 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 
 public class LoginEspressoTest {
+
+    @Rule
+    public ActivityScenarioRule<LoginLanding> myRule = new ActivityScenarioRule<>(LoginLanding.class);
+
+    @Before
+    public void setUp() throws Exception{
+
+    }
+
+    @After
+    public void tearDown() throws Exception{
+
+    }
+
+    @Test
+    public void useAppContext() {
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        assertEquals("com.example.group17project", appContext.getPackageName());
+    }
+
+    @Test
+    public void checkIfLoginPageIsVisible(){
+        onView(withId(R.id.emailLogin)).check(matches(withText(R.string.EMPTY_STRING)));
+        onView(withId(R.id.passwordLogin)).check(matches(withText(R.string.EMPTY_STRING)));
+        onView(withId(R.id.errorLblLogin)).check(matches(withText(R.string.EMPTY_STRING)));
+    }
+
+    @Test
+    public void checkIfEmailIsEmpty(){
+        onView(withId(R.id.emailLogin)).perform(typeText(""), closeSoftKeyboard());
+        onView(withId(R.id.passwordLogin)).perform(typeText("AbC123"), closeSoftKeyboard());
+        onView(withId(R.id.loginBtn)).perform(click());
+        onView(withId(R.id.errorLblLogin)).check(matches(withText(R.string.EMPTY_EMAIL_LOGIN)));
+    }
+
+    @Test
+    public void checkIfEmailIsInvalid(){
+        onView(withId(R.id.emailLogin)).perform(typeText("abc.dal.ca"), closeSoftKeyboard());
+        onView(withId(R.id.passwordLogin)).perform(typeText("AbC123"), closeSoftKeyboard());
+        onView(withId(R.id.loginBtn)).perform(click());
+        onView(withId(R.id.errorLblLogin)).check(matches(withText(R.string.INVALID_EMAIL)));
+    }
+
+    public void checkIfPasswordEmpty(){
+        onView(withId(R.id.emailLogin)).perform(typeText("test@dal.ca"), closeSoftKeyboard());
+        onView(withId(R.id.passwordLogin)).perform(typeText(" "), closeSoftKeyboard());
+        onView(withId(R.id.loginBtn)).perform(click());
+        onView(withId(R.id.errorLblLogin)).check(matches(withText(R.string.EMPTY_PASSWORD_LOGIN)));
+    }
+
     @Test
     public void testCorrectCredentialsLogin() {
         // Enter the correct email address
-        onView(withId(R.id.email_edit_text)).perform(typeText("example@email.com"), closeSoftKeyboard());
+        onView(withId(R.id.emailLogin)).perform(typeText("testUsed@dal.ca"), closeSoftKeyboard());
 
         // Enter the correct password
-        onView(withId(R.id.password_edit_text)).perform(typeText("password"), closeSoftKeyboard());
+        onView(withId(R.id.passwordLogin)).perform(typeText("AbC123"), closeSoftKeyboard());
 
         // Tap the login button
-        onView(withId(R.id.login_button)).perform(click());
+        onView(withId(R.id.loginBtn)).perform(click());
 
-        // Check if the application opens with the associated profile
-        onView(withId(R.id.profile_view)).check(matches(isDisplayed()));
+        // Check if the application opens with the associated profile (currently MainActivity on successful login)
+        onView(withId(R.id.mainLbl)).check(matches(withText("Hello world!")));
     }
 
     @Test
     public void testIncorrectCredentialsLogin() {
         // Enter an incorrect email address
-        onView(withId(R.id.email_edit_text)).perform(typeText("incorrect@email.com"), closeSoftKeyboard());
+        onView(withId(R.id.emailLogin)).perform(typeText("testUsed@dal.ca"), closeSoftKeyboard());
 
         // Enter an incorrect password
-        onView(withId(R.id.password_edit_text)).perform(typeText("incorrect"), closeSoftKeyboard());
+        onView(withId(R.id.passwordLogin)).perform(typeText("xxxxxx"), closeSoftKeyboard());
 
         // Tap the login button
-        onView(withId(R.id.login_button)).perform(click());
+        onView(withId(R.id.loginBtn)).perform(click());
 
         // Check if an error message is displayed
-        onView(withId(R.id.error_text_view)).check(matches(withText("Invalid email/password. Please try again.")));
+        onView(withId(R.id.errorLblLogin)).check(matches(withText(R.string.INCORRECT_PASSWORD_LOGIN)));
 
     }
 
