@@ -53,7 +53,7 @@ public class SignupEspressoTest {
         onView(withId(R.id.emailReg)).check(matches(withText(R.string.EMPTY_STRING)));
         onView(withId(R.id.passwordReg)).check(matches(withText(R.string.EMPTY_STRING)));
         onView(withId(R.id.passwordConfirm)).check(matches(withText(R.string.EMPTY_STRING)));
-        onView(withId(R.id.errorLabel)).check(matches(withText(R.string.EMPTY_STRING)));
+        onView(withId(R.id.errorLabelReg)).check(matches(withText(R.string.EMPTY_STRING)));
     }
 
     @Test
@@ -62,7 +62,7 @@ public class SignupEspressoTest {
         onView(withId(R.id.passwordReg)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
-        onView(withId(R.id.errorLabel)).check(matches(withText(R.string.EMPTY_EMAIL)));
+        onView(withId(R.id.errorLabelReg)).check(matches(withText(R.string.EMPTY_EMAIL)));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class SignupEspressoTest {
         onView(withId(R.id.passwordReg)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
-        onView(withId(R.id.errorLabel)).check(matches(withText(R.string.INVALID_EMAIL)));
+        onView(withId(R.id.errorLabelReg)).check(matches(withText(R.string.INVALID_EMAIL)));
     }
 
     @Test
@@ -80,7 +80,7 @@ public class SignupEspressoTest {
         onView(withId(R.id.passwordReg)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
-        onView(withId(R.id.errorLabel)).check(matches(withText("")));
+        onView(withId(R.id.errorLabelReg)).check(matches(withText("")));
     }
 
     @Test
@@ -89,7 +89,7 @@ public class SignupEspressoTest {
         onView(withId(R.id.passwordReg)).perform(typeText(" "), closeSoftKeyboard());
         onView(withId(R.id.passwordConfirm)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
-        onView(withId(R.id.errorLabel)).check(matches(withText(R.string.EMPTY_PASSWORD)));
+        onView(withId(R.id.errorLabelReg)).check(matches(withText(R.string.EMPTY_PASSWORD)));
     }
 
     @Test
@@ -98,7 +98,7 @@ public class SignupEspressoTest {
         onView(withId(R.id.passwordReg)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.passwordConfirm)).perform(typeText(" "), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
-        onView(withId(R.id.errorLabel)).check(matches(withText(R.string.EMPTY_PASSWORD)));
+        onView(withId(R.id.errorLabelReg)).check(matches(withText(R.string.EMPTY_PASSWORD)));
     }
 
     @Test
@@ -107,7 +107,7 @@ public class SignupEspressoTest {
         onView(withId(R.id.passwordReg)).perform(typeText("AbC123"), closeSoftKeyboard());
         onView(withId(R.id.passwordConfirm)).perform(typeText("DeF456"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
-        onView(withId(R.id.errorLabel)).check(matches(withText(R.string.DIFFERENT_PASSWORDS)));
+        onView(withId(R.id.errorLabelReg)).check(matches(withText(R.string.DIFFERENT_PASSWORDS)));
     }
 
     @Test
@@ -116,7 +116,7 @@ public class SignupEspressoTest {
         onView(withId(R.id.passwordReg)).perform(typeText("abcde!"), closeSoftKeyboard());
         onView(withId(R.id.passwordConfirm)).perform(typeText("abcde!"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
-        onView(withId(R.id.errorLabel)).check(matches(withText(R.string.INVALID_PASSWORD)));
+        onView(withId(R.id.errorLabelReg)).check(matches(withText(R.string.INVALID_PASSWORD)));
     }
 
     @Test
@@ -125,7 +125,7 @@ public class SignupEspressoTest {
         onView(withId(R.id.passwordReg)).perform(typeText("abc"), closeSoftKeyboard());
         onView(withId(R.id.passwordConfirm)).perform(typeText("abc"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
-        onView(withId(R.id.errorLabel)).check(matches(withText(R.string.SHORT_PASSWORD)));
+        onView(withId(R.id.errorLabelReg)).check(matches(withText(R.string.SHORT_PASSWORD)));
     }
 
     @Test
@@ -135,8 +135,8 @@ public class SignupEspressoTest {
         onView(withId(R.id.passwordConfirm)).perform(typeText("abc123"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
 
-        onView(withId(R.id.email)).check(matches(withText("")));
-        onView(withId(R.id.password)).check(matches(withText("")));
+        onView(withId(R.id.emailLogin)).check(matches(withText("")));
+        onView(withId(R.id.passwordLogin)).check(matches(withText("")));
     }
 
 

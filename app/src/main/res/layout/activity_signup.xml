@@ -18,7 +18,7 @@
         <EditText
             android:id="@+id/emailReg"
             android:layout_width="369dp"
-            android:layout_height="wrap_content"
+            android:layout_height="77dp"
             android:layout_margin="16dp"
             android:autofillHints=""
             android:hint="Email"
@@ -27,7 +27,7 @@
         <EditText
             android:id="@+id/passwordReg"
             android:layout_width="369dp"
-            android:layout_height="wrap_content"
+            android:layout_height="77dp"
             android:layout_margin="16dp"
             android:hint="Password"
             android:inputType="textPassword" />
@@ -35,7 +35,7 @@
         <EditText
             android:id="@+id/passwordConfirm"
             android:layout_width="369dp"
-            android:layout_height="wrap_content"
+            android:layout_height="77dp"
             android:layout_margin="16dp"
             android:hint="Confirm Password"
             android:inputType="textPassword" />
@@ -47,7 +47,7 @@
             android:text="Sign Up" />
 
         <TextView
-            android:id="@+id/errorLabel"
+            android:id="@+id/errorLabelReg"
             android:layout_width="207dp"
             android:layout_height="wrap_content"
             android:gravity="center"
