@@ -11,7 +11,6 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertEquals;
@@ -75,6 +74,7 @@ public class LoginEspressoTest {
         onView(withId(R.id.errorLblLogin)).check(matches(withText(R.string.INVALID_EMAIL)));
     }
 
+    @Test
     public void checkIfPasswordEmpty(){
         onView(withId(R.id.emailLogin)).perform(typeText("test@dal.ca"), closeSoftKeyboard());
         onView(withId(R.id.passwordLogin)).perform(typeText(" "), closeSoftKeyboard());
@@ -94,7 +94,7 @@ public class LoginEspressoTest {
         onView(withId(R.id.loginBtn)).perform(click());
 
         // Check if the application opens with the associated profile (currently MainActivity on successful login)
-        onView(withId(R.id.mainLbl)).check(matches(withText("Hello world!")));
+        onView(withId(R.id.mainPageText)).check(matches(withText("test")));
     }
 
     @Test

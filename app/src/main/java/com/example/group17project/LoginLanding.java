@@ -62,14 +62,13 @@ public class LoginLanding extends AppCompatActivity {
 
                     if(snapshot.hasChild(encodeUserEmail(email))){
 
-                        String retrievePassword = snapshot.child(decodeUserEmail(email)).child("password").getValue(String.class);
+                        String retrievePassword = snapshot.child(encodeUserEmail(email)).child("password").getValue(String.class);
 
                         if (retrievePassword.equals(password)){
                            Toast correctPasswordToast = Toast.makeText(LoginLanding.this,"Successfully Logged in", Toast.LENGTH_SHORT);
                             correctPasswordToast.show();
 
-                            startActivity(new Intent(LoginLanding.this, MainActivity.class));
-                            finish();
+                            startActivity(new Intent( LoginLanding.this, MainActivity.class));
                         }
                         else{
                            Toast incorrectPasswordToast= Toast.makeText(LoginLanding.this," Incorrect Password", Toast.LENGTH_SHORT);
