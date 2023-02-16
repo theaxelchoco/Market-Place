@@ -1,5 +1,6 @@
 package com.example.group17project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.util.PatternsCompat;
 
@@ -9,6 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -47,10 +53,54 @@ public class LoginLanding extends AppCompatActivity {
         else if(isEmptyPassword(password)){
             errorMessage = getResources().getString(R.string.EMPTY_PASSWORD_LOGIN).trim();
         }
+        else {
+
+            databaseRef.child("users").addListenerForSingleValueEvent(new ValueEventListener(){
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot){
+
+                    Toast correctPasswordToast;
+
+                    Toast incorrectPasswordToast;
+
+                    if(snapshot.hasChild(encodeUserEmail(email))){
+
+                        String retrievePassword = snapshot.child(decodeUserEmail(email)).child("password").getValue(String.class);
+
+                        if (retrievePassword.equals(password)){
+                            correctPasswordToast = Toast.makeText(LoginLanding.this,"Successfully Logged in", Toast.LENGTH_SHORT);
+                            correctPasswordToast.show();
+
+                            startActivity(new Intent(LoginLanding.this, MainActivity.class));
+                            finish();
+                        }
+                        else{
+                            incorrectPasswordToast= Toast.makeText(LoginLanding.this," Incorrect Password", Toast.LENGTH_SHORT);
+                            incorrectPasswordToast.show();
+                        }
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
 
         setMessage(errorMessage);
     }
 
+    public static String encodeUserEmail(String email){
+        return email.replace(".", ",");
+    }
+
+    public static String decodeUserEmail(String email){
+        return email.replace(",", ".");
+    }
 
     protected void setMessage(String message){
         TextView errorLabel = findViewById(R.id.errorLblLogin);
