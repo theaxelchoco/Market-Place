@@ -71,13 +71,14 @@ public class LoginLanding extends AppCompatActivity {
                             startActivity(new Intent( LoginLanding.this, MainActivity.class));
                         }
                         else{
-                           Toast incorrectPasswordToast= Toast.makeText(LoginLanding.this," Incorrect Password", Toast.LENGTH_SHORT);
+
+                           Toast incorrectPasswordToast= Toast.makeText(LoginLanding.this,R.string.INCORRECT_PASSWORD_LOGIN, Toast.LENGTH_SHORT);
                             incorrectPasswordToast.show();
                         }
 
                     }
                     else {
-                        Toast invalidEmailToast = Toast.makeText(LoginLanding.this, "Invalid Email", Toast.LENGTH_SHORT);
+                        Toast invalidEmailToast = Toast.makeText(LoginLanding.this, R.string.NEW_EMAIL_LOGIN, Toast.LENGTH_SHORT);
                         invalidEmailToast.show();
                     }
 

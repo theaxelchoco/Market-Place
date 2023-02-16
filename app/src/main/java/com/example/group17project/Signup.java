@@ -39,8 +39,8 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
 
 
         //Used for testing and constant existing user. Remove during actual app launch
-        databaseRef.child("users").removeValue();
-        databaseRef.child("users").child("testUsed@dal,ca").child("password").setValue("AbC123");
+//        databaseRef.child("users").removeValue();
+//        databaseRef.child("users").child("testUsed@dal,ca").child("password").setValue("AbC123");
 
 
     }

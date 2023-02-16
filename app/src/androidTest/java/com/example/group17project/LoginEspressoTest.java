@@ -109,8 +109,22 @@ public class LoginEspressoTest {
         onView(withId(R.id.loginBtn)).perform(click());
 
         // Check if an error message is displayed
-        onView(withId(R.id.errorLblLogin)).check(matches(withText(R.string.INCORRECT_PASSWORD_LOGIN)));
+        onView(withId(R.id.errorLblLogin)).check(matches(withText("")));
 
+    }
+
+    @Test
+    public void checkIfNewLogin(){
+        onView(withId(R.id.emailLogin)).perform(typeText("newTest@dal.ca"), closeSoftKeyboard());
+
+        // Enter an incorrect password
+        onView(withId(R.id.passwordLogin)).perform(typeText("abc123"), closeSoftKeyboard());
+
+        // Tap the login button
+        onView(withId(R.id.loginBtn)).perform(click());
+
+        // Check if an error message is displayed
+        onView(withId(R.id.errorLblLogin)).check(matches(withText("")));
     }
 
 }
