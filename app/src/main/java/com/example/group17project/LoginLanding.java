@@ -60,26 +60,26 @@ public class LoginLanding extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot){
 
-                    Toast correctPasswordToast;
-
-                    Toast incorrectPasswordToast;
-
                     if(snapshot.hasChild(encodeUserEmail(email))){
 
                         String retrievePassword = snapshot.child(decodeUserEmail(email)).child("password").getValue(String.class);
 
                         if (retrievePassword.equals(password)){
-                            correctPasswordToast = Toast.makeText(LoginLanding.this,"Successfully Logged in", Toast.LENGTH_SHORT);
+                           Toast correctPasswordToast = Toast.makeText(LoginLanding.this,"Successfully Logged in", Toast.LENGTH_SHORT);
                             correctPasswordToast.show();
 
                             startActivity(new Intent(LoginLanding.this, MainActivity.class));
                             finish();
                         }
                         else{
-                            incorrectPasswordToast= Toast.makeText(LoginLanding.this," Incorrect Password", Toast.LENGTH_SHORT);
+                           Toast incorrectPasswordToast= Toast.makeText(LoginLanding.this," Incorrect Password", Toast.LENGTH_SHORT);
                             incorrectPasswordToast.show();
                         }
 
+                    }
+                    else {
+                        Toast invalidEmailToast = Toast.makeText(LoginLanding.this, "Invalid Email", Toast.LENGTH_SHORT);
+                        invalidEmailToast.show();
                     }
 
                 }
