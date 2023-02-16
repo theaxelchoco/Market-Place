@@ -12,6 +12,7 @@
     tools:context=".MainActivity"
     tools:ignore="HardcodedText">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -23,7 +24,10 @@
             android:gravity="center"
             android:text="Let.. Him.. COOK"
             android:textSize="18sp" />
+
     </LinearLayout>
+
+
 
     <!-- this the navigation view which draws and shows the navigation drawer -->
     <!-- include the menu created in the menu folder -->
@@ -32,5 +36,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/navigation_menu" />
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
