@@ -20,32 +20,33 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
 
   private DrawerLayout drawerLayout;
   private ActionBarDrawerToggle toggle;
-  private FragmentManager fragmentManager;
+  private FragmentManager fragmentManager; // be aware that this fragment manager is from `androidx`
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_homepage);
 
-    // drawer layout instance to toggle the menu icon to open
-    // drawer and back button to close drawer
+    makeNavigation();
+
+    NavigationView navigationView = findViewById(R.id.navigation_view);
+    navigationView.setNavigationItemSelectedListener(this);
+
+    fragmentManager = getSupportFragmentManager();
+    fragmentTransaction(new ReceiverFragment()); // set default fragment
+  }
+
+  /**
+   * A helper method to create navigation menu for homepage
+   */
+  private void makeNavigation() {
     drawerLayout = findViewById(R.id.drawer_layout);
     toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
 
-    // pass the Open and Close toggle for the drawer layout listener
-    // toggle the button
     drawerLayout.addDrawerListener(toggle);
     toggle.syncState();
-    // make the Navigation drawer icon always appear on the action bar
+
     Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
-    NavigationView navigationView = findViewById(R.id.navigation_view);
-    // Set this activity as the listener for item selections in the NavigationView
-    navigationView.setNavigationItemSelectedListener(this);
-
-    // be aware that this fragment manager is from package androidx
-    fragmentManager = getSupportFragmentManager();
-    fragmentTransaction(new ReceiverFragment());
   }
 
   @Override
@@ -59,20 +60,22 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
   @Override
   public boolean onNavigationItemSelected(@NonNull MenuItem item) {
     if (item.getItemId() == R.id.nav_swap) {
-      Fragment currentFragment = fragmentManager.findFragmentById(R.id.fragment_container);
-      Fragment newFragment;
-
-      if (currentFragment instanceof ProviderFragment) {
-        newFragment = new ReceiverFragment();
-      } else {
-        newFragment = new ProviderFragment();
-      }
-
-      fragmentTransaction(newFragment);
+      swapProfile();
     }
 
     drawerLayout.closeDrawer(GravityCompat.START);
     return true;
+  }
+
+  /**
+   * A helper method to swap profile
+   */
+  private void swapProfile() {
+    Fragment currentFragment = fragmentManager.findFragmentById(R.id.fragment_container);
+    Fragment newFragment =
+        currentFragment instanceof ProviderFragment ? new ReceiverFragment() : new ProviderFragment();
+
+    fragmentTransaction(newFragment);
   }
 
   /**
