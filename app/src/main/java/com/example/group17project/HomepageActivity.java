@@ -1,11 +1,13 @@
 package com.example.group17project;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -34,6 +36,26 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
 
     fragmentManager = getSupportFragmentManager();
     fragmentTransaction(new ReceiverFragment()); // set default fragment
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.search_view, menu);
+    SearchView searchView = (SearchView) menu.findItem(R.id.search_bar).getActionView();
+    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+      @Override
+      public boolean onQueryTextSubmit(String query) {
+        // TODO: Handle search query submission
+        return false;
+      }
+
+      @Override
+      public boolean onQueryTextChange(String newText) {
+        // TODO: Handle search query text changes
+        return false;
+      }
+    });
+    return true;
   }
 
   /**
