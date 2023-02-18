@@ -68,7 +68,7 @@ public class LoginLanding extends AppCompatActivity {
                            Toast correctPasswordToast = Toast.makeText(LoginLanding.this,"Successfully Logged in", Toast.LENGTH_SHORT);
                             correctPasswordToast.show();
 
-                            startActivity(new Intent( LoginLanding.this, MainActivity.class));
+                            startActivity(new Intent( LoginLanding.this, HomepageActivity.class));
                         }
                         else{
 
