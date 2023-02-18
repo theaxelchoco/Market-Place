@@ -39,8 +39,8 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
 
 
         //Used for testing and constant existing user. Remove during actual app launch
-        databaseRef.child("users").removeValue();
-        databaseRef.child("users").child("testUsed@dal,ca").child("password").setValue("AbC123");
+//        databaseRef.child("users").removeValue();
+//        databaseRef.child("users").child("testUsed@dal,ca").child("password").setValue("AbC123");
 
 
     }
@@ -114,11 +114,11 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         setMessage(errorMessage);
     }
 
-    static String encodeUserEmail(String email){
+    public static String encodeUserEmail(String email){
         return email.replace(".", ",");
     }
 
-    static String decodeUserEmail(String email){
+    public static String decodeUserEmail(String email){
         return email.replace(",", ".");
     }
 
@@ -166,7 +166,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
     }
 
     protected void setMessage(String message){
-        TextView errorLabel = findViewById(R.id.errorLabel);
+        TextView errorLabel = findViewById(R.id.errorLabelReg);
         errorLabel.setText(message);
     }
 

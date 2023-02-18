@@ -9,6 +9,11 @@
     <string name="INVALID_PASSWORD">Password may only contain allowing characters [A–Za–z0–9]</string>
     <string name="SHORT_PASSWORD">Password must contain 6 or more characters.</string>
 
+    <string name="EMPTY_EMAIL_LOGIN">Please enter an email to login with.</string>
+    <string name="EMPTY_PASSWORD_LOGIN">Password field cannot be left empty!</string>
+    <string name="INCORRECT_PASSWORD_LOGIN">Invalid email/password. Please try again.</string>
+    <string name="NEW_EMAIL_LOGIN">This email is not registered. Please sign up.</string>
+    
     <!-- to toggle the open close button of the navigation drawer -->
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
