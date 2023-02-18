@@ -1,6 +1,13 @@
 package com.example.group17project;
 
 
+import static android.support.test.InstrumentationRegistry.getTargetContext;
+import static android.support.test.espresso.intent.Intents.intended;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -14,7 +21,9 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import android.content.ComponentName;
 import android.content.Context;
 
 import org.junit.After;
@@ -94,7 +103,8 @@ public class LoginEspressoTest {
         onView(withId(R.id.loginBtn)).perform(click());
 
         // Check if the application opens with the associated profile (currently MainActivity on successful login)
-        onView(withId(R.id.mainPageText)).check(matches(withText("test")));
+        onView(withId(R.id.text_view)).check(matches(withText("You are a Receiver")));
+
     }
 
     @Test
