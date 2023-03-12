@@ -19,4 +19,13 @@
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
     <string name="search">Search</string>
+    <string name="product_type_prompt">Choose Product Type</string>
+
+    <string-array name="product_types">
+        <item>Baby Toys</item>
+        <item>Clothes</item>
+        <item>Computer Accessories</item>
+        <item>Mobile Phones</item>
+        <item>Furniture</item>
+    </string-array>
 </resources>
