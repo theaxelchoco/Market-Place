@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.group17project.utils.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -67,6 +68,7 @@ public class LoginLanding extends AppCompatActivity {
                         if (retrievePassword.equals(password)){
                            Toast correctPasswordToast = Toast.makeText(LoginLanding.this,"Successfully Logged in", Toast.LENGTH_SHORT);
                             correctPasswordToast.show();
+                            User.getInstance().setUserDetails(email);
 
                             startActivity(new Intent( LoginLanding.this, HomepageActivity.class));
                         }
