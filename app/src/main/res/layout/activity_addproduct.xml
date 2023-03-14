@@ -6,115 +6,115 @@
     android:orientation="vertical"
     >
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add a new product!"
-        android:layout_marginBottom="8dp"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
-    <!-- Product Type Dropdown -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Product Type"
-        android:textColor="@color/black"
-        android:textSize="18sp"/>
+        android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/product_type_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        android:entries="@array/product_types"
-        android:prompt="@string/product_type_prompt" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <!-- Description -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        android:textColor="@color/black"
-        android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/addProductTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Add a new product!"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/description_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        android:autofillHints=""
-        android:hint="Enter a description" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Type"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
-    <!-- Date of Availability -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Date of Availability"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        />
+            <Spinner
+                android:id="@+id/product_type_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:entries="@array/product_types"
+                android:prompt="@string/product_type_prompt" />
 
-    <DatePicker
-        android:id="@+id/date_picker"
-        android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:layout_marginBottom="8dp"
-         />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
-    <!-- Place of Exchange -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Place of Exchange"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        />
+            <EditText
+                android:id="@+id/description_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:autofillHints=""
+                android:hint="Enter a description" />
 
-    <EditText
-        android:id="@+id/place_of_exchange_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        android:hint="Enter a place of exchange" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date of Availability"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
-    <!-- Approximate Market Value -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Approximate Market Value"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        />
+            <DatePicker
+                android:id="@+id/date_picker"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:layout_marginBottom="8dp" />
 
-    <EditText
-        android:id="@+id/market_value_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        android:hint="Enter the approximate market value" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Place of Exchange"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
-    <!-- Preferred Exchanges in Return -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Preferred Exchanges in Return"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        />
+            <EditText
+                android:id="@+id/place_of_exchange_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:hint="Enter a place of exchange" />
 
-    <Spinner
-        android:id="@+id/preferred_exchanges_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        android:entries="@array/product_types" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Approximate Market Value"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
-    <!-- Submit Button -->
-    <Button
-        android:id="@+id/submit_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Submit" />
+            <EditText
+                android:id="@+id/market_value_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:hint="Enter the approximate market value" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Preferred Exchanges in Return"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/preferred_exchanges_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:entries="@array/product_types" />
+
+            <Button
+                android:id="@+id/submit_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Submit" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

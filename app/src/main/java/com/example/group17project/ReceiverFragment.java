@@ -12,7 +12,7 @@ import com.example.group17project.utils.model.User;
 
 public class ReceiverFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_provider, container, false);
+    View view = inflater.inflate(R.layout.fragment_receiver, container, false);
     TextView textView = view.findViewById(R.id.text_view);
     textView.setText(User.getInstance().getEmail());
     return view;
