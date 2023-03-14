@@ -26,6 +26,28 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name of Product"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:id="@+id/productNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:autofillHints=""
+                android:hint="Enter a name" />
+
+            <TextView
+                android:id="@+id/productNameErrorLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Product Type"
@@ -83,6 +105,12 @@
                 android:hint="Enter a place of exchange" />
 
             <TextView
+                android:id="@+id/exchangeErrorLbl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FD0000" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Approximate Market Value"
@@ -95,6 +123,12 @@
                 android:layout_height="48dp"
                 android:layout_marginBottom="8dp"
                 android:hint="Enter the approximate market value" />
+
+            <TextView
+                android:id="@+id/marketValueErrorLbl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -115,6 +149,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Submit" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
