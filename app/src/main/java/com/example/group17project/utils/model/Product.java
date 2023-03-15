@@ -15,6 +15,8 @@ public class Product {
   private Type preferredExchange;
   private Status status;
 
+  private String productID;
+
   public Product(String name, String ownerID) {
     this.name = name;
     this.ownerID = ownerID;
@@ -93,6 +95,14 @@ public class Product {
 
   public void setStatus(Status status) {
     this.status = status;
+  }
+
+  public void setProductID(String productID){
+    this.productID = productID;
+  }
+
+  public String getProductID(){
+    return productID;
   }
 
   @NonNull
