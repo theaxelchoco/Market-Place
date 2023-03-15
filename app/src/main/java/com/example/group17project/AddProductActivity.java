@@ -25,7 +25,7 @@ import java.util.Date;
 public class AddProductActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
-    private Button submitButton;
+    private Button submitButton, cancelButton;
     private EditText productName, description, placeOfExchange, marketValue;
     private TextView productNameErrorLbl, exchangeErrorLbl, marketErrorLbl;
 
@@ -135,6 +135,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
 
     private void findViewComponents(){
         submitButton = findViewById(R.id.submit_button);
+        cancelButton = findViewById(R.id.cancel_button);
 
         productName = findViewById(R.id.productNameEditText);
         description = findViewById(R.id.description_edittext);
