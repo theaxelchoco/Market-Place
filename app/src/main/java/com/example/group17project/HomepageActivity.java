@@ -33,9 +33,22 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
 
     NavigationView navigationView = findViewById(R.id.navigation_view);
     navigationView.setNavigationItemSelectedListener(this);
-
     fragmentManager = getSupportFragmentManager();
-    fragmentTransaction(new ReceiverFragment()); // set default fragment
+
+    String fragmentId = getIntent().getStringExtra("fragmentId");
+    if(fragmentId != null){
+      if(fragmentId.equals("receiver")){
+        fragmentTransaction(new ReceiverFragment()); // set default fragment
+      }
+      else if(fragmentId.equals("provider")){
+        fragmentTransaction(new ProviderFragment());
+      }
+    }
+    else{
+      fragmentTransaction(new ReceiverFragment());
+    }
+
+
   }
 
   @Override

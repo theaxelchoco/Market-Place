@@ -1,11 +1,9 @@
 package com.example.group17project;
 
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.typeTextIntoFocusedView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertEquals;
@@ -13,12 +11,8 @@ import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.contrib.DrawerActions;
-import androidx.test.espresso.contrib.NavigationViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -64,8 +58,10 @@ public class AddProductEspressoTest {
     public void addProductSuccessfully(){
         onView(withId(R.id.productNameEditText)).perform(ViewActions.typeText("Iphone XR"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.description_edittext)).perform(ViewActions.typeText("working fine, screen has minor damage"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.addProdScroll)).perform(ViewActions.closeSoftKeyboard(), ViewActions.swipeUp(), ViewActions.closeSoftKeyboard()).check(matches(isDisplayed()));
         onView(withId(R.id.place_of_exchange_edittext)).perform(ViewActions.typeText("Halifax"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.market_value_edittext)).perform(ViewActions.typeText("80"), ViewActions.closeSoftKeyboard());
+
 
         onView(withId(R.id.submit_button)).perform(click());
         onView(withId(R.id.addProductBtn)).check(matches(withText("Add Product")));
@@ -75,6 +71,7 @@ public class AddProductEspressoTest {
     public void emptyProductName(){
         onView(withId(R.id.productNameEditText)).perform(ViewActions.typeText(""), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.description_edittext)).perform(ViewActions.typeText("working fine, screen has minor damage"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.addProdScroll)).perform(ViewActions.closeSoftKeyboard(), ViewActions.swipeUp(), ViewActions.closeSoftKeyboard()).check(matches(isDisplayed()));
         onView(withId(R.id.place_of_exchange_edittext)).perform(ViewActions.typeText("Halifax"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.market_value_edittext)).perform(ViewActions.typeText("80"), ViewActions.closeSoftKeyboard());
 
@@ -86,6 +83,7 @@ public class AddProductEspressoTest {
     public void emptyDescription(){
         onView(withId(R.id.productNameEditText)).perform(ViewActions.typeText("Iphone XR"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.description_edittext)).perform(ViewActions.typeText(""), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.addProdScroll)).perform(ViewActions.closeSoftKeyboard(), ViewActions.swipeUp(), ViewActions.closeSoftKeyboard()).check(matches(isDisplayed()));
         onView(withId(R.id.place_of_exchange_edittext)).perform(ViewActions.typeText("Halifax"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.market_value_edittext)).perform(ViewActions.typeText("80"), ViewActions.closeSoftKeyboard());
 
@@ -97,6 +95,7 @@ public class AddProductEspressoTest {
     public void emptyPlaceOfExchange(){
         onView(withId(R.id.productNameEditText)).perform(ViewActions.typeText("Iphone XR"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.description_edittext)).perform(ViewActions.typeText("working fine, screen has minor damage"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.addProdScroll)).perform(ViewActions.closeSoftKeyboard(), ViewActions.swipeUp(), ViewActions.closeSoftKeyboard()).check(matches(isDisplayed()));
         onView(withId(R.id.place_of_exchange_edittext)).perform(ViewActions.typeText(""), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.market_value_edittext)).perform(ViewActions.typeText("80"), ViewActions.closeSoftKeyboard());
 
@@ -108,6 +107,7 @@ public class AddProductEspressoTest {
     public void emptyMarketValue(){
         onView(withId(R.id.productNameEditText)).perform(ViewActions.typeText("Iphone XR"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.description_edittext)).perform(ViewActions.typeText("working fine, screen has minor damage"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.addProdScroll)).perform(ViewActions.closeSoftKeyboard(), ViewActions.swipeUp(), ViewActions.closeSoftKeyboard()).check(matches(isDisplayed()));
         onView(withId(R.id.place_of_exchange_edittext)).perform(ViewActions.typeText("Halifax"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.market_value_edittext)).perform(ViewActions.typeText(""), ViewActions.closeSoftKeyboard());
 
@@ -119,6 +119,7 @@ public class AddProductEspressoTest {
     public void invalidMarketValue(){
         onView(withId(R.id.productNameEditText)).perform(ViewActions.typeText("Iphone XR"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.description_edittext)).perform(ViewActions.typeText("working fine, screen has minor damage"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.addProdScroll)).perform(ViewActions.closeSoftKeyboard(), ViewActions.swipeUp(), ViewActions.closeSoftKeyboard()).check(matches(isDisplayed()));
         onView(withId(R.id.place_of_exchange_edittext)).perform(ViewActions.typeText("Halifax"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.market_value_edittext)).perform(ViewActions.typeText("eighty"), ViewActions.closeSoftKeyboard());
 

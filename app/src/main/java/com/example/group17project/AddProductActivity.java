@@ -2,6 +2,7 @@ package com.example.group17project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -45,8 +46,12 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         setUp();
         user = User.getInstance();
         submitButton.setOnClickListener(this::onClick);
+        cancelButton.setOnClickListener(this::cancelButtonOnClick);
     }
 
+    public void cancelButtonOnClick(View view){
+        switchBack();
+    }
     protected void onClick(View view){
         String productName = getProductName();
         String description = getDescription();
@@ -56,11 +61,59 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         String marketVal = getMarketValue();
         Calendar date = getDate();
 
+
         if(validPlaceOfExchange(exchangePlace) && validMarketValue(marketVal) && validProductName(productName)){
             Product product = new Product(productName, user.getEmail(), description, date, productType, exchangePlace, prefExchange);
             productRepository.createProduct(product);
+            switchBack();
+        }
+        else{
+            setErrors(productName, exchangePlace, marketVal);
+        }
+    }
+
+    public void switchBack(){
+        Intent intent = new Intent(AddProductActivity.this, HomepageActivity.class);
+        intent.putExtra("fragmentId", "provider");
+        startActivity(intent);
+
+    }
+
+    protected void setErrors(String productName, String placeOfExchange, String marketVal){
+        String pNameError = "";
+        String excError = "";
+        String marketError = "";
+
+        if(!validProductName(productName)){
+            pNameError = "Please enter a name for your product!";
+        }
+        if(!validPlaceOfExchange(placeOfExchange)){
+            excError = "Please enter a place of exchange!";
 
         }
+        if(!validMarketValue(marketVal)){
+            if(marketVal.isEmpty()){
+                marketError = "Please enter an approximate market value!";
+            }
+            else{
+                marketError = "Please enter an integer market value!";
+            }
+        }
+
+        setProductNameErrorLbl(pNameError);
+        setExchangeErrorLbl(excError);
+        setMarketErrorLbl(marketError);
+    }
+    protected void setMarketErrorLbl(String message){
+        marketErrorLbl.setText(message);
+    }
+
+    protected void setProductNameErrorLbl(String message){
+        productNameErrorLbl.setText(message);
+    }
+
+    protected void setExchangeErrorLbl(String message){
+        exchangeErrorLbl.setText(message);
     }
 
 
