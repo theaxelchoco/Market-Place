@@ -73,15 +73,23 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     protected boolean validProductName(String name){
-        return true;
+        return !name.isEmpty();
     }
 
     protected boolean validMarketValue(String marketValue){
-        return true;
+        if(marketValue.isEmpty()){
+            return false;
+        }
+        try{
+            int intVal = Integer.parseInt(marketValue);
+            return intVal > 0;
+        } catch (NumberFormatException e){
+            return false;
+        }
     }
 
     protected boolean validPlaceOfExchange(String place){
-        return true;
+        return !place.isEmpty();
     }
 
     protected String getType(){

@@ -30,6 +30,7 @@ public class AddProductUnitTest {
     public void checkIfMarketValueValid(){
         assertTrue(addProduct.validMarketValue("10"));
         assertFalse(addProduct.validMarketValue(""));
+        assertFalse(addProduct.validMarketValue("0"));
         assertFalse(addProduct.validMarketValue("-10"));
         assertFalse(addProduct.validMarketValue("10.1"));
         assertFalse(addProduct.validMarketValue("ten"));
