@@ -72,6 +72,18 @@ public class AddProductActivity extends AppCompatActivity {
         return cal;
     }
 
+    protected boolean validProductName(String name){
+        return true;
+    }
+
+    protected boolean validMarketValue(String marketValue){
+        return true;
+    }
+
+    protected boolean validPlaceOfExchange(String place){
+        return true;
+    }
+
     protected String getType(){
         productType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -101,7 +113,7 @@ public class AddProductActivity extends AppCompatActivity {
         });
         return selectedPreferredExchange;
     }
-    
+
     private void setUp(){
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
         productRepository = new ProductRepository(database, true);
