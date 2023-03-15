@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.group17project.utils.model.Product;
+import com.example.group17project.utils.model.User;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -19,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Calendar;
 import java.util.Date;
 
-public class AddProductActivity extends AppCompatActivity {
+public class AddProductActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
     private Button submitButton;
@@ -27,6 +30,7 @@ public class AddProductActivity extends AppCompatActivity {
     private TextView productNameErrorLbl, exchangeErrorLbl, marketErrorLbl;
 
     private DatePicker datePicker;
+    private User user;
 
     private Spinner productType, preferredExchange;
 
@@ -39,12 +43,26 @@ public class AddProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addproduct);
         setUp();
+        user = User.getInstance();
         submitButton.setOnClickListener(this::onClick);
     }
 
     protected void onClick(View view){
         String productName = getProductName();
+        String description = getDescription();
+        String productType = getType();
+        String prefExchange = getPreferredExchange();
+        String exchangePlace = getPlaceOfExchange();
+        String marketVal = getMarketValue();
+        Calendar date = getDate();
+
+        if(validPlaceOfExchange(exchangePlace) && validMarketValue(marketVal) && validProductName(productName)){
+            Product product = new Product(productName, user.getEmail(), description, date, productType, exchangePlace, prefExchange);
+            productRepository.createProduct(product);
+
+        }
     }
+
 
     protected String getProductName(){
         return productName.getText().toString().trim();
@@ -93,41 +111,26 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     protected String getType(){
-        productType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedProductType = adapterView.getItemAtPosition(i).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
         return selectedProductType;
     }
 
     protected String getPreferredExchange(){
-        preferredExchange.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedPreferredExchange = adapterView.getItemAtPosition(i).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
         return selectedPreferredExchange;
     }
 
     private void setUp(){
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
-        productRepository = new ProductRepository(database, true);
+        productRepository = new ProductRepository(database, false);
 
         findViewComponents();
         datePicker.setMinDate(System.currentTimeMillis() - 1000);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.product_types, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        productType.setAdapter(adapter);
+        preferredExchange.setAdapter(adapter);
+
+        productType.setOnItemSelectedListener(this);
+        preferredExchange.setOnItemSelectedListener(this);
     }
 
     private void findViewComponents(){
@@ -145,5 +148,22 @@ public class AddProductActivity extends AppCompatActivity {
         datePicker = findViewById(R.id.date_picker);
         productType = findViewById(R.id.product_type_spinner);
         preferredExchange = findViewById(R.id.preferred_exchanges_spinner);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        int viewId = adapterView.getId();
+        String selectedItem = adapterView.getItemAtPosition(i).toString();
+
+        if(viewId == R.id.product_type_spinner){
+            selectedProductType = selectedItem;
+        } else if(viewId == R.id.preferred_exchanges_spinner){
+            selectedPreferredExchange = selectedItem;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
