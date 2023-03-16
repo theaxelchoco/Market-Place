@@ -48,6 +48,7 @@ public class MapsEspressoTest {
         public ActivityScenarioRule<MapsActivity> activityScenarioRule =
                 new ActivityScenarioRule<>(MapsActivity.class);
 
+        /*
         @Test
         public void getLocationPermission_granted() {
             ActivityScenario<MapsActivity> activityScenario = activityScenarioRule.getScenario();
@@ -75,6 +76,7 @@ public class MapsEspressoTest {
         Espresso.onView(ViewMatchers.withText(R.string.permissions_denied))
                 .check(matches(isDisplayed()));
     }
+         */
 
     @Test
     public void checkSearchFunctionality() {

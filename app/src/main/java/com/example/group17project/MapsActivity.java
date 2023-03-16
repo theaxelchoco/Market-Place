@@ -178,15 +178,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             Log.d(TAG, "getDeviceLocation: onComplete: found location");
                             Location currentLocation = (Location) task.getResult();
                             if(currentLocation != null) {
-                                Log.d(TAG, "getDeviceLocation: currentLocation Lattitude: " + currentLocation.getLatitude());
+                                Log.d(TAG, "getDeviceLocation: currentLocation Latitude: " + currentLocation.getLatitude());
                                 Log.d(TAG, "getDeviceLocation: currentLocation Longitude: " + currentLocation.getLongitude());
                                 moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
                                         DEFAULT_ZOOM,"current location");
                             }else
                                 Log.d(TAG, "getDeviceLocation: Current location is null");
+                                Log.d(TAG,location.toString());
                         }else {
                             Log.d(TAG, "getDeviceLocation: Current location is null");
-                            Toast.makeText(MapsActivity.this, "Unable to get curent location", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MapsActivity.this, "Unable to get current location", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
