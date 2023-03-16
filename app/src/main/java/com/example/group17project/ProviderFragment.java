@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.group17project.utils.model.ListAdapter;
 import com.example.group17project.utils.model.Product;
+import com.example.group17project.utils.model.User;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -66,7 +67,10 @@ public class ProviderFragment extends Fragment {
           Long dateAvailableMillis = data.child("dateAvailable").child("time").getValue(Long.class);
           Date dateAvailable = new Date(dateAvailableMillis);
           product.setDateAvailable(dateAvailable);
-          productArrayList.add(product);
+          if(product.getOwnerID() != null && product.getOwnerID().equals(User.getInstance().getEmail())){
+            productArrayList.add(product);
+          }
+
         }
 
         productAdapter.notifyDataSetChanged();
