@@ -16,7 +16,13 @@ public class Product {
   private Type preferredExchange;
   private Status status;
 
+  private int imageId;
+
   private String productID;
+
+  public Product(){
+
+  }
 
   public Product(String name, String ownerID) {
     this.name = name;
@@ -54,6 +60,9 @@ public class Product {
     }
   }
 
+  public int getImageId(){return imageId;}
+
+  public void setImageId(int imageId){this.imageId = imageId;}
   public String getName() {
     return name;
   }
@@ -80,6 +89,23 @@ public class Product {
 
   public Type getType() {
     return type;
+  }
+
+  public String getTypeAsString(){
+    switch(type){
+      case BABY_TOYS:
+        return "Baby Toys";
+      case CLOTHES:
+        return "Clothes";
+      case FURNITURE:
+        return "Furniture";
+      case MOBILE_PHONES:
+        return "Mobile Phones";
+      case COMPUTER_ACCESSORIES:
+        return "Computer Accessories";
+      default:
+        return "";
+    }
   }
 
   public void setType(Type type) {

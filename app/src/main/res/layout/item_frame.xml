@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/itemProductImg"
         android:layout_width="136dp"
         android:layout_height="124dp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
@@ -28,10 +28,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.333"
-        app:srcCompat="@drawable/nintendo_switch_console_1640188664" />
+        app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/itemProductTypeFrame"
         android:layout_width="139dp"
         android:layout_height="28dp"
         android:layout_marginBottom="5dp"
@@ -44,11 +44,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/itemProductImg"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/itemProductNameFrame"
         android:layout_width="176dp"
         android:layout_height="32dp"
         android:text="Nintendo Switch"
@@ -64,7 +64,7 @@
         app:layout_constraintVertical_bias="0.114" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/itemProductDescriptionFrame"
         android:layout_width="225dp"
         android:layout_height="80dp"
         android:layout_marginBottom="5dp"
@@ -91,19 +91,19 @@
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="?attr/actionModeShareDrawable" />
+        app:srcCompat="@drawable/ic_action_name" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="56dp"
-        android:layout_height="48dp"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.774"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/heart_69_16" />
+<!--    <ImageButton-->
+<!--        android:id="@+id/imageButton2"-->
+<!--        android:layout_width="56dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:contentDescription="@string/app_name"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/view2"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/view2"-->
+<!--        app:layout_constraintHorizontal_bias="0.774"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/view2"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="1.0"-->
+<!--        app:srcCompat="@drawable/ic_action_name" />-->
 
 </android.support.constraint.ConstraintLayout>
