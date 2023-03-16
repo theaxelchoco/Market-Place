@@ -26,7 +26,7 @@ public class Product {
     status = Status.AVAILABLE;
   }
 
-  public Product(String name, String ownerID, String description, Calendar date, String productType, String place, String prefExchange){
+  public Product(String name, String ownerID, String description, Calendar date, String productType, String place, String prefExchange, int price){
     this.name = name;
     this.ownerID = ownerID;
     this.description = description;
@@ -34,6 +34,7 @@ public class Product {
     type = mapToProductType(productType);
     locationID = place;
     preferredExchange = mapToProductType(prefExchange);
+    this.price = price;
   }
 
   public Type mapToProductType(String productType){

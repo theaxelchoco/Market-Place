@@ -61,7 +61,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
 
 
         if(validPlaceOfExchange(exchangePlace) && validMarketValue(marketVal) && validProductName(productName)){
-            Product product = new Product(productName, user.getEmail(), description, date, productType, exchangePlace, prefExchange);
+            Product product = new Product(productName, user.getEmail(), description, date, productType, exchangePlace, prefExchange, Integer.parseInt(marketVal));
             productRepository.createProduct(product);
             Toast.makeText(this, getResources().getString(R.string.SUCCESSFUL_PRODUCT_CREATION).trim(), Toast.LENGTH_SHORT).show();
             switchBack();
@@ -138,7 +138,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         int year = datePicker.getYear();
 
         Calendar cal = Calendar.getInstance();
-        cal.set(year + 1990, month, day);
+        cal.set(year + 1900, month, day);
         return cal;
     }
 
