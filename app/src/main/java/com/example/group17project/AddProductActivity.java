@@ -17,11 +17,9 @@ import android.widget.Toast;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.model.User;
 import com.example.group17project.utils.repository.ProductRepository;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class AddProductActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -65,6 +63,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         if(validPlaceOfExchange(exchangePlace) && validMarketValue(marketVal) && validProductName(productName)){
             Product product = new Product(productName, user.getEmail(), description, date, productType, exchangePlace, prefExchange);
             productRepository.createProduct(product);
+            Toast.makeText(this, getResources().getString(R.string.SUCCESSFUL_PRODUCT_CREATION).trim(), Toast.LENGTH_SHORT).show();
             switchBack();
         }
         else{
