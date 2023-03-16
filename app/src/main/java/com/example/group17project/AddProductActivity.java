@@ -50,7 +50,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     public void cancelButtonOnClick(View view){
         switchBack();
     }
-    protected void onClick(View view){
+    public void onClick(View view){
         String productName = getProductName();
         String description = getDescription();
         String productType = getType();
