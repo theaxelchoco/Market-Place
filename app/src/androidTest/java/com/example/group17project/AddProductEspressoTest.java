@@ -76,7 +76,7 @@ public class AddProductEspressoTest {
         onView(withId(R.id.market_value_edittext)).perform(ViewActions.typeText("80"), ViewActions.closeSoftKeyboard());
 
         onView(withId(R.id.submit_button)).perform(click());
-        onView(withId(R.id.productNameErrorLabel)).check(matches(withText("Please enter a name for your product!")));
+        onView(withId(R.id.productNameErrorLabel)).check(matches(withText(R.string.PRODUCT_NAME_ERROR)));
     }
 
     @Test
@@ -100,7 +100,7 @@ public class AddProductEspressoTest {
         onView(withId(R.id.market_value_edittext)).perform(ViewActions.typeText("80"), ViewActions.closeSoftKeyboard());
 
         onView(withId(R.id.submit_button)).perform(click());
-        onView(withId(R.id.exchangeErrorLbl)).check(matches(withText("Please enter a place of exchange!")));
+        onView(withId(R.id.exchangeErrorLbl)).check(matches(withText(R.string.EXCHANGE_PLACE_ERROR)));
     }
 
     @Test
@@ -112,7 +112,7 @@ public class AddProductEspressoTest {
         onView(withId(R.id.market_value_edittext)).perform(ViewActions.typeText(""), ViewActions.closeSoftKeyboard());
 
         onView(withId(R.id.submit_button)).perform(click());
-        onView(withId(R.id.marketValueErrorLbl)).check(matches(withText("Please enter an approximate market value!")));
+        onView(withId(R.id.marketValueErrorLbl)).check(matches(withText(R.string.EMPTY_MARKET_VAL)));
     }
 
     @Test
@@ -124,7 +124,7 @@ public class AddProductEspressoTest {
         onView(withId(R.id.market_value_edittext)).perform(ViewActions.typeText("eighty"), ViewActions.closeSoftKeyboard());
 
         onView(withId(R.id.submit_button)).perform(click());
-        onView(withId(R.id.marketValueErrorLbl)).check(matches(withText("Please enter an integer market value!")));
+        onView(withId(R.id.marketValueErrorLbl)).check(matches(withText(R.string.MARKET_VAL_NEED_INT_ERROR)));
     }
 
 

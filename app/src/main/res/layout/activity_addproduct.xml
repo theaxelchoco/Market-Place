@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Add a new product!"
+                android:text="@string/ADD_PRODUCT_TITLE"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -30,7 +30,7 @@
                 android:id="@+id/textView10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name of Product"
+                android:text="@string/NAME_PRODUCT_TITLE"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -40,7 +40,7 @@
                 android:layout_height="48dp"
                 android:layout_marginBottom="8dp"
                 android:autofillHints=""
-                android:hint="Enter a name" />
+                android:hint="@string/ENTER_PROD_NAME_HINT" />
 
             <TextView
                 android:id="@+id/productNameErrorLabel"
@@ -51,7 +51,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Product Type"
+                android:text="@string/PRODUCT_TYPE_TITLE"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -66,7 +66,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Description"
+                android:text="@string/DESCRIPTION_TITLE"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -76,12 +76,12 @@
                 android:layout_height="48dp"
                 android:layout_marginBottom="8dp"
                 android:autofillHints=""
-                android:hint="Enter a description" />
+                android:hint="@string/ENTER_DESC_HINT" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Date of Availability"
+                android:text="@string/DATE_AVAILABLE_TITLE"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -94,7 +94,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Place of Exchange"
+                android:text="@string/EXCHANGE_PLACE_TITLE"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="8dp"
-                android:hint="Enter a place of exchange" />
+                android:hint="@string/EXCHANGE_PLACE_HINT" />
 
             <TextView
                 android:id="@+id/exchangeErrorLbl"
@@ -114,7 +114,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Approximate Market Value"
+                android:text="@string/APPROX_MARKET_VAL_TITLE"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -123,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="8dp"
-                android:hint="Enter the approximate market value" />
+                android:hint="@string/MARKET_VALUE_HINT" />
 
             <TextView
                 android:id="@+id/marketValueErrorLbl"
@@ -134,7 +134,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Preferred Exchanges in Return"
+                android:text="@string/PREF_EXCHANGE_TITLE"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -162,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:paddingEnd="10dp"
-                    android:text="Cancel" />
+                    android:text="@string/CANCEL" />
 
                 <View
                     android:id="@+id/view"
@@ -175,7 +175,7 @@
                     android:layout_width="157dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="Submit" />
+                    android:text="@string/SUBMIT" />
 
                 <View
                     android:id="@+id/view4"

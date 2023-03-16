@@ -85,18 +85,18 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         String marketError = "";
 
         if(!validProductName(productName)){
-            pNameError = "Please enter a name for your product!";
+            pNameError = getString(R.string.PRODUCT_NAME_ERROR);
         }
         if(!validPlaceOfExchange(placeOfExchange)){
-            excError = "Please enter a place of exchange!";
+            excError = getString(R.string.EXCHANGE_PLACE_ERROR);
 
         }
         if(!validMarketValue(marketVal)){
             if(marketVal.isEmpty()){
-                marketError = "Please enter an approximate market value!";
+                marketError = getString(R.string.EMPTY_MARKET_VAL);
             }
             else{
-                marketError = "Please enter an integer market value!";
+                marketError = getString(R.string.MARKET_VAL_NEED_INT_ERROR);
             }
         }
 
