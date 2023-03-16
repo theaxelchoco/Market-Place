@@ -2,6 +2,7 @@ package com.example.group17project.utils.model;
 
 import androidx.annotation.NonNull;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Product {
@@ -15,12 +16,42 @@ public class Product {
   private Type preferredExchange;
   private Status status;
 
+  private String productID;
+
   public Product(String name, String ownerID) {
     this.name = name;
     this.ownerID = ownerID;
 
     dateAvailable = new Date();
     status = Status.AVAILABLE;
+  }
+
+  public Product(String name, String ownerID, String description, Calendar date, String productType, String place, String prefExchange, int price){
+    this.name = name;
+    this.ownerID = ownerID;
+    this.description = description;
+    dateAvailable = date.getTime();
+    type = mapToProductType(productType);
+    locationID = place;
+    preferredExchange = mapToProductType(prefExchange);
+    this.price = price;
+  }
+
+  public Type mapToProductType(String productType){
+    switch(productType){
+      case "Baby Toys":
+        return Type.BABY_TOYS;
+      case "Clothes":
+        return Type.CLOTHES;
+      case "Computer Accessories":
+        return Type.COMPUTER_ACCESSORIES;
+      case "Mobile Phones":
+        return Type.MOBILE_PHONES;
+      case "Furniture":
+        return Type.FURNITURE;
+      default:
+        return null;
+    }
   }
 
   public String getName() {
@@ -93,6 +124,14 @@ public class Product {
 
   public void setStatus(Status status) {
     this.status = status;
+  }
+
+  public void setProductID(String productID){
+    this.productID = productID;
+  }
+
+  public String getProductID(){
+    return productID;
   }
 
   @NonNull

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">group17Project</string>
+    <string name="app_name">Barter Trader</string>
     <string name="EMPTY_STRING" />
     <string name="EMPTY_EMAIL">Please enter an email id to sign up with.</string>
     <string name="INVALID_EMAIL">Please enter a valid email address.</string>
@@ -19,4 +19,34 @@
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
     <string name="search">Search</string>
+    <string name="product_type_prompt">Choose Product Type</string>
+
+
+    <string name="ADD_PRODUCT_TITLE">Add a new product!</string>
+    <string name="NAME_PRODUCT_TITLE">Name of Product</string>
+    <string name="ENTER_PROD_NAME_HINT">Enter a name</string>
+    <string name="PRODUCT_TYPE_TITLE">Product Type</string>
+    <string name="DESCRIPTION_TITLE">Description</string>
+    <string name="ENTER_DESC_HINT">Enter a description</string>
+    <string name="DATE_AVAILABLE_TITLE">Date of Availability</string>
+    <string name="EXCHANGE_PLACE_TITLE">Place of Exchange</string>
+    <string name="EXCHANGE_PLACE_HINT">Enter a place of exchange</string>
+    <string name="APPROX_MARKET_VAL_TITLE">Approximate Market Value</string>
+    <string name="MARKET_VALUE_HINT">Enter the approximate market value</string>
+    <string name="PREF_EXCHANGE_TITLE">Preferred Exchanges in Return</string>
+    <string name="CANCEL">Cancel</string>
+    <string name="SUBMIT">Submit</string>
+    <string name="PRODUCT_NAME_ERROR">Please enter a name for your product!</string>
+    <string name="EXCHANGE_PLACE_ERROR">Please enter a place of exchange!</string>
+    <string name="EMPTY_MARKET_VAL">Please enter an approximate market value!</string>
+    <string name="MARKET_VAL_NEED_INT_ERROR">Please enter an integer market value!</string>
+    <string name="SUCCESSFUL_PRODUCT_CREATION">Product created successfully!</string>
+
+    <string-array name="product_types">
+        <item>Baby Toys</item>
+        <item>Clothes</item>
+        <item>Computer Accessories</item>
+        <item>Mobile Phones</item>
+        <item>Furniture</item>
+    </string-array>
 </resources>

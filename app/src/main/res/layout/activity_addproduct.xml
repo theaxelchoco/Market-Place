@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    >
+
+    <ScrollView
+        android:id="@+id/addProdScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/addProductTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/ADD_PRODUCT_TITLE"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/NAME_PRODUCT_TITLE"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/productNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:autofillHints=""
+                android:hint="@string/ENTER_PROD_NAME_HINT" />
+
+            <TextView
+                android:id="@+id/productNameErrorLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/PRODUCT_TYPE_TITLE"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/product_type_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:entries="@array/product_types"
+                android:prompt="@string/product_type_prompt" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/DESCRIPTION_TITLE"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/description_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:autofillHints=""
+                android:hint="@string/ENTER_DESC_HINT" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/DATE_AVAILABLE_TITLE"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <DatePicker
+                android:id="@+id/date_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/EXCHANGE_PLACE_TITLE"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/place_of_exchange_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/EXCHANGE_PLACE_HINT" />
+
+            <TextView
+                android:id="@+id/exchangeErrorLbl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FD0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/APPROX_MARKET_VAL_TITLE"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/market_value_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/MARKET_VALUE_HINT" />
+
+            <TextView
+                android:id="@+id/marketValueErrorLbl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/PREF_EXCHANGE_TITLE"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/preferred_exchanges_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:entries="@array/product_types" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/cancel_button"
+                    android:layout_width="157dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:paddingEnd="10dp"
+                    android:text="@string/CANCEL" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/submit_button"
+                    android:layout_width="157dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="@string/SUBMIT" />
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

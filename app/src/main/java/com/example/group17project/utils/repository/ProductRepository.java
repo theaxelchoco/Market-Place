@@ -26,11 +26,13 @@ public class ProductRepository {
   public void createProduct(String name, String ownerID) {
     String key = databaseRef.push().getKey();
     Product product = new Product(name, ownerID);
+    product.setProductID(key);
     databaseRef.child(Objects.requireNonNull(key)).setValue(product);
   }
 
   public void createProduct(Product product) {
     String key = databaseRef.push().getKey();
+    product.setProductID(key);
     databaseRef.child(Objects.requireNonNull(key)).setValue(product);
   }
 
