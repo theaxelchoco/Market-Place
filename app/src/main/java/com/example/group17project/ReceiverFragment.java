@@ -1,9 +1,11 @@
 package com.example.group17project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,8 +37,18 @@ public class ReceiverFragment extends Fragment {
 
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_receiver, container, false);
-    TextView textView = view.findViewById(R.id.text_view);
-    textView.setText(User.getInstance().getEmail());
+//    TextView textView = view.findViewById(R.id.text_view);
+//    textView.setText(User.getInstance().getEmail());
+    productListView = view.findViewById(R.id.productList);
+
+    productListView.setAdapter(productAdapter);
+
     return view;
   }
+
+  public void onClick(View view){
+    Intent i = new Intent(getActivity(), AddProductActivity.class);
+    startActivity(i);
+  }
+
 }
