@@ -12,7 +12,7 @@ public class Product {
   private Type type;
   private String ownerID;
   private String locationID;
-  private double price;
+  private int price;
   private Type preferredExchange;
   private Status status;
 
@@ -87,11 +87,7 @@ public class Product {
     this.dateAvailable = dateAvailable;
   }
 
-  public Type getType() {
-    return type;
-  }
-
-  public String getTypeAsString(){
+  public String getType() {
     switch(type){
       case BABY_TOYS:
         return "Baby Toys";
@@ -128,16 +124,29 @@ public class Product {
     this.locationID = locationID;
   }
 
-  public double getPrice() {
+  public int getPrice() {
     return price;
   }
 
-  public void setPrice(double price) {
+  public void setPrice(int price) {
     this.price = price;
   }
 
-  public Type getPreferredExchange() {
-    return preferredExchange;
+  public String getPreferredExchange() {
+    switch(preferredExchange){
+      case BABY_TOYS:
+        return "Baby Toys";
+      case CLOTHES:
+        return "Clothes";
+      case FURNITURE:
+        return "Furniture";
+      case MOBILE_PHONES:
+        return "Mobile Phones";
+      case COMPUTER_ACCESSORIES:
+        return "Computer Accessories";
+      default:
+        return "";
+    }
   }
 
   public void setPreferredExchange(Type preferredExchange) {

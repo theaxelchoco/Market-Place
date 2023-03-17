@@ -23,6 +23,9 @@
             android:name=".HomepageActivity"
             android:exported="true" />
         <activity
+            android:name=".ExpandedProviderActivity"
+            android:exported="true" />
+        <activity
             android:name=".AddProductActivity"
             android:exported="true" />
         <activity

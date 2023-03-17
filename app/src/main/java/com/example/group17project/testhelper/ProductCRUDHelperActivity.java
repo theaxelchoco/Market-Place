@@ -106,7 +106,7 @@ public class ProductCRUDHelperActivity extends AppCompatActivity {
     testProduct.setDateAvailable(new Date());
     testProduct.setType(Product.Type.COMPUTER_ACCESSORIES);
     testProduct.setLocationID("testLocationID");
-    testProduct.setPrice(10.0);
+    testProduct.setPrice(10);
     testProduct.setPreferredExchange(Product.Type.MOBILE_PHONES);
 
     currentProduct = testProduct;
