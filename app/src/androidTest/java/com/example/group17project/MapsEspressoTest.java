@@ -1,22 +1,9 @@
 package com.example.group17project;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.SystemClock;
-import com.example.group17project.R;
 
-
-
-import androidx.core.content.ContextCompat;
-import androidx.test.core.app.ActivityScenario;
-import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
 
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,8 +32,8 @@ public class MapsEspressoTest {
                 .check(matches(isDisplayed()));
     }
         @Rule
-        public ActivityScenarioRule<MapsActivity> activityScenarioRule =
-                new ActivityScenarioRule<>(MapsActivity.class);
+        public ActivityScenarioRule<UserLocation> activityScenarioRule =
+                new ActivityScenarioRule<>(UserLocation.class);
 
         /*
         @Test
