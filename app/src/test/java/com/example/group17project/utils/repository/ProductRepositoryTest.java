@@ -1,6 +1,7 @@
 package com.example.group17project.utils.repository;
 
 import com.example.group17project.utils.model.Product;
+import com.example.group17project.utils.model.ProductType;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,10 +19,10 @@ public class ProductRepositoryTest {
     Product testProduct = new Product("testProduct", "testOwnerID");
     testProduct.setDescription("testDescription");
     testProduct.setDateAvailable(new Date());
-    testProduct.setType(Product.Type.COMPUTER_ACCESSORIES);
+    testProduct.setType(ProductType.COMPUTER_ACCESSORIES);
     testProduct.setLocationID("testLocationID");
     testProduct.setPrice(10.0);
-    testProduct.setPreferredExchange(Product.Type.MOBILE_PHONES);
+    testProduct.setPreferredExchange(ProductType.MOBILE_PHONES);
   }
 
   @Test

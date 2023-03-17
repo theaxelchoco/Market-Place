@@ -9,11 +9,11 @@ public class Product {
   private String name;
   private String description;
   private Date dateAvailable;
-  private Type type;
+  private ProductType type;
   private String ownerID;
   private String locationID;
   private double price;
-  private Type preferredExchange;
+  private ProductType preferredExchange;
   private Status status;
 
   private String productID;
@@ -26,7 +26,7 @@ public class Product {
     status = Status.AVAILABLE;
   }
 
-  public Product(String name, String ownerID, String description, Calendar date, String productType, String place, String prefExchange, int price){
+  public Product(String name, String ownerID, String description, Calendar date, String productType, String place, String prefExchange, int price) {
     this.name = name;
     this.ownerID = ownerID;
     this.description = description;
@@ -37,18 +37,18 @@ public class Product {
     this.price = price;
   }
 
-  public Type mapToProductType(String productType){
-    switch(productType){
+  public ProductType mapToProductType(String productType) {
+    switch (productType) {
       case "Baby Toys":
-        return Type.BABY_TOYS;
+        return ProductType.BABY_TOYS;
       case "Clothes":
-        return Type.CLOTHES;
+        return ProductType.CLOTHES;
       case "Computer Accessories":
-        return Type.COMPUTER_ACCESSORIES;
+        return ProductType.COMPUTER_ACCESSORIES;
       case "Mobile Phones":
-        return Type.MOBILE_PHONES;
+        return ProductType.MOBILE_PHONES;
       case "Furniture":
-        return Type.FURNITURE;
+        return ProductType.FURNITURE;
       default:
         return null;
     }
@@ -78,11 +78,11 @@ public class Product {
     this.dateAvailable = dateAvailable;
   }
 
-  public Type getType() {
+  public ProductType getType() {
     return type;
   }
 
-  public void setType(Type type) {
+  public void setType(ProductType type) {
     this.type = type;
   }
 
@@ -110,11 +110,11 @@ public class Product {
     this.price = price;
   }
 
-  public Type getPreferredExchange() {
+  public ProductType getPreferredExchange() {
     return preferredExchange;
   }
 
-  public void setPreferredExchange(Type preferredExchange) {
+  public void setPreferredExchange(ProductType preferredExchange) {
     this.preferredExchange = preferredExchange;
   }
 
@@ -126,12 +126,12 @@ public class Product {
     this.status = status;
   }
 
-  public void setProductID(String productID){
-    this.productID = productID;
+  public String getProductID() {
+    return productID;
   }
 
-  public String getProductID(){
-    return productID;
+  public void setProductID(String productID) {
+    this.productID = productID;
   }
 
   @NonNull
@@ -148,14 +148,6 @@ public class Product {
         ", preferredExchange=" + preferredExchange +
         ", status=" + status +
         '}';
-  }
-
-  public enum Type {
-    BABY_TOYS,
-    CLOTHES,
-    COMPUTER_ACCESSORIES,
-    MOBILE_PHONES,
-    FURNITURE
   }
 
   public enum Status {
