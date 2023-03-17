@@ -18,10 +18,10 @@ public class ProductRepositoryTest {
     Product testProduct = new Product("testProduct", "testOwnerID");
     testProduct.setDescription("testDescription");
     testProduct.setDateAvailable(new Date());
-    testProduct.setType(Product.Type.COMPUTER_ACCESSORIES);
+    testProduct.setType("Computer Accessories");
     testProduct.setLocationID("testLocationID");
     testProduct.setPrice(10);
-    testProduct.setPreferredExchange(Product.Type.MOBILE_PHONES);
+    testProduct.setPreferredExchange("Mobile Phones");
   }
 
   @Test
