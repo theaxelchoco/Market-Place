@@ -104,8 +104,8 @@ public class Product {
     }
   }
 
-  public void setType(Type type) {
-    this.type = type;
+  public void setType(String type) {
+    this.type = mapToProductType(type);
   }
 
   public String getOwnerID() {
@@ -149,8 +149,8 @@ public class Product {
     }
   }
 
-  public void setPreferredExchange(Type preferredExchange) {
-    this.preferredExchange = preferredExchange;
+  public void setPreferredExchange(String preferredExchange) {
+    this.preferredExchange = mapToProductType(preferredExchange);
   }
 
   public Status getStatus() {
@@ -190,7 +190,7 @@ public class Product {
     CLOTHES,
     COMPUTER_ACCESSORIES,
     MOBILE_PHONES,
-    FURNITURE
+    FURNITURE,
   }
 
   public enum Status {
