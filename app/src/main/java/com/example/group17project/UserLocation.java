@@ -46,10 +46,7 @@ public class UserLocation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_provider);
 
-        locationRequest = LocationRequest.create();
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setInterval(5000);
-        locationRequest.setFastestInterval(2000);
+        turnOnLocation();
 
         getCurrentLocation();
     }
@@ -142,6 +139,11 @@ public class UserLocation extends AppCompatActivity {
     }
 
     private void turnOnLocation() {
+        locationRequest = LocationRequest.create();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(5000);
+        locationRequest.setFastestInterval(2000);
+
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
                 .addLocationRequest(locationRequest);
         builder.setAlwaysShow(true);
