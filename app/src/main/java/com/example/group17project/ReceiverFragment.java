@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ReceiverFragment extends Fragment {
+  //Initialize variables
   private ListView productListView;
   private ArrayList<Product> productArrayList;
   private ProductRepository productRepository;
@@ -32,7 +33,7 @@ public class ReceiverFragment extends Fragment {
 
   public void onCreate(Bundle savedInstanceState){
     super.onCreate(savedInstanceState);
-
+    //link the receiver list with Firebase database
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
     productRepository = new ProductRepository(database, false);
     productArrayList = new ArrayList<>();
@@ -50,6 +51,7 @@ public class ReceiverFragment extends Fragment {
     return view;
   }
 
+  //When the ReceiverFragment start, connect to the real time database using productRepository
   public void onStart(){
     super.onStart();
     productRepository.getDatabaseRef().addValueEventListener(new ValueEventListener() {
@@ -61,15 +63,18 @@ public class ReceiverFragment extends Fragment {
           Long dateAvailableMillis = data.child("dateAvailable").child("time").getValue(Long.class);
           Date dateAvailable = new Date(dateAvailableMillis);
           product.setDateAvailable(dateAvailable);
+          //check if the user is identified as a receiver
+          //if so, add the product read from database to the productArrayList
           if(product.getOwnerID() != null && !product.getOwnerID().equals(User.getInstance().getEmail())){
             productArrayList.add(product);
           }
 
         }
-
+        //when data changed, notify that
         productAdapter.notifyDataSetChanged();
       }
 
+      //error handler
       @Override
       public void onCancelled(@NonNull DatabaseError error) {
 
