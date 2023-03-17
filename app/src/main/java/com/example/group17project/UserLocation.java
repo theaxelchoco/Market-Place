@@ -70,6 +70,7 @@ public class UserLocation extends AppCompatActivity {
         }
     }
 
+    //Getting the current location
     private void getCurrentLocation() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(com.example.group17project.UserLocation.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
