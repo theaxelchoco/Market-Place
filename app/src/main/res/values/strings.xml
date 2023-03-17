@@ -47,6 +47,7 @@
     <string name="value_to">to</string>
     <string name="default_value_down_range_hint">0.0</string>
     <string name="default_value_up_range_hint">inf</string>
+    <string name="preferred_exchange_place">Preferred Exchange Place</string>
 
     <string-array name="product_types">
         <item>Baby Toys</item>
