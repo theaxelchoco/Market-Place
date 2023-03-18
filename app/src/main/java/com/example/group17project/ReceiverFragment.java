@@ -4,31 +4,38 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ListView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.example.group17project.utils.Methods;
+import com.example.group17project.utils.model.ListAdapter;
 import com.example.group17project.utils.model.Product;
-import com.example.group17project.utils.model.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ReceiverFragment extends Fragment {
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_receiver, container, false);
-    TextView textView = view.findViewById(R.id.text_view);
-    textView.setText(User.getInstance().getEmail());
+  private ListView searchListView;
+  private ArrayList<Product> searchList;
+  private ListAdapter productAdapter;
 
-    List<Product> searchResult = new ArrayList<>();
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    searchList = new ArrayList<>();
     Bundle bundle = getArguments();
     if (bundle != null) {
-      searchResult = bundle.getParcelableArrayList("searchResult", Product.class);
+      searchList = (ArrayList<Product>) bundle.getSerializable("searchResult", ArrayList.class);
     }
 
-    Methods.makeAlert(String.valueOf(searchResult.size()), new AlertDialog.Builder(getContext()));
+    productAdapter = new ListAdapter(getActivity(), searchList);
+  }
+
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_receiver, container, false);
+
+    searchListView = view.findViewById(R.id.searchResultList);
+    searchListView.setAdapter(productAdapter);
     return view;
   }
+
 }
