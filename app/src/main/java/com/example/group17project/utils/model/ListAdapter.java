@@ -37,7 +37,7 @@ public class ListAdapter extends ArrayAdapter<Product> {
         //productImg.setImageResource(product.getImageId());
         productName.setText(product.getName());
         productDescription.setText(product.getDescription());
-        productType.setText(product.getTypeAsString());
+        productType.setText(product.getType());
 
 
         return convertView;

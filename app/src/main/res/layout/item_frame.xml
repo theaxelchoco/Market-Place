@@ -8,7 +8,7 @@
     <View
         android:id="@+id/view2"
         android:layout_width="410dp"
-        android:layout_height="172dp"
+        android:layout_height="221dp"
         android:background="#717171"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +33,7 @@
     <TextView
         android:id="@+id/itemProductTypeFrame"
         android:layout_width="139dp"
-        android:layout_height="28dp"
+        android:layout_height="57dp"
         android:layout_marginBottom="5dp"
         android:text="Electronics"
         android:textAlignment="center"
@@ -80,20 +80,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.551" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="56dp"
-        android:layout_height="48dp"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.957"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_action_name" />
-
-<!--    <ImageButton-->
+    <!--    <ImageButton-->
 <!--        android:id="@+id/imageButton2"-->
 <!--        android:layout_width="56dp"-->
 <!--        android:layout_height="48dp"-->

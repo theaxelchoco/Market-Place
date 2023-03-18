@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -81,6 +82,28 @@ public class ProviderFragment extends Fragment {
 
       }
     });
+
+
+    productListView.setClickable(true);
+    productListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+      @Override
+      public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Intent intent = new Intent(getActivity(), ExpandedProviderActivity.class);
+        intent.putExtra("name", productArrayList.get(i).getName());
+        intent.putExtra("type", productArrayList.get(i).getType());
+        intent.putExtra("exchange", productArrayList.get(i).getPreferredExchange());
+        intent.putExtra("location", productArrayList.get(i).getLocationID());
+        intent.putExtra("desc", productArrayList.get(i).getDescription());
+        intent.putExtra("date", productArrayList.get(i).getDateAvailable().getTime());
+        intent.putExtra("price", productArrayList.get(i).getPrice());
+        intent.putExtra("productId", productArrayList.get(i).getProductID());
+        startActivity(intent);
+
+      }
+    });
+
+
   }
 
 
