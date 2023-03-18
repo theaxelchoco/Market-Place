@@ -35,7 +35,7 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
 
   private DrawerLayout drawerLayout;
   private ActionBarDrawerToggle toggle;
-  private FragmentManager fragmentManager; // be aware that this fragment manager is from `androidx`
+  private FragmentManager fragmentManager;
 
 
   @Override
@@ -82,9 +82,11 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
             for (DataSnapshot data : snapshot.getChildren()) {
               Product product = data.getValue(Product.class);
               Long dateAvailableMillis = data.child("dateAvailable").child("time").getValue(Long.class);
+              assert dateAvailableMillis != null;
               Date dateAvailable = new Date(dateAvailableMillis);
+              assert product != null;
               product.setDateAvailable(dateAvailable);
-              
+
               searchResult.add(product);
             }
 
@@ -101,7 +103,7 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
 
           @Override
           public void onCancelled(@NonNull DatabaseError error) {
-
+            Methods.makeAlert("Error: " + error.getMessage(), new AlertDialog.Builder(HomepageActivity.this));
           }
         });
 
@@ -110,8 +112,7 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
 
       @Override
       public boolean onQueryTextChange(String newText) {
-        // TODO: Handle search query text changes
-        return false;
+        return true;
       }
     });
 
