@@ -36,6 +36,10 @@ public class ProductRepository {
     databaseRef.child(Objects.requireNonNull(key)).setValue(product);
   }
 
+  public DatabaseReference getDatabaseRef() {
+    return databaseRef;
+  }
+
   /**
    * Deletes a product from the database.
    *
@@ -58,9 +62,4 @@ public class ProductRepository {
   public void deleteAllProducts() {
     databaseRef.removeValue();
   }
-  
-  public DatabaseReference getDatabaseRef() {
-    return databaseRef;
-  }
-
 }

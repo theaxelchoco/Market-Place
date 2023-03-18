@@ -1,25 +1,11 @@
 package com.example.group17project.utils.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import androidx.annotation.NonNull;
 
 import java.util.Calendar;
 import java.util.Date;
 
-public class Product implements Parcelable {
-  public static final Creator<Product> CREATOR = new Creator<Product>() {
-    @Override
-    public Product createFromParcel(Parcel in) {
-      return new Product(in);
-    }
-
-    @Override
-    public Product[] newArray(int size) {
-      return new Product[size];
-    }
-  };
+public class Product {
   private String name;
   private String description;
   private Date dateAvailable;
@@ -33,7 +19,6 @@ public class Product implements Parcelable {
   private String productID;
 
   public Product() {
-
   }
 
   public Product(String name, String ownerID) {
@@ -53,16 +38,6 @@ public class Product implements Parcelable {
     locationID = place;
     preferredExchange = mapToProductType(prefExchange);
     this.price = price;
-  }
-
-  protected Product(Parcel in) {
-    name = in.readString();
-    description = in.readString();
-    ownerID = in.readString();
-    locationID = in.readString();
-    price = in.readInt();
-    imageId = in.readInt();
-    productID = in.readString();
   }
 
   public ProductType mapToProductType(String productType) {
@@ -210,22 +185,6 @@ public class Product implements Parcelable {
         ", preferredExchange=" + preferredExchange +
         ", status=" + status +
         '}';
-  }
-
-  @Override
-  public int describeContents() {
-    return 0;
-  }
-
-  @Override
-  public void writeToParcel(@NonNull Parcel dest, int flags) {
-    dest.writeString(name);
-    dest.writeString(description);
-    dest.writeString(ownerID);
-    dest.writeString(locationID);
-    dest.writeInt(price);
-    dest.writeInt(imageId);
-    dest.writeString(productID);
   }
 
   public enum Status {
