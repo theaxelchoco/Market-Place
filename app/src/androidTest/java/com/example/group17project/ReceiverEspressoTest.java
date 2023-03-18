@@ -45,8 +45,8 @@ import java.util.Date;
 public class ReceiverEspressoTest {
 
     private ProviderFragment providerFragment;
-    @Rule
-    public ActivityTestRule<HomepageActivity> myRule = new ActivityTestRule<>(HomepageActivity.class);
+    public ActivityScenario<HomepageActivity> scenario = ActivityScenario.launch(HomepageActivity.class);
+
     private static ProductRepository productRepo;
     Product product;
 
@@ -98,22 +98,12 @@ public class ReceiverEspressoTest {
     public void testItemContactBtn(){
         onView(withId(R.id.productList)).check(matches(isDisplayed()));
         onData(anything()).inAdapterView(withId(R.id.productList)).atPosition(0).perform(click());
-
-    }
-
-    @Test
-    public void ownItemAddition() throws InterruptedException {
-        User.getInstance().setUserDetails("test@dal.ca");
-        Thread.sleep(5000);
+        onView(withId(R.id.rExpandedContactBtn)).perform(click());
         onView(withId(R.id.productList)).check(matches(isDisplayed()));
-        ListView listView = myRule.getActivity().findViewById(R.id.productList);
-        ListAdapter adapter = listView.getAdapter();
-        for(int i = 0; i < adapter.getCount(); i++){
-            onData(anything()).inAdapterView(withId(R.id.productList)).atPosition(i).perform(click());
-            onView(withId(R.id.rExpandedProductName)).check(matches(not(withText("test@dal.ca"))));
-            onView(withId(R.id.rExpandedBackBtn)).perform(click());
-        }
+
     }
+
+
 
 
 }

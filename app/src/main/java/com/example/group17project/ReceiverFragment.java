@@ -87,7 +87,7 @@ public class ReceiverFragment extends Fragment {
 
       @Override
       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent(getActivity(), ExpandedProviderActivity.class);
+        Intent intent = new Intent(getActivity(), ExpandedReceiverActivity.class);
         intent.putExtra("name", productArrayList.get(i).getName());
         intent.putExtra("type", productArrayList.get(i).getType());
         intent.putExtra("exchange", productArrayList.get(i).getPreferredExchange());
