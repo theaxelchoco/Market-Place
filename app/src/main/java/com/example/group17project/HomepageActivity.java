@@ -1,11 +1,13 @@
 package com.example.group17project;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
@@ -14,8 +16,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.group17project.utils.Methods;
+import com.example.group17project.utils.model.Product;
+import com.example.group17project.utils.model.User;
+import com.example.group17project.utils.repository.ProductRepository;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class HomepageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -23,6 +37,7 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
   private DrawerLayout drawerLayout;
   private ActionBarDrawerToggle toggle;
   private FragmentManager fragmentManager; // be aware that this fragment manager is from `androidx`
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +51,13 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
     fragmentManager = getSupportFragmentManager();
 
     String fragmentId = getIntent().getStringExtra("fragmentId");
-    if(fragmentId != null){
-      if(fragmentId.equals("receiver")){
+    if (fragmentId != null) {
+      if (fragmentId.equals("receiver")) {
         fragmentTransaction(new ReceiverFragment()); // set default fragment
-      }
-      else if(fragmentId.equals("provider")){
+      } else if (fragmentId.equals("provider")) {
         fragmentTransaction(new ProviderFragment());
       }
-    }
-    else{
+    } else {
       fragmentTransaction(new ReceiverFragment());
     }
 
@@ -55,11 +68,23 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.search_view, menu);
     SearchView searchView = (SearchView) menu.findItem(R.id.search_bar).getActionView();
+
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
-        // TODO: Handle search query submission
-        return false;
+        List<Product> searchResult = performSearch(query);
+
+        if (searchResult.isEmpty()) {
+          Methods.makeAlert("No result found", new AlertDialog.Builder(HomepageActivity.this));
+        } else {
+          Bundle bundle = new Bundle();
+          bundle.putParcelableArrayList("searchResult", (ArrayList<? extends Parcelable>) searchResult);
+          Fragment searchResultFragment = new ReceiverFragment();
+          searchResultFragment.setArguments(bundle);
+          fragmentTransaction(searchResultFragment);
+        }
+
+        return true;
       }
 
       @Override
@@ -68,7 +93,39 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
         return false;
       }
     });
+
+    searchView.setSubmitButtonEnabled(true);
     return true;
+  }
+
+  private List<Product> performSearch(String query) {
+    FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.firebase_database_url));
+    ProductRepository productRepository = new ProductRepository(database);
+    List<Product> result = new ArrayList<>();
+
+    Query searchQuery = productRepository.getDatabaseRef().orderByChild("name").startAt(query).endAt(query + "\uf8ff");
+
+    searchQuery.addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot snapshot) {
+        for (DataSnapshot data : snapshot.getChildren()) {
+          Product product = data.getValue(Product.class);
+          Long dateAvailableMillis = data.child("dateAvailable").child("time").getValue(Long.class);
+          Date dateAvailable = new Date(dateAvailableMillis);
+          product.setDateAvailable(dateAvailable);
+          if (product.getOwnerID() != null && product.getOwnerID().equals(User.getInstance().getEmail())) {
+            result.add(product);
+          }
+        }
+      }
+
+      @Override
+      public void onCancelled(@NonNull DatabaseError error) {
+
+      }
+    });
+
+    return result;
   }
 
   /**
