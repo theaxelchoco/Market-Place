@@ -29,7 +29,7 @@ public class Filter {
     if (type == null) {
       return true;
     }
-    
+
     boolean result = type == product.getTypeE();
     result &= preferredExchange == product.getPreferredExchangeE();
     result &= priceRange.contains(product.getPrice());
