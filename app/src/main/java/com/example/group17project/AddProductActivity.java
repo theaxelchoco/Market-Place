@@ -1,5 +1,6 @@
 package com.example.group17project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,9 +18,15 @@ import android.widget.Toast;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.model.User;
 import com.example.group17project.utils.repository.ProductRepository;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class AddProductActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -27,6 +34,9 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     private Button submitButton, cancelButton;
     private EditText productName, description, placeOfExchange, marketValue;
     private TextView productNameErrorLbl, exchangeErrorLbl, marketErrorLbl;
+    private boolean edit;
+    private String productId;
+    private Product productToEdit;
 
     private DatePicker datePicker;
     private User user;
@@ -42,11 +52,66 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addproduct);
         setUp();
+        checkIfEdit();
         user = User.getInstance();
         submitButton.setOnClickListener(this::onClick);
         cancelButton.setOnClickListener(this::cancelButtonOnClick);
     }
 
+    protected void checkIfEdit(){
+        Intent intent = this.getIntent();
+        edit = false;
+        if(intent != null && intent.hasExtra("edit")){
+            productId = intent.getStringExtra("edit");
+            edit = true;
+
+            String name = intent.getStringExtra("name");
+            String type = intent.getStringExtra("type");
+            String exchange = intent.getStringExtra("exchange");
+            String desc = intent.getStringExtra("desc");
+            String location = intent.getStringExtra("location");
+            Long dateVal = intent.getLongExtra("date", 0);
+            Date date = new Date(dateVal);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            int price = intent.getIntExtra("price", 0);
+            productToEdit = new Product(name, User.getInstance().getEmail(), desc, cal, type, location, exchange, price);
+
+            setFields();
+        }
+    }
+
+    protected void setFields(){
+        productName.setText(productToEdit.getName());
+        description.setText(productToEdit.getDescription());
+        placeOfExchange.setText(productToEdit.getLocationID());
+        setDatePicker();
+        setSpinners();
+    }
+
+    protected void setDatePicker(){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(productToEdit.getDateAvailable());
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        datePicker.init(year, month, day, null);
+    }
+
+    protected void setSpinners(){
+        ArrayList<String> types = new ArrayList<>();
+        types.add("Baby Toys");
+        types.add("Clothes");
+        types.add("Computer Accessories");
+        types.add("Mobile Phones");
+        types.add("Furniture");
+
+        int typePosition = types.indexOf(productToEdit.getType());
+        int prefPosition = types.indexOf(productToEdit.getPreferredExchange());
+
+        productType.setSelection(typePosition);
+        preferredExchange.setSelection(prefPosition);
+    }
     public void cancelButtonOnClick(View view){
         switchBack();
     }
@@ -62,8 +127,15 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
 
         if(validPlaceOfExchange(exchangePlace) && validMarketValue(marketVal) && validProductName(productName)){
             Product product = new Product(productName, user.getEmail(), description, date, productType, exchangePlace, prefExchange, Integer.parseInt(marketVal));
-            productRepository.createProduct(product);
-            Toast.makeText(this, getResources().getString(R.string.SUCCESSFUL_PRODUCT_CREATION).trim(), Toast.LENGTH_SHORT).show();
+            if(edit){
+                productRepository.updateProduct(productId, product);
+                Toast.makeText(this, getResources().getString(R.string.SUCCESSFUL_PRODUCT_UPDATE).trim(), Toast.LENGTH_SHORT).show();
+            }
+            else{
+                productRepository.createProduct(product);
+                Toast.makeText(this, getResources().getString(R.string.SUCCESSFUL_PRODUCT_CREATION).trim(), Toast.LENGTH_SHORT).show();
+            }
+
             switchBack();
         }
         else{
@@ -138,7 +210,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         int year = datePicker.getYear();
 
         Calendar cal = Calendar.getInstance();
-        cal.set(year + 1900, month, day);
+        cal.set(year, month, day);
         return cal;
     }
 

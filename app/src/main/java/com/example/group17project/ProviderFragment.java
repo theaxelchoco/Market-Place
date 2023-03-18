@@ -93,6 +93,7 @@ public class ProviderFragment extends Fragment {
         intent.putExtra("name", productArrayList.get(i).getName());
         intent.putExtra("type", productArrayList.get(i).getType());
         intent.putExtra("exchange", productArrayList.get(i).getPreferredExchange());
+        intent.putExtra("location", productArrayList.get(i).getLocationID());
         intent.putExtra("desc", productArrayList.get(i).getDescription());
         intent.putExtra("date", productArrayList.get(i).getDateAvailable().getTime());
         intent.putExtra("price", productArrayList.get(i).getPrice());
