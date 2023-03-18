@@ -47,7 +47,12 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
       fragmentTransaction(new ReceiverFragment());
     }
 
-
+    if (getIntent().getExtras() != null) {
+      Bundle bundle = getIntent().getExtras();
+      ReceiverFragment receiverFragment = new ReceiverFragment();
+      receiverFragment.setArguments(bundle);
+      fragmentTransaction(receiverFragment);
+    }
   }
 
   @Override
