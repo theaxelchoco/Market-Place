@@ -12,6 +12,7 @@ import static org.mockito.Mockito.*;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import android.content.pm.PackageManager;
 import android.location.Location;
 
 import org.junit.AfterClass;
@@ -24,16 +25,14 @@ import java.sql.SQLOutput;
 public class UserLocationUnitTest {
 
     static UserLocation userLocation;
-    static Location currLocation;
+    static double Lat = 37.4226711;
+    static double Long = -122.0849872;
+
 
     @BeforeClass
     public static void setup() throws Exception{
         userLocation = mock(UserLocation.class);
-        userLocation.turnOnLocation();
-        userLocation.getCurrentLocation();
-
-        Location currLocation = userLocation.getUserLocation();
-        when (userLocation.getLocationName(currLocation.getLatitude(),currLocation.getLongitude())).thenReturn("Mountain View");
+        when (userLocation.getLocationName(Lat,Long)).thenReturn("Mountain View");
     }
 
     @AfterClass
@@ -43,8 +42,8 @@ public class UserLocationUnitTest {
 
     @Test
     public void getLocation(){
-        assertEquals("Mountain View",userLocation.getLocationName(currLocation.getLatitude(),currLocation.getLongitude()));
-        Mockito.verify(userLocation, Mockito.atLeastOnce()).getLocationName(currLocation.getLatitude(),currLocation.getLongitude());
+        assertEquals("Mountain View",userLocation.getLocationName(Lat,Long));
+        Mockito.verify(userLocation, Mockito.atLeastOnce()).getLocationName(Lat,Long);
     }
 
 }

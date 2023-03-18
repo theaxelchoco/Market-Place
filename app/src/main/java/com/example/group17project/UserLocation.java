@@ -87,6 +87,8 @@ public class UserLocation extends AppCompatActivity {
                                     if (locationResult != null && locationResult.getLocations().size() >0){
                                         int Index = locationResult.getLocations().size()-1;
                                         userLocation = locationResult.getLocations().get(Index);
+                                        System.out.println(userLocation.getLatitude());
+                                        System.out.println(userLocation.getLongitude());
                                         Toast.makeText(com.example.group17project.UserLocation.this, getLocationName(userLocation.getLatitude(),userLocation.getLongitude()), Toast.LENGTH_LONG).show();
                                         // int index = locationResult.getLocations().size() - 1;
                                        // double latitude = locationResult.getLocations().get(index).getLatitude();
@@ -106,7 +108,9 @@ public class UserLocation extends AppCompatActivity {
 
     }
 
-    public Location getUserLocation(){return userLocation;}
+    public Location getUserLocation(){
+        return userLocation;
+    }
 
     public String getLocationName(double latitude, double longitude) {
 
