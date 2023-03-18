@@ -96,6 +96,7 @@ public class ProviderFragment extends Fragment {
         intent.putExtra("desc", productArrayList.get(i).getDescription());
         intent.putExtra("date", productArrayList.get(i).getDateAvailable().getTime());
         intent.putExtra("price", productArrayList.get(i).getPrice());
+        intent.putExtra("productId", productArrayList.get(i).getProductID());
         startActivity(intent);
 
       }
