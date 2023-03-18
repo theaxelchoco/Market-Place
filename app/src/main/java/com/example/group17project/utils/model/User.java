@@ -4,7 +4,7 @@ public class User {
 
     private static User instance = null;
 
-    private String email;
+    private String email = "test@dal.ca";
 
 
     private User(){
