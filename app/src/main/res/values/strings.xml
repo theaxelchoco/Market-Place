@@ -41,6 +41,7 @@
     <string name="EMPTY_MARKET_VAL">Please enter an approximate market value!</string>
     <string name="MARKET_VAL_NEED_INT_ERROR">Please enter an integer market value!</string>
     <string name="SUCCESSFUL_PRODUCT_CREATION">Product created successfully!</string>
+    <string name="SUCCESSFUL_PRODUCT_UPDATE">Product updated Successfully!</string>
 
     <string-array name="product_types">
         <item>Baby Toys</item>

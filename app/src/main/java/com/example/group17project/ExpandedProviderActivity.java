@@ -18,10 +18,14 @@ import java.util.Locale;
 public class ExpandedProviderActivity extends AppCompatActivity {
 
     private TextView nameView, typeView, descView;
-    private String productId;
+    private String name, type, exchange, desc, productId, location;
+    private long dateVal;
+    private int price;
+    private Date date;
     private ProductRepository productRepository;
 
     private Button backBtn, deleteBtn, editBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +46,15 @@ public class ExpandedProviderActivity extends AppCompatActivity {
     protected void setViewFromIntentExtras(){
         Intent intent = this.getIntent();
         if(intent != null){
-            String name = intent.getStringExtra("name");
-            String type = intent.getStringExtra("type");
-            String exchange = intent.getStringExtra("exchange");
-            String desc = intent.getStringExtra("desc");
-            Long dateVal = intent.getLongExtra("date", 0);
+            name = intent.getStringExtra("name");
+            type = intent.getStringExtra("type");
+            exchange = intent.getStringExtra("exchange");
+            desc = intent.getStringExtra("desc");
+            location = intent.getStringExtra("location");
+            dateVal = intent.getLongExtra("date", 0);
             productId = intent.getStringExtra("productId");
-            Date date = new Date(dateVal);
-            int price = intent.getIntExtra("price", 0);
+            date = new Date(dateVal);
+            price = intent.getIntExtra("price", 0);
 
             SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy", Locale.CANADA);
             String dateString = sdf.format(date);
@@ -77,7 +82,16 @@ public class ExpandedProviderActivity extends AppCompatActivity {
     }
 
     public void editButtonOnClick(View view){
-
+        Intent intent = new Intent(ExpandedProviderActivity.this, AddProductActivity.class);
+        intent.putExtra("edit", productId);
+        intent.putExtra("name", name);
+        intent.putExtra("type", type);
+        intent.putExtra("exchange", exchange);
+        intent.putExtra("location", location);
+        intent.putExtra("desc", desc);
+        intent.putExtra("date", dateVal);
+        intent.putExtra("price", price);
+        startActivity(intent);
     }
 
 
