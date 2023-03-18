@@ -6,7 +6,6 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
@@ -15,20 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.group17project.utils.Methods;
-import com.example.group17project.utils.model.Product;
-import com.example.group17project.utils.repository.ProductRepository;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 public class HomepageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -71,41 +58,11 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.firebase_database_url));
-        ProductRepository productRepository = new ProductRepository(database);
-
-        Query searchQuery = productRepository.getDatabaseRef().orderByChild("name").startAt(query).endAt(query + "\uf8ff");
-        searchQuery.addValueEventListener(new ValueEventListener() {
-          @Override
-          public void onDataChange(@NonNull DataSnapshot snapshot) {
-            List<Product> searchResult = new ArrayList<>();
-            for (DataSnapshot data : snapshot.getChildren()) {
-              Product product = data.getValue(Product.class);
-              Long dateAvailableMillis = data.child("dateAvailable").child("time").getValue(Long.class);
-              assert dateAvailableMillis != null;
-              Date dateAvailable = new Date(dateAvailableMillis);
-              assert product != null;
-              product.setDateAvailable(dateAvailable);
-
-              searchResult.add(product);
-            }
-
-            if (searchResult.isEmpty()) {
-              Methods.makeAlert("No result found", new AlertDialog.Builder(HomepageActivity.this));
-            } else {
-              Bundle bundle = new Bundle();
-              bundle.putSerializable("searchResult", (Serializable) searchResult);
-              Fragment searchResultFragment = new ReceiverFragment();
-              searchResultFragment.setArguments(bundle);
-              fragmentTransaction(searchResultFragment);
-            }
-          }
-
-          @Override
-          public void onCancelled(@NonNull DatabaseError error) {
-            Methods.makeAlert("Error: " + error.getMessage(), new AlertDialog.Builder(HomepageActivity.this));
-          }
-        });
+        Bundle bundle = new Bundle();
+        bundle.putString("keyword", query);
+        ReceiverFragment receiverFragment = new ReceiverFragment();
+        receiverFragment.setArguments(bundle);
+        fragmentTransaction(receiverFragment);
 
         return true;
       }

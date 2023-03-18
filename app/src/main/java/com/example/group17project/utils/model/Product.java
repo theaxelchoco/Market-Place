@@ -57,6 +57,14 @@ public class Product {
     }
   }
 
+  public ProductType getPreferredExchangeE() {
+    return preferredExchange;
+  }
+
+  public ProductType getTypeE() {
+    return type;
+  }
+
   public int getImageId() {
     return imageId;
   }

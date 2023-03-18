@@ -8,15 +8,27 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.example.group17project.utils.Methods;
+import com.example.group17project.utils.model.Filter;
 import com.example.group17project.utils.model.ListAdapter;
 import com.example.group17project.utils.model.Product;
+import com.example.group17project.utils.repository.ProductRepository;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ReceiverFragment extends Fragment {
   private ListView searchListView;
+  private String searchKeyword;
   private ArrayList<Product> searchList;
   private ListAdapter productAdapter;
 
@@ -26,11 +38,59 @@ public class ReceiverFragment extends Fragment {
     searchList = new ArrayList<>();
     Bundle bundle = getArguments();
     if (bundle != null) {
-      searchList = (ArrayList<Product>) bundle.getSerializable("searchResult", ArrayList.class);
+      searchKeyword = bundle.getString("keyword");
+      performSearch(searchKeyword);
     }
 
     productAdapter = new ListAdapter(getActivity(), searchList);
   }
+
+  private void performSearch(String keyword) {
+    FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.firebase_database_url));
+    ProductRepository productRepository = new ProductRepository(database);
+
+    Query searchQuery = productRepository.getDatabaseRef();
+    searchQuery.addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot snapshot) {
+        ArrayList<Product> searchResult = new ArrayList<>();
+        for (DataSnapshot data : snapshot.getChildren()) {
+          Product product = data.getValue(Product.class);
+          Long dateAvailableMillis = data.child("dateAvailable").child("time").getValue(Long.class);
+          assert dateAvailableMillis != null;
+          Date dateAvailable = new Date(dateAvailableMillis);
+          assert product != null;
+          product.setDateAvailable(dateAvailable);
+
+          if (isFilterMatch(product, keyword, Filter.ofDefault)) {
+            searchResult.add(product);
+          }
+        }
+
+        if (searchResult.isEmpty()) {
+          Methods.makeAlert("No result found", new AlertDialog.Builder(getContext()));
+        } else {
+          searchList.clear();
+          searchList.addAll(searchResult);
+          productAdapter.notifyDataSetChanged();
+        }
+      }
+
+      @Override
+      public void onCancelled(@NonNull DatabaseError error) {
+        Methods.makeAlert("Error: " + error.getMessage(), new AlertDialog.Builder(getContext()));
+      }
+    });
+
+  }
+
+  private boolean isFilterMatch(Product product, String keyword, Filter filter) {
+    if (product.getName().toLowerCase().contains(keyword.toLowerCase())) {
+      return filter.isMatch(product);
+    }
+    return false;
+  }
+
 
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_receiver, container, false);
@@ -47,7 +107,7 @@ public class ReceiverFragment extends Fragment {
 
       @Override
       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent(getActivity(), ExpandedProviderActivity.class);
+        Intent intent = new Intent(getActivity(), ExpandedReceiverActivity.class);
         intent.putExtra("name", searchList.get(i).getName());
         intent.putExtra("type", searchList.get(i).getType());
         intent.putExtra("exchange", searchList.get(i).getPreferredExchange());

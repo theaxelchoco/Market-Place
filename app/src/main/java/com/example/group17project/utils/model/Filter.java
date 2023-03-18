@@ -6,14 +6,14 @@ public class Filter {
   public static final Filter ofDefault = new Filter(null, false, null, null, null, null);
   private final ProductType type;
   private final ProductType preferredExchange;
-  private final Range<Double> priceRange;
+  private final Range<Integer> priceRange;
   private final String location;
   private final String ownerID;
   private boolean isSaved;
   private boolean isEnabled;
   private String id;
 
-  public Filter(String ownerID, boolean isSaved, ProductType type, ProductType preferredExchange, Range<Double> priceRange, String location) {
+  public Filter(String ownerID, boolean isSaved, ProductType type, ProductType preferredExchange, Range<Integer> priceRange, String location) {
     this.ownerID = ownerID;
     this.isSaved = isSaved;
     this.type = type;
@@ -23,6 +23,18 @@ public class Filter {
 
     this.isEnabled = true;
     this.id = null;
+  }
+
+  public boolean isMatch(Product product) {
+    if (type == null) {
+      return true;
+    }
+    
+    boolean result = type == product.getTypeE();
+    result &= preferredExchange == product.getPreferredExchangeE();
+    result &= priceRange.contains(product.getPrice());
+    result &= location.equals(product.getLocationID());
+    return result;
   }
 
   public boolean isEnabled() {
@@ -53,7 +65,7 @@ public class Filter {
     return preferredExchange;
   }
 
-  public Range<Double> getPriceRange() {
+  public Range<Integer> getPriceRange() {
     return priceRange;
   }
 
