@@ -84,6 +84,7 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
               Long dateAvailableMillis = data.child("dateAvailable").child("time").getValue(Long.class);
               Date dateAvailable = new Date(dateAvailableMillis);
               product.setDateAvailable(dateAvailable);
+              
               searchResult.add(product);
             }
 

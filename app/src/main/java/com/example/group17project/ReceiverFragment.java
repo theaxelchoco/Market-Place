@@ -1,9 +1,11 @@
 package com.example.group17project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
@@ -36,6 +38,27 @@ public class ReceiverFragment extends Fragment {
     searchListView = view.findViewById(R.id.searchResultList);
     searchListView.setAdapter(productAdapter);
     return view;
+  }
+
+  public void onStart() {
+    super.onStart();
+    searchListView.setClickable(true);
+    searchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+      @Override
+      public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Intent intent = new Intent(getActivity(), ExpandedProviderActivity.class);
+        intent.putExtra("name", searchList.get(i).getName());
+        intent.putExtra("type", searchList.get(i).getType());
+        intent.putExtra("exchange", searchList.get(i).getPreferredExchange());
+        intent.putExtra("location", searchList.get(i).getLocationID());
+        intent.putExtra("desc", searchList.get(i).getDescription());
+        intent.putExtra("date", searchList.get(i).getDateAvailable().getTime());
+        intent.putExtra("price", searchList.get(i).getPrice());
+        intent.putExtra("productId", searchList.get(i).getProductID());
+        startActivity(intent);
+      }
+    });
   }
 
 }
