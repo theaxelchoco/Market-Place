@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/pExpandedBackBtn"
+        android:id="@+id/rExpandedBackBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back"
@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.023" />
 
     <TextView
-        android:id="@+id/pExpandedProductName"
+        android:id="@+id/rExpandedProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Product Name"
@@ -45,7 +45,7 @@
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
-        android:id="@+id/pExpandedType"
+        android:id="@+id/rExpandedType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Type: "
@@ -62,7 +62,7 @@
         app:layout_constraintVertical_bias="0.451" />
 
     <TextView
-        android:id="@+id/pExpandedDesc"
+        android:id="@+id/rExpandedDesc"
         android:layout_width="362dp"
         android:layout_height="190dp"
         android:layout_marginTop="408dp"
@@ -79,7 +79,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/pExpandedDeleteBtn"
+        android:id="@+id/rExpandedContactBtn"
         android:layout_width="200dp"
         android:layout_height="63dp"
         android:text="Contact"
