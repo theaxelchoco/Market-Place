@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.group17project.R;
 import com.example.group17project.utils.model.Product;
-import com.example.group17project.utils.model.ProductType;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -105,10 +104,10 @@ public class ProductCRUDHelperActivity extends AppCompatActivity {
     testProduct = new Product("testProduct", "testOwnerID");
     testProduct.setDescription("testDescription");
     testProduct.setDateAvailable(new Date());
-    testProduct.setType(ProductType.COMPUTER_ACCESSORIES);
+    testProduct.setType("Computer Accessories");
     testProduct.setLocationID("testLocationID");
-    testProduct.setPrice(10.0);
-    testProduct.setPreferredExchange(ProductType.MOBILE_PHONES);
+    testProduct.setPrice(10);
+    testProduct.setPreferredExchange("Mobile Phones");
 
     currentProduct = testProduct;
   }
