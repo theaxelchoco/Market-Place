@@ -45,9 +45,7 @@ public class UserLocation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_provider);
-
         turnOnLocation();
-
         getCurrentLocation();
     }
 
@@ -71,7 +69,7 @@ public class UserLocation extends AppCompatActivity {
     }
 
     //Getting the current location
-    private void getCurrentLocation() {
+    public void getCurrentLocation() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(com.example.group17project.UserLocation.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
@@ -108,6 +106,8 @@ public class UserLocation extends AppCompatActivity {
 
     }
 
+    public Location getUserLocation(){return userLocation;}
+
     public String getLocationName(double latitude, double longitude) {
 
         String cityName = "Not Found";
@@ -139,7 +139,7 @@ public class UserLocation extends AppCompatActivity {
 
     }
 
-    private void turnOnLocation() {
+    public void turnOnLocation() {
         locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(5000);
@@ -183,7 +183,7 @@ public class UserLocation extends AppCompatActivity {
 
     }
 
-    private boolean isLocationEnabled() {
+    boolean isLocationEnabled() {
         LocationManager locationManager = null;
         boolean isEnabled = false;
 

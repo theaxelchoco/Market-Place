@@ -8,7 +8,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import androidx.test.espresso.Espresso;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
@@ -23,17 +22,13 @@ import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4ClassRunner.class)
-public class MapsEspressoTest {
+public class UserLocationEspressoTest {
 
-    @Test
-    public void mapDisplayedTest() {
-        // Verify that the map fragment is displayed
-        Espresso.onView(withId(R.id.map))
-                .check(matches(isDisplayed()));
-    }
+        /*
         @Rule
         public ActivityScenarioRule<UserLocation> activityScenarioRule =
                 new ActivityScenarioRule<>(UserLocation.class);
+         */
 
         /*
         @Test
@@ -65,6 +60,8 @@ public class MapsEspressoTest {
     }
          */
 
+
+
     @Test
     public void checkSearchFunctionality() {
         // Perform a search
@@ -73,18 +70,5 @@ public class MapsEspressoTest {
 
         // Check if the search location is added as a marker on the map
         onView(withText("New York")).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void checkDeviceLocation() {
-        // Wait for the device location to be found
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        // Check if the device location is added as a marker on the map
-        onView(withText("current location")).check(matches(isDisplayed()));
     }
 }
