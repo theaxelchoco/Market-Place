@@ -27,10 +27,6 @@ O
 app/src/main/res/values/ids.xml,b\d\bd506d672607407c2d0357a9f7c1e4e7fdb6c3ad
 ƒ
 Sapp/src/main/java/com/example/group17project/utils/repository/FilterRepository.java,9\8\98639afc45314e37e40b4bdae2bc4117c5407fa6
-t
-Dapp/src/main/java/com/example/group17project/utils/model/Filter.java,3\4\34c4ec1eb3aab310d16060d9e937829440b11a16
-y
-Iapp/src/main/java/com/example/group17project/utils/model/ProductType.java,4\8\4879357217c0162c1f6329f936fc559ae2d3fa14
 r
 Bapp/src/test/java/com/example/group17project/ReceiverUnitTest.java,2\f\2f5db1171f5ea3c261c7059e6bae3ccc10595058
 ‚
@@ -101,8 +97,6 @@ R
 "app/src/main/res/values/themes.xml,e\b\eb7f0f821bde169dd21862705b2b042d2cea69a3
 V
 &app/src/main/res/layout/item_frame.xml,d\0\d057d08a34a693ba490a0e81def818538f35fb64
-y
-Iapp/src/main/java/com/example/group17project/utils/model/ListAdapter.java,7\4\7423034ff073e8863592dd731f9502083ec1c546
 b
 2app/src/main/res/layout/activity_login_landing.xml,3\f\3f8bd5024b385f186b51206b68b0a7b1a23a2d75
 [
