@@ -5,6 +5,9 @@ import androidx.annotation.NonNull;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Class represents a product that will be provided or received. Consists of various fields including name, type, and description
+ */
 public class Product {
 
   private static final String BABYTOYS = "Baby Toys";
@@ -47,6 +50,11 @@ public class Product {
     this.price = price;
   }
 
+  /**
+   * This method is used to map a string with the corresponding product type. Used as a helper method for other methods
+   * @param productType string representation of the product type
+   * @return enumeration type of ProductType corresponding to the string passed
+   */
   public ProductType mapToProductType(String productType) {
     switch (productType) {
       case BABYTOYS:

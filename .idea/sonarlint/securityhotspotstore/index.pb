@@ -11,8 +11,6 @@ H
 app/google-services.json,f\d\fd8d34b142d02ec743a8efefefd2c097961666e9
 F
 app/proguard-rules.pro,9\e\9e08934d811afe28fbc77aaa3c0d747b94348db9
-u
-Eapp/src/main/java/com/example/group17project/utils/model/Product.java,1\c\1c090c14590bf7001b1e49f150fd5720fd93cac1
 c
 3app/src/main/res/layout/activity_advance_search.xml,a\5\a5efd6b40a11f2fee47ad635e0dccf58bef503e2
 o
