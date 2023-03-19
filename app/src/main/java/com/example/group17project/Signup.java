@@ -44,11 +44,20 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    /**
+     * Onclick method for back button, returns user back to login screen
+     * @param view view on screen
+     */
     public void backButton(View view){
         Intent i = new Intent(Signup.this, LoginLanding.class);
         startActivity(i);
     }
 
+    /**
+     * Onclick method for the sign up button. Performs validation and displays and error if unsuccessful account creation.
+     * If good credentials, user will be created and sent to login page to log in
+     * @param view view on screen
+     */
     @Override
     public void onClick(View view) {
         String email = getEmail();
@@ -113,6 +122,11 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         setMessage(errorMessage);
     }
 
+    /**
+     * Method used to replace periods in email with commas so firebase database can use them as keys
+     * @param email email with periods
+     * @return email with commas in place of periods
+     */
     public static String encodeUserEmail(String email){
         return email.replace(".", ",");
     }
@@ -121,7 +135,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         return email.replace(",", ".");
     }
 
-    //methods for checking matched-pair
+
     protected String getEmail(){
         EditText email =findViewById(R.id.emailReg);
         return email.getText().toString().trim();
