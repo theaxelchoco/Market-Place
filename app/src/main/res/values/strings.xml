@@ -53,6 +53,7 @@
     <string name="preferred_exchange_place">Preferred Exchange Place</string>
     <string name="save">save</string>
     <string name="advance_search">Advance Search</string>
+    <string name="google_maps_api_key">AIzaSyADgAur80t_vb3uX2PEm75aNBiUq9yFOOU</string>
 
     <string-array name="product_types">
         <item>Baby Toys</item>
