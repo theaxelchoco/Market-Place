@@ -126,10 +126,9 @@
 
                 <Button
                     android:id="@+id/advanceSearchCancelButton"
-                    android:layout_width="157dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:paddingEnd="10dp"
                     android:text="@string/CANCEL" />
 
                 <View
@@ -139,8 +138,21 @@
                     android:layout_weight="1" />
 
                 <Button
+                    android:id="@+id/advanceSearchSaveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="@string/save" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
                     android:id="@+id/advanceSearchSubmitButton"
-                    android:layout_width="157dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:text="@string/SUBMIT" />

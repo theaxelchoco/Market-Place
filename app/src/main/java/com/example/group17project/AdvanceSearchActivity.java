@@ -8,6 +8,11 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.group17project.utils.Methods;
+import com.example.group17project.utils.model.Filter;
+import com.example.group17project.utils.repository.FilterRepository;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class AdvanceSearchActivity extends AppCompatActivity {
   Bundle filterBundle;
 
@@ -23,6 +28,19 @@ public class AdvanceSearchActivity extends AppCompatActivity {
       makeFilter();
       intent.putExtras(filterBundle);
       startActivity(intent);
+    });
+
+    Button cancelButton = findViewById(R.id.advanceSearchCancelButton);
+    cancelButton.setOnClickListener(v -> startActivity(intent));
+
+    Button saveButton = findViewById(R.id.advanceSearchSaveButton);
+    saveButton.setOnClickListener(v -> {
+      makeFilter();
+      Filter filter = Methods.makeFilter(filterBundle);
+
+      FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.firebase_database_url));
+      FilterRepository filterRepository = new FilterRepository(database);
+      filterRepository.createFilter(filter);
     });
   }
 
@@ -40,9 +58,7 @@ public class AdvanceSearchActivity extends AppCompatActivity {
     String maxPrice = maxPriceEditView.getText().toString();
 
     String productTypeString = productTypeSpinner.getSelectedItem().toString().toUpperCase().replace(" ", "_");
-    // ProductType productType = ProductType.valueOf(productTypeString);
     String preferredProductTypeString = preferredProductTypeSpinner.getSelectedItem().toString().toUpperCase().replace(" ", "_");
-    // ProductType preferredProductType = ProductType.valueOf(preferredProductTypeString);
 
     filterBundle.putString("keyword", keyword);
     filterBundle.putString("location", location);
@@ -50,5 +66,6 @@ public class AdvanceSearchActivity extends AppCompatActivity {
     filterBundle.putString("maxPrice", maxPrice);
     filterBundle.putString("productType", productTypeString);
     filterBundle.putString("preferredProductType", preferredProductTypeString);
+    filterBundle.putBoolean("filter", true);
   }
 }

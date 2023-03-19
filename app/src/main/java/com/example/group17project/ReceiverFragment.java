@@ -39,13 +39,18 @@ public class ReceiverFragment extends Fragment {
     Bundle bundle = getArguments();
     if (bundle != null) {
       searchKeyword = bundle.getString("keyword");
-      performSearch(searchKeyword);
+      if (bundle.getBoolean("filter")) {
+        Filter filter = Methods.makeFilter(bundle);
+        performSearch(searchKeyword, filter);
+      } else {
+        performSearch(searchKeyword);
+      }
     }
 
     productAdapter = new ListAdapter(getActivity(), searchList);
   }
 
-  private void performSearch(String keyword) {
+  private void performSearch(String keyword, Filter filter) {
     FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.firebase_database_url));
     ProductRepository productRepository = new ProductRepository(database);
 
@@ -62,18 +67,18 @@ public class ReceiverFragment extends Fragment {
           assert product != null;
           product.setDateAvailable(dateAvailable);
 
-          if (isFilterMatch(product, keyword, Filter.ofDefault)) {
+          if (isFilterMatch(product, keyword, filter)) {
             searchResult.add(product);
           }
         }
 
         if (searchResult.isEmpty()) {
           Methods.makeAlert("No result found", new AlertDialog.Builder(getContext()));
-        } else {
-          searchList.clear();
-          searchList.addAll(searchResult);
-          productAdapter.notifyDataSetChanged();
         }
+        searchList.clear();
+        searchList.addAll(searchResult);
+        productAdapter.notifyDataSetChanged();
+
       }
 
       @Override
@@ -82,6 +87,26 @@ public class ReceiverFragment extends Fragment {
       }
     });
 
+  }
+
+//  private Filter makeFilter(Bundle bundle) {
+//    return new Filter(
+//        null,
+//        ProductType.valueOf(bundle.getString("productType")),
+//        ProductType.valueOf(bundle.getString("preferredProductType")),
+//        makeRange(bundle.getString("minPrice"), bundle.getString("maxPrice")),
+//        bundle.getString("location")
+//    );
+//  }
+//
+//  private Range<Integer> makeRange(String min, String max) {
+//    int minPrice = min.isEmpty() ? 0 : Integer.parseInt(min);
+//    int maxPrice = max.isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(max);
+//    return new Range<>(minPrice, maxPrice);
+//  }
+
+  private void performSearch(String keyword) {
+    performSearch(keyword, Filter.ofDefault);
   }
 
   private boolean isFilterMatch(Product product, String keyword, Filter filter) {
