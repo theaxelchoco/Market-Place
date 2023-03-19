@@ -1,74 +1,85 @@
 package com.example.group17project;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.os.Looper;
+
+import androidx.core.app.ActivityCompat;
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.espresso.IdlingRegistry;
+import androidx.test.espresso.idling.CountingIdlingResource;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.rule.GrantPermissionRule;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
-import static androidx.test.espresso.action.ViewActions.typeText;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.not;
-
-
-import static org.junit.Assert.assertTrue;
-
-@RunWith(AndroidJUnit4ClassRunner.class)
+@RunWith(AndroidJUnit4.class)
 public class UserLocationEspressoTest {
 
-        /*
-        @Rule
-        public ActivityScenarioRule<UserLocation> activityScenarioRule =
-                new ActivityScenarioRule<>(UserLocation.class);
-         */
+    @Rule
+    public ActivityScenarioRule<UserLocation> activityScenarioRule = new ActivityScenarioRule<>(UserLocation.class);
 
-        /*
-        @Test
-        public void getLocationPermission_granted() {
-            ActivityScenario<MapsActivity> activityScenario = activityScenarioRule.getScenario();
+    @Rule
+    public GrantPermissionRule grantPermissionRule = GrantPermissionRule.grant(android.Manifest.permission.ACCESS_FINE_LOCATION);
 
-            // Grant location permissions
-            Espresso.onView(ViewMatchers.withId(R.id.button_allow))
-                    .check(matches(isDisplayed()))
-                    .perform(click());
+    private CountingIdlingResource idlingResource;
 
-            // Verify that the location permissions were granted and the map was initialized
-            Espresso.onView(ViewMatchers.withText(R.string.permissions_granted))
-                    .check(matches(isDisplayed()));
-        }
-
-    @Test
-    public void getLocationPermission_denied() {
-        ActivityScenario<MapsActivity> activityScenario = activityScenarioRule.getScenario();
-
-        // Deny location permissions
-        Espresso.onView(ViewMatchers.withId(R.id.button_deny))
-                .check(matches(isDisplayed()))
-                .perform(click());
-
-        // Verify that the location permissions were denied and the map was not initialized
-        Espresso.onView(ViewMatchers.withText(R.string.permissions_denied))
-                .check(matches(isDisplayed()));
+    @Before
+    public void setUp() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            idlingResource = new CountingIdlingResource("USER_LOCATION");
+            IdlingRegistry.getInstance().register(idlingResource);
+            idlingResource.increment();
+            activity.getCurrentLocation();
+            idlingResource.decrement();
+        });
     }
-         */
-
-
 
     @Test
-    public void checkSearchFunctionality() {
-        // Perform a search
-        onView(withId(R.id.input_search)).perform(click());
-        onView(withId(R.id.input_search)).perform(typeText("New York"), pressImeActionButton());
+    public void testUserLocation() {
+        // Define the expected location name
+        String expectedLocationName = "Mountain View";
 
-        // Check if the search location is added as a marker on the map
-        onView(withText("New York")).check(matches(isDisplayed()));
+        // Obtain a reference to the UserLocation activity
+        final UserLocation[] activity = {null};
+        activityScenarioRule.getScenario().onActivity(a -> {
+            activity[0] = a;
+        });
+        assertNotNull("Activity is null", activity[0]);
+
+        // Wait for the location to be obtained
+        Location location = null;
+        for (int i = 0; i < 10; i++) {
+            location = activity[0].getUserLocation();
+            if (location != null) {
+                break;
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        assertNotNull("Location is null", location);
+
+        // Check the location name
+        String actualLocationName = activity[0].getLocationName(location.getLatitude(), location.getLongitude());
+        assertEquals(expectedLocationName, actualLocationName);
+    }
+
+    @After
+    public void tearDown() {
+        if (idlingResource != null) {
+            IdlingRegistry.getInstance().unregister(idlingResource);
+        }
     }
 }
