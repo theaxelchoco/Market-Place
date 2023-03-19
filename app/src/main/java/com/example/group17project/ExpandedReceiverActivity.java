@@ -37,7 +37,10 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * This method is used to grab information passed from the last activity. Information about the clicked item will be displayed
+     * in expanded format, based off the passed information
+     */
     protected void setViewFromIntentExtras(){
         Date date;
         int price;
@@ -73,11 +76,20 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Onclick method for back button, sends user back to receiver screen
+     * @param view view on screen
+     */
     public void backButtonOnClick(View view){
         Intent intent = new Intent(ExpandedReceiverActivity.this, HomepageActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * On click method for contact button, currently sends user back to receiver screen but in future will open user to user
+     * communication screen
+     * @param view view on screen
+     */
     public void contactButtonOnClick(View view){
         backButtonOnClick(view);
     }
