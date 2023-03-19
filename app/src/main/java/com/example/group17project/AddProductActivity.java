@@ -56,6 +56,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         user = User.getInstance();
         submitButton.setOnClickListener(this::onClick);
         cancelButton.setOnClickListener(this::cancelButtonOnClick);
+
     }
 
     protected void checkIfEdit(){

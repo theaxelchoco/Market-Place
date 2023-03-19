@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.group17project.utils.model.User;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
