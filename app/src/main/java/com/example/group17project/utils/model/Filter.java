@@ -35,24 +35,8 @@ public class Filter {
     return result;
   }
 
-  public String getOwnerID() {
-    return ownerID;
-  }
-
   public ProductType getType() {
     return type;
-  }
-
-  public ProductType getPreferredExchange() {
-    return preferredExchange;
-  }
-
-  public Range<Integer> getPriceRange() {
-    return priceRange;
-  }
-
-  public String getLocation() {
-    return location;
   }
 
   public String getId() {

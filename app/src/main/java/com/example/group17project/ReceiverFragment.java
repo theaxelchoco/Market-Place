@@ -74,7 +74,7 @@ public class ReceiverFragment extends Fragment {
         }
 
         if (searchResult.isEmpty()) {
-          Methods.makeAlert("No result found", new AlertDialog.Builder(getContext()));
+          Methods.makeAlert("No result found", new AlertDialog.Builder(requireContext()));
         }
         searchList.clear();
         searchList.addAll(searchResult);
@@ -84,7 +84,7 @@ public class ReceiverFragment extends Fragment {
 
       @Override
       public void onCancelled(@NonNull DatabaseError error) {
-        Methods.makeAlert("Error: " + error.getMessage(), new AlertDialog.Builder(getContext()));
+        Methods.makeAlert("Error: " + error.getMessage(), new AlertDialog.Builder(requireContext()));
       }
     });
 

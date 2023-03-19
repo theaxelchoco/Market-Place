@@ -31,9 +31,6 @@ public class Methods {
   }
 
   public static boolean isSameLocation(String location1, String location2) {
-    if (location1.trim().isEmpty() || location2.trim().isEmpty()) {
-      return true;
-    }
     return true;
   }
 
