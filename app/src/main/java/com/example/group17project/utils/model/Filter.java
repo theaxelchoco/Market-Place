@@ -2,6 +2,8 @@ package com.example.group17project.utils.model;
 
 import android.util.Range;
 
+import com.example.group17project.utils.Methods;
+
 public class Filter {
   public static final Filter ofDefault = new Filter(null, null, null, null, null);
   private final ProductType type;
@@ -29,7 +31,7 @@ public class Filter {
     boolean result = type == product.getTypeE();
     result &= preferredExchange == product.getPreferredExchangeE();
     result &= priceRange.contains(product.getPrice());
-    result &= location.equals(product.getLocationID());
+    result &= Methods.isSameLocation(location, product.getLocationID());
     return result;
   }
 

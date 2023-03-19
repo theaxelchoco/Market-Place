@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -28,11 +28,12 @@ import java.util.Date;
 
 public class ReceiverFragment extends Fragment {
   private ListView searchListView;
-  private String searchKeyword;
   private ArrayList<Product> searchList;
   private ListAdapter productAdapter;
 
+  @Override
   public void onCreate(Bundle savedInstanceState) {
+    String searchKeyword;
     super.onCreate(savedInstanceState);
 
     searchList = new ArrayList<>();
@@ -89,22 +90,6 @@ public class ReceiverFragment extends Fragment {
 
   }
 
-//  private Filter makeFilter(Bundle bundle) {
-//    return new Filter(
-//        null,
-//        ProductType.valueOf(bundle.getString("productType")),
-//        ProductType.valueOf(bundle.getString("preferredProductType")),
-//        makeRange(bundle.getString("minPrice"), bundle.getString("maxPrice")),
-//        bundle.getString("location")
-//    );
-//  }
-//
-//  private Range<Integer> makeRange(String min, String max) {
-//    int minPrice = min.isEmpty() ? 0 : Integer.parseInt(min);
-//    int maxPrice = max.isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(max);
-//    return new Range<>(minPrice, maxPrice);
-//  }
-
   private void performSearch(String keyword) {
     performSearch(keyword, Filter.ofDefault);
   }
@@ -117,32 +102,36 @@ public class ReceiverFragment extends Fragment {
   }
 
 
+  @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_receiver, container, false);
 
     searchListView = view.findViewById(R.id.searchResultList);
     searchListView.setAdapter(productAdapter);
+
+    Button advancedSearchButton = view.findViewById(R.id.advanceSearchButton);
+    advancedSearchButton.setOnClickListener(v -> {
+      Intent intent = new Intent(getActivity(), AdvanceSearchActivity.class);
+      startActivity(intent);
+    });
     return view;
   }
 
+  @Override
   public void onStart() {
     super.onStart();
     searchListView.setClickable(true);
-    searchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-      @Override
-      public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent(getActivity(), ExpandedReceiverActivity.class);
-        intent.putExtra("name", searchList.get(i).getName());
-        intent.putExtra("type", searchList.get(i).getType());
-        intent.putExtra("exchange", searchList.get(i).getPreferredExchange());
-        intent.putExtra("location", searchList.get(i).getLocationID());
-        intent.putExtra("desc", searchList.get(i).getDescription());
-        intent.putExtra("date", searchList.get(i).getDateAvailable().getTime());
-        intent.putExtra("price", searchList.get(i).getPrice());
-        intent.putExtra("productId", searchList.get(i).getProductID());
-        startActivity(intent);
-      }
+    searchListView.setOnItemClickListener((adapterView, view, i, l) -> {
+      Intent intent = new Intent(getActivity(), ExpandedReceiverActivity.class);
+      intent.putExtra("name", searchList.get(i).getName());
+      intent.putExtra("type", searchList.get(i).getType());
+      intent.putExtra("exchange", searchList.get(i).getPreferredExchange());
+      intent.putExtra("location", searchList.get(i).getLocationID());
+      intent.putExtra("desc", searchList.get(i).getDescription());
+      intent.putExtra("date", searchList.get(i).getDateAvailable().getTime());
+      intent.putExtra("price", searchList.get(i).getPrice());
+      intent.putExtra("productId", searchList.get(i).getProductID());
+      startActivity(intent);
     });
   }
 

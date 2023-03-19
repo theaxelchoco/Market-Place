@@ -30,6 +30,13 @@ public class Methods {
     );
   }
 
+  public static boolean isSameLocation(String location1, String location2) {
+    if (location1.trim().isEmpty() || location2.trim().isEmpty()) {
+      return true;
+    }
+    return true;
+  }
+
   private static Range<Integer> makeRange(String min, String max) {
     int minPrice = min.isEmpty() ? 0 : Integer.parseInt(min);
     int maxPrice = max.isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(max);

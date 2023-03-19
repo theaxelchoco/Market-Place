@@ -52,6 +52,7 @@
     <string name="default_value_up_range_hint">inf</string>
     <string name="preferred_exchange_place">Preferred Exchange Place</string>
     <string name="save">save</string>
+    <string name="advance_search">Advance Search</string>
 
     <string-array name="product_types">
         <item>Baby Toys</item>
