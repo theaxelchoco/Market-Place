@@ -7,15 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.group17project.utils.Methods;
 import com.example.group17project.utils.model.Filter;
 import com.example.group17project.utils.model.ListAdapter;
 import com.example.group17project.utils.model.Product;
+import com.example.group17project.utils.model.User;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,11 +31,15 @@ public class ReceiverFragment extends Fragment {
   private ListView searchListView;
   private ArrayList<Product> searchList;
   private ListAdapter productAdapter;
+  private ProductRepository productRepository;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     String searchKeyword;
     super.onCreate(savedInstanceState);
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.firebase_database_url));
+    productRepository = new ProductRepository(database);
 
     searchList = new ArrayList<>();
     Bundle bundle = getArguments();
@@ -47,16 +52,38 @@ public class ReceiverFragment extends Fragment {
         performSearch(searchKeyword);
       }
     } else {
-      performSearch("");
+      productRepository.getDatabaseRef().addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+          searchList.clear();
+          for (DataSnapshot data : snapshot.getChildren()) {
+            Product product = data.getValue(Product.class);
+            Long dateAvailableMillis = data.child("dateAvailable").child("time").getValue(Long.class);
+            Date dateAvailable = new Date(dateAvailableMillis);
+            product.setDateAvailable(dateAvailable);
+            //check if the user is identified as a receiver
+            //if so, add the product read from database to the productArrayList
+            if (product.getOwnerID() != null && !product.getOwnerID().equals(User.getInstance().getEmail())) {
+              searchList.add(product);
+            }
+          }
+          //when data changed, notify that
+          productAdapter.notifyDataSetChanged();
+        }
+
+        //error handler
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+      });
+
     }
 
     productAdapter = new ListAdapter(getActivity(), searchList);
   }
 
   private void performSearch(String keyword, Filter filter) {
-    FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.firebase_database_url));
-    ProductRepository productRepository = new ProductRepository(database);
-
     Query searchQuery = productRepository.getDatabaseRef();
     searchQuery.addValueEventListener(new ValueEventListener() {
       @Override
@@ -70,13 +97,13 @@ public class ReceiverFragment extends Fragment {
           assert product != null;
           product.setDateAvailable(dateAvailable);
 
-          if (isFilterMatch(product, keyword, filter)) {
+          if (isFilterMatch(product, keyword, filter) && !product.getOwnerID().equals(User.getInstance().getEmail())) {
             searchResult.add(product);
           }
         }
 
         if (searchResult.isEmpty()) {
-          Methods.makeAlert("No result found", new AlertDialog.Builder(requireContext()));
+          Toast.makeText(getContext(), "No product found", Toast.LENGTH_SHORT).show();
         }
         searchList.clear();
         searchList.addAll(searchResult);
@@ -86,7 +113,7 @@ public class ReceiverFragment extends Fragment {
 
       @Override
       public void onCancelled(@NonNull DatabaseError error) {
-        Methods.makeAlert("Error: " + error.getMessage(), new AlertDialog.Builder(requireContext()));
+        Toast.makeText(getContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
       }
     });
 
@@ -97,6 +124,7 @@ public class ReceiverFragment extends Fragment {
   }
 
   private boolean isFilterMatch(Product product, String keyword, Filter filter) {
+    keyword = keyword == null ? "" : keyword;
     if (product.getName().toLowerCase().contains(keyword.toLowerCase())) {
       return filter.isMatch(product);
     }

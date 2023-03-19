@@ -3,8 +3,6 @@ package com.example.group17project.utils;
 import android.os.Bundle;
 import android.util.Range;
 
-import androidx.appcompat.app.AlertDialog;
-
 import com.example.group17project.utils.model.Filter;
 import com.example.group17project.utils.model.ProductType;
 import com.google.maps.GeoApiContext;
@@ -18,14 +16,6 @@ public class Methods {
   private final static String GOOGLE_MAPS_API_KEY = "AIzaSyADgAur80t_vb3uX2PEm75aNBiUq9yFOOU";
 
   private Methods() {
-  }
-
-  public static void makeAlert(String message, AlertDialog.Builder builder) {
-    builder.setMessage(message);
-    builder.setCancelable(true);
-    builder.setPositiveButton("OK", (dialog, which) -> dialog.cancel());
-    AlertDialog alert = builder.create();
-    alert.show();
   }
 
   public static Filter makeFilter(Bundle bundle, String ownerID) {

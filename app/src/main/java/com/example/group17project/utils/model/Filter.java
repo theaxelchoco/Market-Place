@@ -26,8 +26,8 @@ public class Filter {
       return true;
     }
 
-    boolean result = type == product.getTypeE();
-    result &= preferredExchange == product.getPreferredExchangeE();
+    boolean result = type == ProductType.valueOf(product.getType().replace(" ", "_").toUpperCase());
+    result &= preferredExchange == ProductType.valueOf(product.getPreferredExchange().replace(" ", "_").toUpperCase());
     result &= priceRange.contains(product.getPrice());
     result &= Methods.isSameLocation(location, product.getLocationID());
     return result;

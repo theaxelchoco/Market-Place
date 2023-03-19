@@ -47,7 +47,7 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
       fragmentTransaction(new ReceiverFragment());
     }
 
-    if (getIntent().getExtras() != null) {
+    if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("keyword")) {
       Bundle bundle = getIntent().getExtras();
       ReceiverFragment receiverFragment = new ReceiverFragment();
       receiverFragment.setArguments(bundle);
