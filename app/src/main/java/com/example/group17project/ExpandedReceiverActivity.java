@@ -17,33 +17,37 @@ import java.util.Locale;
 
 public class ExpandedReceiverActivity extends AppCompatActivity {
 
-    private TextView nameView, typeView, descView;
-    private String name, type, exchange, desc, productId, location;
-    private long dateVal;
-    private int price;
-    private Date date;
-    private ProductRepository productRepository;
+    private TextView nameView;
+    private TextView typeView;
+    private TextView descView;
 
-    private Button backBtn, contactBtn;
+
+    private Button backBtn;
+    private Button contactBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_expanded_receiver);
 
-        setUp();
         findViewComponents();
         setOnClickMethods();
         setViewFromIntentExtras();
 
     }
 
-    protected void setUp(){
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
-        productRepository = new ProductRepository(database, false);
-    }
+
 
     protected void setViewFromIntentExtras(){
+        Date date;
+        int price;
+        long dateVal;
+        String name;
+        String type;
+        String exchange;
+        String desc;
+        String location;
+
         Intent intent = this.getIntent();
         if(intent != null){
             name = intent.getStringExtra("name");
@@ -52,7 +56,6 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
             desc = intent.getStringExtra("desc");
             location = intent.getStringExtra("location");
             dateVal = intent.getLongExtra("date", 0);
-            productId = intent.getStringExtra("productId");
             date = new Date(dateVal);
             price = intent.getIntExtra("price", 0);
 

@@ -17,14 +17,23 @@ import java.util.Locale;
 
 public class ExpandedProviderActivity extends AppCompatActivity {
 
-    private TextView nameView, typeView, descView;
-    private String name, type, exchange, desc, productId, location;
+    private TextView nameView;
+    private TextView typeView;
+    private TextView descView;
+    private String name;
+    private String type;
+    private String exchange;
+    private String desc;
+    private String productId;
+    private String location;
     private long dateVal;
     private int price;
     private Date date;
     private ProductRepository productRepository;
 
-    private Button backBtn, deleteBtn, editBtn;
+    private Button backBtn;
+    private Button deleteBtn;
+    private Button editBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

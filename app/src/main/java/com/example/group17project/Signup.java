@@ -38,14 +38,11 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         databaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
 
 
-        //Used for testing and constant existing user. Remove during actual app launch
-//        databaseRef.child("users").removeValue();
-//        databaseRef.child("users").child("testUsed@dal,ca").child("password").setValue("AbC123");
 
 
     }
 
-    public void backButton(View view){
+    public void backButton(){
         Intent i = new Intent(Signup.this, LoginLanding.class);
         startActivity(i);
     }

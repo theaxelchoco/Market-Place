@@ -90,9 +90,6 @@ public class UserLocation extends AppCompatActivity {
                                         System.out.println(userLocation.getLatitude());
                                         System.out.println(userLocation.getLongitude());
                                         Toast.makeText(com.example.group17project.UserLocation.this, getLocationName(userLocation.getLatitude(),userLocation.getLongitude()), Toast.LENGTH_LONG).show();
-                                        // int index = locationResult.getLocations().size() - 1;
-                                       // double latitude = locationResult.getLocations().get(index).getLatitude();
-                                       // double longitude = locationResult.getLocations().get(index).getLongitude();
                                     }
                                 }
                             }, Looper.getMainLooper());
@@ -128,10 +125,8 @@ public class UserLocation extends AppCompatActivity {
                     if (city != null && !city.equals("")) {
                         cityName = city;
                         System.out.println("city ::  " + cityName);
-                    } else {
-
                     }
-                    // // you should also try with addresses.get(0).toSring();
+
 
                 }
 
@@ -179,6 +174,8 @@ public class UserLocation extends AppCompatActivity {
 
                         case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
                             //Device does not have location
+                            break;
+                        default:
                             break;
                     }
                 }

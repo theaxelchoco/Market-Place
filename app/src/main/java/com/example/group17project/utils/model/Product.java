@@ -6,6 +6,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Product {
+
+  private static final String BABYTOYS = "Baby Toys";
+  public static final String CLOTHES = "Clothes";
+  public static final String COMPUTERACCESSORIES = "Computer Accessories";
+  public static final String MOBILEPHONES = "Mobile Phones";
+  public static final String FURNITURE = "Furniture";
+
   private String name;
   private String description;
   private Date dateAvailable;
@@ -42,15 +49,15 @@ public class Product {
 
   public ProductType mapToProductType(String productType) {
     switch (productType) {
-      case "Baby Toys":
+      case BABYTOYS:
         return ProductType.BABY_TOYS;
-      case "Clothes":
+      case CLOTHES:
         return ProductType.CLOTHES;
-      case "Computer Accessories":
+      case COMPUTERACCESSORIES:
         return ProductType.COMPUTER_ACCESSORIES;
-      case "Mobile Phones":
+      case MOBILEPHONES:
         return ProductType.MOBILE_PHONES;
-      case "Furniture":
+      case FURNITURE:
         return ProductType.FURNITURE;
       default:
         return null;
@@ -92,15 +99,15 @@ public class Product {
   public String getType() {
     switch (type) {
       case BABY_TOYS:
-        return "Baby Toys";
+        return BABYTOYS;
       case CLOTHES:
-        return "Clothes";
+        return CLOTHES;
       case FURNITURE:
-        return "Furniture";
+        return FURNITURE;
       case MOBILE_PHONES:
-        return "Mobile Phones";
+        return MOBILEPHONES;
       case COMPUTER_ACCESSORIES:
-        return "Computer Accessories";
+        return COMPUTERACCESSORIES;
       default:
         return "";
     }
@@ -137,15 +144,15 @@ public class Product {
   public String getPreferredExchange() {
     switch (preferredExchange) {
       case BABY_TOYS:
-        return "Baby Toys";
+        return BABYTOYS;
       case CLOTHES:
-        return "Clothes";
+        return CLOTHES;
       case FURNITURE:
-        return "Furniture";
+        return FURNITURE;
       case MOBILE_PHONES:
-        return "Mobile Phones";
+        return MOBILEPHONES;
       case COMPUTER_ACCESSORIES:
-        return "Computer Accessories";
+        return COMPUTERACCESSORIES;
       default:
         return "";
     }

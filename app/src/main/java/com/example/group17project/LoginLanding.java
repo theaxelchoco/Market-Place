@@ -28,7 +28,6 @@ public class LoginLanding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_landing);
 
-        Button signupButton = findViewById(R.id.signup);
         Button loginButton = findViewById(R.id.loginBtn);
         loginButton.setOnClickListener(this::onClick);
 
@@ -36,7 +35,7 @@ public class LoginLanding extends AppCompatActivity {
 
     }
 
-    public void signupButtonOnClick(View view){
+    public void signupButtonOnClick(){
         Intent i = new Intent(LoginLanding.this, Signup.class);
         startActivity(i);
     }

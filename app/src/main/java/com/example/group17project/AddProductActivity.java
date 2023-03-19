@@ -26,9 +26,15 @@ import java.util.Date;
 public class AddProductActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
-  private Button submitButton, cancelButton;
-  private EditText productName, description, placeOfExchange, marketValue;
-  private TextView productNameErrorLbl, exchangeErrorLbl, marketErrorLbl;
+  private Button submitButton;
+  private Button cancelButton;
+  private EditText productName;
+  private EditText description;
+  private EditText placeOfExchange;
+  private EditText marketValue;
+  private TextView productNameErrorLbl;
+  private TextView exchangeErrorLbl;
+  private TextView marketErrorLbl;
   private boolean edit;
   private String productId;
   private Product productToEdit;
@@ -36,9 +42,11 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
   private DatePicker datePicker;
   private User user;
 
-  private Spinner productType, preferredExchange;
+  private Spinner productType;
+  private Spinner preferredExchange;
 
-  private String selectedProductType, selectedPreferredExchange;
+  private String selectedProductType;
+  private String selectedPreferredExchange;
 
   private ProductRepository productRepository;
 
@@ -113,17 +121,17 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
   }
 
   public void onClick(View view) {
-    String productName = getProductName();
-    String description = getDescription();
-    String productType = getType();
+    String productNameText = getProductName();
+    String descriptionText = getDescription();
+    String productTypeText = getType();
     String prefExchange = getPreferredExchange();
     String exchangePlace = getPlaceOfExchange();
     String marketVal = getMarketValue();
     Calendar date = getDate();
 
 
-    if (validPlaceOfExchange(exchangePlace) && validMarketValue(marketVal) && validProductName(productName)) {
-      Product product = new Product(productName, user.getEmail(), description, date, productType, exchangePlace, prefExchange, Integer.parseInt(marketVal));
+    if (validPlaceOfExchange(exchangePlace) && validMarketValue(marketVal) && validProductName(productNameText)) {
+      Product product = new Product(productNameText, user.getEmail(), descriptionText, date, productTypeText, exchangePlace, prefExchange, Integer.parseInt(marketVal));
       if (edit) {
         productRepository.updateProduct(productId, product);
         Toast.makeText(this, getResources().getString(R.string.SUCCESSFUL_PRODUCT_UPDATE).trim(), Toast.LENGTH_SHORT).show();
@@ -134,7 +142,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
 
       switchBack();
     } else {
-      setErrors(productName, exchangePlace, marketVal);
+      setErrors(productNameText, exchangePlace, marketVal);
     }
   }
 

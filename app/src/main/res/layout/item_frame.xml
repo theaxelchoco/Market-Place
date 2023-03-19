@@ -80,17 +80,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.551" />
 
-    <!--    <ImageButton-->
-<!--        android:id="@+id/imageButton2"-->
-<!--        android:layout_width="56dp"-->
-<!--        android:layout_height="48dp"-->
-<!--        android:contentDescription="@string/app_name"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/view2"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/view2"-->
-<!--        app:layout_constraintHorizontal_bias="0.774"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/view2"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="1.0"-->
-<!--        app:srcCompat="@drawable/ic_action_name" />-->
 
 </android.support.constraint.ConstraintLayout>

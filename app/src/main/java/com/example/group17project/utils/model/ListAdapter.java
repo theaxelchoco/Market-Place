@@ -29,12 +29,10 @@ public class ListAdapter extends ArrayAdapter<Product> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_frame, parent, false);
         }
 
-        //ImageView productImg = convertView.findViewById(R.id.itemProductImg);
         TextView productName = convertView.findViewById(R.id.itemProductNameFrame);
         TextView productDescription = convertView.findViewById(R.id.itemProductDescriptionFrame);
         TextView productType = convertView.findViewById(R.id.itemProductTypeFrame);
 
-        //productImg.setImageResource(product.getImageId());
         productName.setText(product.getName());
         productDescription.setText(product.getDescription());
         productType.setText(product.getType());
