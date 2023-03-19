@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -32,15 +31,17 @@ public class ProviderFragment extends Fragment {
   private ListAdapter productAdapter;
 
 
-  public void onCreate(Bundle savedInstanceState){
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
     productRepository = new ProductRepository(database, false);
     productArrayList = new ArrayList<>();
     productAdapter = new ListAdapter(getActivity(), productArrayList);
-
   }
+
+  @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_provider, container, false);
     productListView = view.findViewById(R.id.productList);
@@ -52,23 +53,24 @@ public class ProviderFragment extends Fragment {
     return view;
   }
 
-  public void onClick(View view){
+  public void onClick(View view) {
     Intent i = new Intent(getActivity(), AddProductActivity.class);
     startActivity(i);
   }
 
-  public void onStart(){
+  @Override
+  public void onStart() {
     super.onStart();
     productRepository.getDatabaseRef().addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot snapshot) {
         productArrayList.clear();
-        for(DataSnapshot data : snapshot.getChildren()){
+        for (DataSnapshot data : snapshot.getChildren()) {
           Product product = data.getValue(Product.class);
           Long dateAvailableMillis = data.child("dateAvailable").child("time").getValue(Long.class);
           Date dateAvailable = new Date(dateAvailableMillis);
           product.setDateAvailable(dateAvailable);
-          if(product.getOwnerID() != null && product.getOwnerID().equals(User.getInstance().getEmail())){
+          if (product.getOwnerID() != null && product.getOwnerID().equals(User.getInstance().getEmail())) {
             productArrayList.add(product);
           }
 
@@ -85,7 +87,7 @@ public class ProviderFragment extends Fragment {
 
 
     productListView.setClickable(true);
-    productListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+    productListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
       @Override
       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -105,8 +107,6 @@ public class ProviderFragment extends Fragment {
 
 
   }
-
-
 
 
 }

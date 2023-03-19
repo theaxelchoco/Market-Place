@@ -1,4 +1,6 @@
 <resources>
+    <string name="firebase_database_url">https://w23-csci3130-group-17-default-rtdb.firebaseio.com/</string>
+
     <string name="app_name">Barter Trader</string>
     <string name="EMPTY_STRING" />
     <string name="EMPTY_EMAIL">Please enter an email id to sign up with.</string>
@@ -44,6 +46,16 @@
     <string name="MARKET_VAL_NEED_INT_ERROR">Please enter an integer market value!</string>
     <string name="SUCCESSFUL_PRODUCT_CREATION">Product created successfully!</string>
     <string name="SUCCESSFUL_PRODUCT_UPDATE">Product updated Successfully!</string>
+    <string name="advanceSearch">Search</string>
+    <string name="value_range">Value Range</string>
+    <string name="value_from">from</string>
+    <string name="value_to">to</string>
+    <string name="default_value_down_range_hint">0</string>
+    <string name="default_value_up_range_hint">inf</string>
+    <string name="preferred_exchange_place">Preferred Exchange Place</string>
+    <string name="save">save</string>
+    <string name="advance_search">Advance Search</string>
+    <string name="google_maps_api_key">AIzaSyADgAur80t_vb3uX2PEm75aNBiUq9yFOOU</string>
 
     <string-array name="product_types">
         <item>Baby Toys</item>

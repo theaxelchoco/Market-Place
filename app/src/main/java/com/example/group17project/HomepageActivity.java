@@ -23,7 +23,8 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
 
   private DrawerLayout drawerLayout;
   private ActionBarDrawerToggle toggle;
-  private FragmentManager fragmentManager; // be aware that this fragment manager is from `androidx`
+  private FragmentManager fragmentManager;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -37,38 +38,48 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
     fragmentManager = getSupportFragmentManager();
 
     String fragmentId = getIntent().getStringExtra("fragmentId");
-    if(fragmentId != null){
-      if(fragmentId.equals("receiver")){
+    if (fragmentId != null) {
+      if (fragmentId.equals("receiver")) {
         fragmentTransaction(new ReceiverFragment()); // set default fragment
-      }
-      else if(fragmentId.equals("provider")){
+      } else if (fragmentId.equals("provider")) {
         fragmentTransaction(new ProviderFragment());
       }
-    }
-    else{
+    } else {
       fragmentTransaction(new ReceiverFragment());
     }
 
-
+    if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("keyword")) {
+      Bundle bundle = getIntent().getExtras();
+      ReceiverFragment receiverFragment = new ReceiverFragment();
+      receiverFragment.setArguments(bundle);
+      fragmentTransaction(receiverFragment);
+    }
   }
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.search_view, menu);
     SearchView searchView = (SearchView) menu.findItem(R.id.search_bar).getActionView();
+
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
-        // TODO: Handle search query submission
-        return false;
+        Bundle bundle = new Bundle();
+        bundle.putString("keyword", query);
+        ReceiverFragment receiverFragment = new ReceiverFragment();
+        receiverFragment.setArguments(bundle);
+        fragmentTransaction(receiverFragment);
+
+        return true;
       }
 
       @Override
       public boolean onQueryTextChange(String newText) {
-        // TODO: Handle search query text changes
-        return false;
+        return true;
       }
     });
+
+    searchView.setSubmitButtonEnabled(true);
     return true;
   }
 

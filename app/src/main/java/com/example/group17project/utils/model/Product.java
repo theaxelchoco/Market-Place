@@ -9,19 +9,16 @@ public class Product {
   private String name;
   private String description;
   private Date dateAvailable;
-  private Type type;
+  private ProductType type;
   private String ownerID;
   private String locationID;
   private int price;
-  private Type preferredExchange;
+  private ProductType preferredExchange;
   private Status status;
-
   private int imageId;
-
   private String productID;
 
-  public Product(){
-
+  public Product() {
   }
 
   public Product(String name, String ownerID) {
@@ -32,7 +29,7 @@ public class Product {
     status = Status.AVAILABLE;
   }
 
-  public Product(String name, String ownerID, String description, Calendar date, String productType, String place, String prefExchange, int price){
+  public Product(String name, String ownerID, String description, Calendar date, String productType, String place, String prefExchange, int price) {
     this.name = name;
     this.ownerID = ownerID;
     this.description = description;
@@ -43,26 +40,31 @@ public class Product {
     this.price = price;
   }
 
-  public Type mapToProductType(String productType){
-    switch(productType){
+  public ProductType mapToProductType(String productType) {
+    switch (productType) {
       case "Baby Toys":
-        return Type.BABY_TOYS;
+        return ProductType.BABY_TOYS;
       case "Clothes":
-        return Type.CLOTHES;
+        return ProductType.CLOTHES;
       case "Computer Accessories":
-        return Type.COMPUTER_ACCESSORIES;
+        return ProductType.COMPUTER_ACCESSORIES;
       case "Mobile Phones":
-        return Type.MOBILE_PHONES;
+        return ProductType.MOBILE_PHONES;
       case "Furniture":
-        return Type.FURNITURE;
+        return ProductType.FURNITURE;
       default:
         return null;
     }
   }
 
-  public int getImageId(){return imageId;}
+  public int getImageId() {
+    return imageId;
+  }
 
-  public void setImageId(int imageId){this.imageId = imageId;}
+  public void setImageId(int imageId) {
+    this.imageId = imageId;
+  }
+
   public String getName() {
     return name;
   }
@@ -88,7 +90,7 @@ public class Product {
   }
 
   public String getType() {
-    switch(type){
+    switch (type) {
       case BABY_TOYS:
         return "Baby Toys";
       case CLOTHES:
@@ -133,7 +135,7 @@ public class Product {
   }
 
   public String getPreferredExchange() {
-    switch(preferredExchange){
+    switch (preferredExchange) {
       case BABY_TOYS:
         return "Baby Toys";
       case CLOTHES:
@@ -161,12 +163,12 @@ public class Product {
     this.status = status;
   }
 
-  public void setProductID(String productID){
-    this.productID = productID;
+  public String getProductID() {
+    return productID;
   }
 
-  public String getProductID(){
-    return productID;
+  public void setProductID(String productID) {
+    this.productID = productID;
   }
 
   @NonNull
@@ -183,14 +185,6 @@ public class Product {
         ", preferredExchange=" + preferredExchange +
         ", status=" + status +
         '}';
-  }
-
-  public enum Type {
-    BABY_TOYS,
-    CLOTHES,
-    COMPUTER_ACCESSORIES,
-    MOBILE_PHONES,
-    FURNITURE,
   }
 
   public enum Status {

@@ -78,7 +78,7 @@ public class ProductCRUDHelperActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
     productRepository = new ProductRepository(database, true);
 
-    productDisplay = (TextView) findViewById(R.id.productDisplay);
+    productDisplay = findViewById(R.id.productDisplay);
 
     findButtons();
     findEditViews();
@@ -86,18 +86,18 @@ public class ProductCRUDHelperActivity extends AppCompatActivity {
   }
 
   private void findEditViews() {
-    testProductID = (EditText) findViewById(R.id.testProductID);
-    newProductName = (EditText) findViewById(R.id.newTestProductName);
-    newProductOwnerID = (EditText) findViewById(R.id.newTestProductOwner);
+    testProductID = findViewById(R.id.testProductID);
+    newProductName = findViewById(R.id.newTestProductName);
+    newProductOwnerID = findViewById(R.id.newTestProductOwner);
   }
 
   private void findButtons() {
-    addDefaultProductButton = (Button) findViewById(R.id.addTestProduct);
-    clearAllProductsButton = (Button) findViewById(R.id.clearTestDB);
-    readProductButton = (Button) findViewById(R.id.showTestProduct);
-    deleteProductButton = (Button) findViewById(R.id.deleteTestProduct);
-    createNewProductButton = (Button) findViewById(R.id.createTestProduct);
-    addNewProductButton = (Button) findViewById(R.id.addNewTestProduct);
+    addDefaultProductButton = findViewById(R.id.addTestProduct);
+    clearAllProductsButton = findViewById(R.id.clearTestDB);
+    readProductButton = findViewById(R.id.showTestProduct);
+    deleteProductButton = findViewById(R.id.deleteTestProduct);
+    createNewProductButton = findViewById(R.id.createTestProduct);
+    addNewProductButton = findViewById(R.id.addNewTestProduct);
   }
 
   private void makeDefaultProduct() {
@@ -107,7 +107,7 @@ public class ProductCRUDHelperActivity extends AppCompatActivity {
     testProduct.setType("Computer Accessories");
     testProduct.setLocationID("testLocationID");
     testProduct.setPrice(10);
-    testProduct.setPreferredExchange("Mobile Phone");
+    testProduct.setPreferredExchange("Mobile Phones");
 
     currentProduct = testProduct;
   }
