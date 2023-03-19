@@ -37,10 +37,20 @@ public class LoginLanding extends AppCompatActivity {
 
     }
 
+    /**
+     * Onclick method for signup button, sends user to the signup screen
+     * @param view view on screen
+     */
     public void signupButtonOnClick(View view){
         Intent i = new Intent(LoginLanding.this, Signup.class);
         startActivity(i);
     }
+
+    /**
+     * On click button for login button, validates the users credentials and displays errors if not working. Successful login
+     * sends user to homepage
+     * @param view view on screen
+     */
     public void onClick(View view){
         String email = getEmail();
         String password = getPassword();
@@ -97,6 +107,11 @@ public class LoginLanding extends AppCompatActivity {
         setMessage(errorMessage);
     }
 
+    /**
+     * Method used to replace periods in email with commas so firebase database can use them as keys
+     * @param email email with periods
+     * @return email with commas in place of periods
+     */
     public static String encodeUserEmail(String email){
         return email.replace(".", ",");
     }
@@ -105,6 +120,10 @@ public class LoginLanding extends AppCompatActivity {
         return email.replace(",", ".");
     }
 
+    /**
+     * Method used to set the error label with a corresponding error message
+     * @param message message to be set in error label
+     */
     protected void setMessage(String message){
         TextView errorLabel = findViewById(R.id.errorLblLogin);
         errorLabel.setText(message);
