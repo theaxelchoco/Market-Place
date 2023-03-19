@@ -15,7 +15,7 @@ import com.example.group17project.utils.repository.FilterRepository;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AdvanceSearchActivity extends AppCompatActivity {
-  Bundle filterBundle;
+  private Bundle filterBundle;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +67,7 @@ public class AdvanceSearchActivity extends AppCompatActivity {
     filterBundle.putString("maxPrice", maxPrice);
     filterBundle.putString("productType", productTypeString);
     filterBundle.putString("preferredProductType", preferredProductTypeString);
+    filterBundle.putString("ownerID", "");
     filterBundle.putBoolean("filter", true);
   }
 }

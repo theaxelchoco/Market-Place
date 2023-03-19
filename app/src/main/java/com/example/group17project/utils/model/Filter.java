@@ -10,7 +10,7 @@ public class Filter {
   private final ProductType preferredExchange;
   private final Range<Integer> priceRange;
   private final String location;
-  private final String ownerID;
+  private String ownerID;
   private String id;
 
   public Filter(String ownerID, ProductType type, ProductType preferredExchange, Range<Integer> priceRange, String location) {
@@ -19,8 +19,6 @@ public class Filter {
     this.preferredExchange = preferredExchange;
     this.priceRange = priceRange;
     this.location = location;
-
-    this.id = null;
   }
 
   public boolean isMatch(Product product) {
@@ -33,6 +31,26 @@ public class Filter {
     result &= priceRange.contains(product.getPrice());
     result &= Methods.isSameLocation(location, product.getLocationID());
     return result;
+  }
+
+  public String getOwnerID() {
+    return ownerID;
+  }
+
+  public void setOwnerID(String ownerID) {
+    this.ownerID = ownerID;
+  }
+
+  public ProductType getPreferredExchange() {
+    return preferredExchange;
+  }
+
+  public Range<Integer> getPriceRange() {
+    return priceRange;
+  }
+
+  public String getLocation() {
+    return location;
   }
 
   public ProductType getType() {
