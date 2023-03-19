@@ -62,6 +62,11 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     cancelButton.setOnClickListener(this::cancelButtonOnClick);
   }
 
+  /**
+   * This method checks to see if the form is being reopened to edit or if it is a first time addition. If editing, the
+   * application will take the existing data from the item and have it ready for display so the user can edit some or all fields
+   * to their desire.
+   */
   protected void checkIfEdit() {
     Intent intent = this.getIntent();
     edit = false;
@@ -85,6 +90,10 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     }
   }
 
+  /**
+   * This method is used to set the fields of the form to a predefined set of values. Only used for edit mode so
+   * user has their existing item details.
+   */
   protected void setFields() {
     productName.setText(productToEdit.getName());
     description.setText(productToEdit.getDescription());
@@ -93,6 +102,9 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     setSpinners();
   }
 
+  /**
+   * This method sets the date picker based off today's date by default
+   */
   protected void setDatePicker() {
     Calendar cal = Calendar.getInstance();
     cal.setTime(productToEdit.getDateAvailable());
@@ -102,6 +114,9 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     datePicker.init(year, month, day, null);
   }
 
+  /**
+   * This method sets the spinners to the corresponding value that needs to be displayed by default
+   */
   protected void setSpinners() {
     ArrayList<String> types = new ArrayList<>();
     types.add("Baby Toys");
@@ -121,6 +136,11 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     switchBack();
   }
 
+  /**
+   * This is the onlclick method for the submit button. Checks to see if all required fields are filled out.
+   * Adds item to repo and switches intent after validation, otherwise displays errors.
+   * @param view the view on the screen
+   */
   public void onClick(View view) {
     String productNameText = getProductName();
     String descriptionText = getDescription();
@@ -147,12 +167,21 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     }
   }
 
+  /**
+   * This method is used to switch back to the main activity but in the provider fragment
+   */
   public void switchBack() {
     Intent intent = new Intent(this, HomepageActivity.class);
     intent.putExtra("fragmentId", "provider");
     startActivity(intent);
   }
 
+  /**
+   * This method is used to set the corresponding error labels with designated messages helping the user correct their input
+   * @param productName the entered product name
+   * @param placeOfExchange the entered place of exchange
+   * @param marketVal the entered market value
+   */
   protected void setErrors(String productName, String placeOfExchange, String marketVal) {
     String pNameError = "";
     String excError = "";
@@ -217,10 +246,20 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     return cal;
   }
 
+  /**
+   * Checks to see if the product name is valid (not empty)
+   * @param name product name entered by user
+   * @return true if valid, false otherwise
+   */
   protected boolean validProductName(String name) {
     return !name.isEmpty();
   }
 
+  /**
+   * Checks to see if market value is valid (not empty and only integer)
+   * @param marketValue market val entered by user
+   * @return true if valid, false otherwise
+   */
   protected boolean validMarketValue(String marketValue) {
     if (marketValue.isEmpty()) {
       return false;
@@ -233,6 +272,11 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     }
   }
 
+  /**
+   * Checks to see if place of exchange is valid (not empty)
+   * @param place place of exchange entered by user
+   * @return true if valid, false otherwise
+   */
   protected boolean validPlaceOfExchange(String place) {
     return !place.isEmpty();
   }
