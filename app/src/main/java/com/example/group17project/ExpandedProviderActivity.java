@@ -47,11 +47,18 @@ public class ExpandedProviderActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Method used to set up connection to database to build a productRepository object
+     */
     protected void setUp(){
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
         productRepository = new ProductRepository(database, false);
     }
 
+    /**
+     * This method is used to grab information passed from the last activity. Information about the clicked item will be displayed
+     * in expanded format, based off the passed information
+     */
     protected void setViewFromIntentExtras(){
         Intent intent = this.getIntent();
         if(intent != null){
@@ -79,17 +86,30 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Onclick method for back button, sends user back to provider screen
+     * @param view view on screen
+     */
     public void backButtonOnClick(View view){
         Intent intent = new Intent(ExpandedProviderActivity.this, HomepageActivity.class);
         intent.putExtra("fragmentId", "provider");
         startActivity(intent);
     }
 
+    /**
+     * Onclick method for the delete button, accesses product repo to delete item selected
+     * @param view view of screen
+     */
     public void deleteButtonOnClick(View view){
         productRepository.deleteProduct(productId);
         backButtonOnClick(view);
     }
 
+    /**
+     * Onclick method for the edit button, passes in information about the corresponding product so
+     * the form is already filled out with the information, allowing user to pick and choose what to change
+     * @param view view of screen
+     */
     public void editButtonOnClick(View view){
         Intent intent = new Intent(ExpandedProviderActivity.this, AddProductActivity.class);
         intent.putExtra("edit", productId);
