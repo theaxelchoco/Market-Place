@@ -57,6 +57,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     setUp();
     checkIfEdit();
     user = User.getInstance();
+    placeOfExchange.setText(user.getUserLocation());
     submitButton.setOnClickListener(this::onClick);
     cancelButton.setOnClickListener(this::cancelButtonOnClick);
   }
