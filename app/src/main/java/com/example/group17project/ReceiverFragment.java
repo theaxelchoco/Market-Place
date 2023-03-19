@@ -46,6 +46,8 @@ public class ReceiverFragment extends Fragment {
       } else {
         performSearch(searchKeyword);
       }
+    } else {
+      performSearch("");
     }
 
     productAdapter = new ListAdapter(getActivity(), searchList);
