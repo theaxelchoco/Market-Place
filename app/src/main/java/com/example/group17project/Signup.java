@@ -33,7 +33,9 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_signup);
 
         Button signupButton = findViewById(R.id.signupButton);
+        Button backButton = findViewById(R.id.backButton);
         signupButton.setOnClickListener(this);
+        backButton.setOnClickListener(this::backButton);
 
         databaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
 
@@ -42,7 +44,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    public void backButton(){
+    public void backButton(View view){
         Intent i = new Intent(Signup.this, LoginLanding.class);
         startActivity(i);
     }

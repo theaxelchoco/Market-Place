@@ -29,13 +29,15 @@ public class LoginLanding extends AppCompatActivity {
         setContentView(R.layout.activity_login_landing);
 
         Button loginButton = findViewById(R.id.loginBtn);
+        Button signupButton = findViewById(R.id.signup);
+        signupButton.setOnClickListener(this::signupButtonOnClick);
         loginButton.setOnClickListener(this::onClick);
 
         databaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
 
     }
 
-    public void signupButtonOnClick(){
+    public void signupButtonOnClick(View view){
         Intent i = new Intent(LoginLanding.this, Signup.class);
         startActivity(i);
     }
