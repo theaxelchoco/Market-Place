@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.group17project.utils.Methods;
 import com.example.group17project.utils.model.Filter;
+import com.example.group17project.utils.model.User;
 import com.example.group17project.utils.repository.FilterRepository;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -36,7 +37,7 @@ public class AdvanceSearchActivity extends AppCompatActivity {
     Button saveButton = findViewById(R.id.advanceSearchSaveButton);
     saveButton.setOnClickListener(v -> {
       makeFilter();
-      Filter filter = Methods.makeFilter(filterBundle);
+      Filter filter = Methods.makeFilter(filterBundle, User.getInstance().getEmail());
 
       FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.firebase_database_url));
       FilterRepository filterRepository = new FilterRepository(database);

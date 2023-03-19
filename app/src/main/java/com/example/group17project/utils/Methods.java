@@ -20,9 +20,9 @@ public class Methods {
     alert.show();
   }
 
-  public static Filter makeFilter(Bundle bundle) {
+  public static Filter makeFilter(Bundle bundle, String ownerID) {
     return new Filter(
-        null,
+        ownerID,
         ProductType.valueOf(bundle.getString("productType")),
         ProductType.valueOf(bundle.getString("preferredProductType")),
         makeRange(bundle.getString("minPrice"), bundle.getString("maxPrice")),

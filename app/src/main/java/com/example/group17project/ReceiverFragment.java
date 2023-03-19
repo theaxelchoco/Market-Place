@@ -41,7 +41,7 @@ public class ReceiverFragment extends Fragment {
     if (bundle != null) {
       searchKeyword = bundle.getString("keyword");
       if (bundle.getBoolean("filter")) {
-        Filter filter = Methods.makeFilter(bundle);
+        Filter filter = Methods.makeFilter(bundle, null);
         performSearch(searchKeyword, filter);
       } else {
         performSearch(searchKeyword);
