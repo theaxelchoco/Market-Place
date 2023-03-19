@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -138,8 +139,13 @@ public class ReceiverFragment extends Fragment {
 
     searchListView = view.findViewById(R.id.searchResultList);
     searchListView.setAdapter(productAdapter);
+;
+
 
     Button advancedSearchButton = view.findViewById(R.id.advanceSearchButton);
+    TextView location = view.findViewById(R.id.locationTextView);
+    location.setText(User.getInstance().getUserLocation());
+
     advancedSearchButton.setOnClickListener(v -> {
       Intent intent = new Intent(getActivity(), AdvanceSearchActivity.class);
       startActivity(intent);

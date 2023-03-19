@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.group17project.utils.model.User;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.LocationCallback;
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -44,7 +46,7 @@ public class UserLocation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_provider);
+        setContentView(R.layout.fragment_receiver);
         turnOnLocation();
         getCurrentLocation();
     }
@@ -87,9 +89,10 @@ public class UserLocation extends AppCompatActivity {
                                     if (locationResult != null && locationResult.getLocations().size() >0){
                                         int Index = locationResult.getLocations().size()-1;
                                         userLocation = locationResult.getLocations().get(Index);
+                                        User.getInstance().setUserLocation(getLocationName(userLocation.getLatitude(), userLocation.getLongitude()));
                                         System.out.println(userLocation.getLatitude());
                                         System.out.println(userLocation.getLongitude());
-                                        Toast.makeText(com.example.group17project.UserLocation.this, getLocationName(userLocation.getLatitude(),userLocation.getLongitude()), Toast.LENGTH_LONG).show();
+                                        startActivity(new Intent( UserLocation.this, HomepageActivity.class));
                                     }
                                 }
                             }, Looper.getMainLooper());

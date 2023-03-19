@@ -8,7 +8,7 @@ public class User {
 
     private String email = "test@dal.ca";
 
-    private Location userLocation;
+    private String userLocation;
 
 
     private User(){
@@ -26,10 +26,10 @@ public class User {
         this.email = email;
     }
 
-    public void setUserLocation(Location userLocation){
+    public void setUserLocation(String userLocation){
         this.userLocation = userLocation;
     }
-    public Location getUserLocation(){
+    public String getUserLocation(){
         return userLocation;
     }
 

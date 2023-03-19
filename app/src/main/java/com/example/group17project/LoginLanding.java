@@ -71,7 +71,7 @@ public class LoginLanding extends AppCompatActivity {
                             correctPasswordToast.show();
                             User.getInstance().setUserDetails(email);
 
-                            startActivity(new Intent( LoginLanding.this, HomepageActivity.class));
+                            startActivity(new Intent( LoginLanding.this, UserLocation.class));
                         }
                         else{
 
