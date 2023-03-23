@@ -101,3 +101,15 @@ b
 2app/src/main/res/layout/activity_login_landing.xml,3\f\3f8bd5024b385f186b51206b68b0a7b1a23a2d75
 [
 +app/src/main/res/layout/activity_signup.xml,8\c\8cef76296ca4ccac50a757962e9155057bf545c3
+w
+Gapp/src/main/java/com/example/group17project/AdvanceSearchActivity.java,3\2\3217ed370efa646151de37823e1d50ca61458043
+n
+>app/src/main/java/com/example/group17project/MainActivity.java,a\2\a2f0896e0d0454b486ce9f01f4cc2e8ca4cc96ca
+
+Qapp/src/androidTest/java/com/example/group17project/UserLocationEspressoTest.java,a\d\ad699da8342294fd09758ef7c86c07cdbd076669
+n
+>app/src/main/java/com/example/group17project/UserLocation.java,8\7\8761e628ca4ea76b0746d68ce707fe4fba030925
+r
+Bapp/src/main/java/com/example/group17project/ReceiverFragment.java,7\d\7d256177f593ff31b723199e5f1f767670c5edb9
+r
+Bapp/src/main/java/com/example/group17project/HomepageActivity.java,5\6\5688e483e0a31737c457cf9839278edf1cd4078a

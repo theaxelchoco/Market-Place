@@ -61,6 +61,7 @@ public class ProductRepository {
    */
   public void updateProduct(String id, Product product) {
     databaseRef.child(id).setValue(product);
+    databaseRef.child(id).child("productID").setValue(id);
   }
 
   public void deleteAllProducts() {

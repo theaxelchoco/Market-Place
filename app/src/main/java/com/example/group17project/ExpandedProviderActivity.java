@@ -101,6 +101,7 @@ public class ExpandedProviderActivity extends AppCompatActivity {
      * @param view view of screen
      */
     public void deleteButtonOnClick(View view){
+        System.out.println(productId);
         productRepository.deleteProduct(productId);
         backButtonOnClick(view);
     }
