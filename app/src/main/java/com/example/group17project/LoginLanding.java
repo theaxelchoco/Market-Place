@@ -79,7 +79,11 @@ public class LoginLanding extends AppCompatActivity {
                         if (retrievePassword.equals(password)){
                            Toast correctPasswordToast = Toast.makeText(LoginLanding.this,"Successfully Logged in", Toast.LENGTH_SHORT);
                             correctPasswordToast.show();
-                            User.getInstance().setUserDetails(email);
+
+                            int rVal = snapshot.child(encodeUserEmail(email)).child("RValuation").getValue(Integer.class);
+                            int pVal = snapshot.child(encodeUserEmail(email)).child("PValuation").getValue(Integer.class);
+                            float rating = snapshot.child(encodeUserEmail(email)).child("rating").getValue(Float.class);
+                            User.getInstance().setUserDetails(email, rVal, pVal, rating);
 
                             startActivity(new Intent( LoginLanding.this, UserLocation.class));
                         }

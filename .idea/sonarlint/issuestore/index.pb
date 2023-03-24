@@ -29,8 +29,6 @@ O
 Sapp/src/main/java/com/example/group17project/utils/repository/FilterRepository.java,9\8\98639afc45314e37e40b4bdae2bc4117c5407fa6
 r
 Bapp/src/test/java/com/example/group17project/ReceiverUnitTest.java,2\f\2f5db1171f5ea3c261c7059e6bae3ccc10595058
-‚
-Rapp/src/androidTest/java/com/example/group17project/ProvidersListEspressoTest.java,f\3\f3ab7322d1bed0322206919713e044c8f4bb82b0
 
 Oapp/src/androidTest/java/com/example/group17project/AddProductEspressoTest.java,6\a\6a0eb260c522297e5cd3088b894526b21cb37573
 }
@@ -113,3 +111,9 @@ r
 Bapp/src/main/java/com/example/group17project/ReceiverFragment.java,7\d\7d256177f593ff31b723199e5f1f767670c5edb9
 r
 Bapp/src/main/java/com/example/group17project/HomepageActivity.java,5\6\5688e483e0a31737c457cf9839278edf1cd4078a
+z
+Japp/src/main/java/com/example/group17project/ExpandedReceiverActivity.java,5\2\52e5b19ac04c8c60192ebed99d6dd599939dcac1
+z
+Japp/src/main/java/com/example/group17project/ExpandedProviderActivity.java,a\d\ad2e714938f42aaa0e78ba7297c255202e141fe4
+„
+Tapp/src/main/java/com/example/group17project/utils/repository/ProductRepository.java,b\1\b1baa8e5013efb929cdb493277e83795f1543c02
