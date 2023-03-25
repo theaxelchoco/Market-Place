@@ -117,3 +117,13 @@ z
 Japp/src/main/java/com/example/group17project/ExpandedProviderActivity.java,a\d\ad2e714938f42aaa0e78ba7297c255202e141fe4
 „
 Tapp/src/main/java/com/example/group17project/utils/repository/ProductRepository.java,b\1\b1baa8e5013efb929cdb493277e83795f1543c02
+r
+Bapp/src/main/java/com/example/group17project/ProviderFragment.java,2\b\2bf977932b47837a85934828abb4a2eb75c571ee
+u
+Eapp/src/main/java/com/example/group17project/utils/model/Product.java,1\c\1c090c14590bf7001b1e49f150fd5720fd93cac1
+y
+Iapp/src/main/java/com/example/group17project/utils/model/ListAdapter.java,7\4\7423034ff073e8863592dd731f9502083ec1c546
+y
+Iapp/src/main/java/com/example/group17project/utils/model/ProductType.java,4\8\4879357217c0162c1f6329f936fc559ae2d3fa14
+t
+Dapp/src/main/java/com/example/group17project/AddProductActivity.java,e\1\e1354780ea8f948fc80f8cd110b7a05076ed1217
