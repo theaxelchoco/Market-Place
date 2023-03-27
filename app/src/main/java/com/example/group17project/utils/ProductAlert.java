@@ -9,16 +9,18 @@ import java.util.Set;
 
 public class ProductAlert {
   private final Set<String> ownerIDs;
+  private final Product product;
 
   public ProductAlert(Product product, List<Filter> filters) {
-    ownerIDs = gatherOwnerIDs(product, filters);
+    this.product = product;
+    ownerIDs = gatherOwnerIDs(filters);
   }
 
   public Set<String> getOwnerIDs() {
     return ownerIDs;
   }
 
-  private Set<String> gatherOwnerIDs(Product product, List<Filter> filters) {
+  private Set<String> gatherOwnerIDs(List<Filter> filters) {
     Set<String> result = new HashSet<>();
 
     filters.stream().parallel()
@@ -26,5 +28,13 @@ public class ProductAlert {
         .forEach(filter -> result.add(filter.getOwnerID()));
 
     return result;
+  }
+
+  public void alertUsers() {
+    ownerIDs.forEach(this::sendNotification);
+  }
+
+  private void sendNotification(String ownerID) {
+    // TODO: send notification to user
   }
 }
