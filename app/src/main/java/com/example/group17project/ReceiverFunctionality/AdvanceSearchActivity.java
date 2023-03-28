@@ -1,4 +1,4 @@
-package com.example.group17project;
+package com.example.group17project.ReceiverFunctionality;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.group17project.Homepages.HomepageActivity;
+import com.example.group17project.R;
 import com.example.group17project.utils.Methods;
 import com.example.group17project.utils.model.Filter;
 import com.example.group17project.utils.model.User;

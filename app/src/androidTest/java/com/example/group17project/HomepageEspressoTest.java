@@ -16,6 +16,10 @@ import androidx.test.espresso.contrib.DrawerActions;
 import androidx.test.espresso.contrib.NavigationViewActions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.group17project.Homepages.HomepageActivity;
+import com.example.group17project.ProviderFunctionality.ProviderFragment;
+import com.example.group17project.ReceiverFunctionality.ReceiverFragment;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

@@ -1,4 +1,4 @@
-package com.example.group17project;
+package com.example.group17project.ReceiverFunctionality;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.group17project.R;
+import com.example.group17project.ReceiverFunctionality.AdvanceSearchActivity;
+import com.example.group17project.ReceiverFunctionality.ExpandedReceiverActivity;
 import com.example.group17project.utils.Methods;
 import com.example.group17project.utils.model.Filter;
 import com.example.group17project.utils.model.ListAdapter;

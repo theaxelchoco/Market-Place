@@ -2,9 +2,7 @@ package com.example.group17project;
 
 import static org.junit.Assert.*;
 
-import androidx.fragment.app.Fragment;
-
-import com.example.group17project.utils.model.Product;
+import com.example.group17project.ReceiverFunctionality.ReceiverFragment;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

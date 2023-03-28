@@ -1,4 +1,4 @@
-package com.example.group17project;
+package com.example.group17project.Homepages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.group17project.R;
+import com.example.group17project.utils.UserLocation;
 import com.example.group17project.utils.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -143,15 +145,15 @@ public class LoginLanding extends AppCompatActivity {
         return password.getText().toString().trim();
     }
 
-    protected boolean isEmptyEmail(String email) {
+    public boolean isEmptyEmail(String email) {
         return email.isEmpty();
     }
 
-    protected boolean isValidEmailAddress(String email){
+    public boolean isValidEmailAddress(String email){
         return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-    protected boolean isEmptyPassword(String password){
+    public boolean isEmptyPassword(String password){
         return password.isEmpty();
     }
 }

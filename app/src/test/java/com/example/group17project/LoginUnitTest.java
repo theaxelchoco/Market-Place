@@ -2,6 +2,8 @@ package com.example.group17project;
 
 import static org.junit.Assert.*;
 
+import com.example.group17project.Homepages.LoginLanding;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

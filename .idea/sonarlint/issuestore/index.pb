@@ -113,3 +113,11 @@ n
 >app/src/main/java/com/example/group17project/LoginLanding.java,c\0\c0744d08fc128ed60576b1e5bd14bb36debf3a01
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+o
+?app/src/test/java/com/example/group17project/LoginUnitTest.java,b\5\b5fc6b39be4ce0eb9b6e6e15793e3de7392df2d8
+ƒ
+Sapp/src/androidTest/java/com/example/group17project/AdvancedSearchEspressoTest.java,d\5\d5ba0212023b358a1db9c9006b5f3bfb858979cc
+{
+Kapp/src/androidTest/java/com/example/group17project/SignupEspressoTest.java,e\d\ed18e19ae756afc823a6f2c7e9d7ac87aa15a858
+‚
+Rapp/src/androidTest/java/com/example/group17project/ProvidersListEspressoTest.java,f\3\f3ab7322d1bed0322206919713e044c8f4bb82b0

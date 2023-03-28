@@ -1,4 +1,4 @@
-package com.example.group17project;
+package com.example.group17project.ProviderFunctionality;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.group17project.Homepages.HomepageActivity;
+import com.example.group17project.R;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.FirebaseDatabase;
 

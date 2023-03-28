@@ -1,12 +1,10 @@
 package com.example.group17project;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import static org.junit.Assert.*;
 import org.junit.Test;
-import com.example.group17project.Signup;
+import com.example.group17project.Homepages.Signup;
 
 public class SignupJUnitTest {
 

@@ -1,4 +1,4 @@
-package com.example.group17project;
+package com.example.group17project.Homepages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.group17project.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -154,30 +155,30 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         return confirmPassword.getText().toString().trim();
     }
 
-    protected boolean isEmptyEmail(String email) {
+    public boolean isEmptyEmail(String email) {
         return email.isEmpty();
     }
 
-    protected boolean isEmptyPassword(String password){
+    public boolean isEmptyPassword(String password){
         return password.isEmpty();
     }
 
-    protected boolean isEmptyConfirmPassword(String confirmPassword){
+    public boolean isEmptyConfirmPassword(String confirmPassword){
         return confirmPassword.isEmpty();
     }
 
-    protected boolean isValidEmailAddress(String email){
+    public boolean isValidEmailAddress(String email){
         return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-    protected boolean isValidPassword(String password){
+    public boolean isValidPassword(String password){
         return password.matches("[A-Za-z0-9]*");
     }
 
-    protected boolean passwordTooShort(String password){
+    public boolean passwordTooShort(String password){
         return password.length() < 6;
     }
-    protected boolean isPasswordMatch(String password, String confirmPassword){
+    public boolean isPasswordMatch(String password, String confirmPassword){
         return password.equals(confirmPassword);
     }
 
