@@ -18,6 +18,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
+    <TextView
+        android:id="@+id/transactionItemName"
+        android:layout_width="398dp"
+        android:layout_height="28dp"
+        android:text="@string/NAME_PRODUCT_TITLE"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.11" />
+
     <EditText
         android:id="@+id/transactionItemEditText"
         android:layout_width="373dp"
@@ -32,18 +46,16 @@
         app:layout_constraintVertical_bias="0.168" />
 
     <TextView
-        android:id="@+id/transactionItemName"
-        android:layout_width="398dp"
-        android:layout_height="28dp"
-        android:text="@string/NAME_PRODUCT_TITLE"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:id="@+id/transactionNameError"
+        android:layout_width="376dp"
+        android:layout_height="16dp"
+        android:textColor="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.11" />
+        app:layout_constraintVertical_bias="0.26" />
 
     <TextView
         android:id="@+id/transactionApproxTitle"
@@ -71,6 +83,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.427" />
 
+    <TextView
+        android:id="@+id/transactionMarketError"
+        android:layout_width="359dp"
+        android:layout_height="24dp"
+        android:textColor="#FF0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.307"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
     <Button
         android:id="@+id/transactionConfirmBtn"
         android:layout_width="166dp"
@@ -87,10 +111,10 @@
         android:id="@+id/transactionRatingBarTitle"
         android:layout_width="385dp"
         android:layout_height="32dp"
-        android:text="Rate Your Interaction With "
+        android:gravity="center"
+        android:text="Rate Your Interaction With The Provider! "
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -109,5 +133,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.795" />
+
+    <TextView
+        android:id="@+id/transactionRatingError"
+        android:layout_width="311dp"
+        android:layout_height="18dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.842" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
