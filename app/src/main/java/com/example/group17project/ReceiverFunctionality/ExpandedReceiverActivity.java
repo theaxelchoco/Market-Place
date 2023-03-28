@@ -24,6 +24,15 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
 
     private Button backBtn;
     private Button contactBtn;
+    private Button buyBtn;
+    private String productId;
+    private int price;
+    private long dateVal;
+    private String name;
+    private String type;
+    private String exchange;
+    private String desc;
+    private String location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +52,6 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
      */
     protected void setViewFromIntentExtras(){
         Date date;
-        int price;
-        long dateVal;
-        String name;
-        String type;
-        String exchange;
-        String desc;
-        String location;
-
         Intent intent = this.getIntent();
         if(intent != null){
             name = intent.getStringExtra("name");
@@ -61,6 +62,8 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
             dateVal = intent.getLongExtra("date", 0);
             date = new Date(dateVal);
             price = intent.getIntExtra("price", 0);
+            productId = intent.getStringExtra("productId");
+
 
             SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy", Locale.CANADA);
             String dateString = sdf.format(date);
@@ -85,6 +88,19 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void buyBtnOnClick(View view){
+        Intent intent = new Intent(ExpandedReceiverActivity.this, TransactionActivity.class);
+        intent.putExtra("name", name);
+        intent.putExtra("type", type);
+        intent.putExtra("exchange", exchange);
+        intent.putExtra("location", location);
+        intent.putExtra("desc", desc);
+        intent.putExtra("date", dateVal);
+        intent.putExtra("price", price);
+        intent.putExtra("productId", productId);
+        startActivity(intent);
+    }
+
     /**
      * On click method for contact button, currently sends user back to receiver screen but in future will open user to user
      * communication screen
@@ -95,7 +111,6 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
     }
 
 
-
     protected void findViewComponents(){
         nameView = findViewById(R.id.rExpandedProductName);
         typeView = findViewById(R.id.rExpandedType);
@@ -103,11 +118,13 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
 
         backBtn = findViewById(R.id.rExpandedBackBtn);
         contactBtn = findViewById(R.id.rExpandedContactBtn);
+        buyBtn = findViewById(R.id.rExpandedBuyBtn);
 
     }
 
     protected void setOnClickMethods(){
         backBtn.setOnClickListener(this::backButtonOnClick);
         contactBtn.setOnClickListener(this::contactButtonOnClick);
+        buyBtn.setOnClickListener(this::buyBtnOnClick);
     }
 }
