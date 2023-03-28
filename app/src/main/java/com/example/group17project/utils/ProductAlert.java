@@ -20,7 +20,7 @@ public class ProductAlert {
     return ownerIDs;
   }
 
-  private Set<String> gatherOwnerIDs(List<Filter> filters) {
+  public Set<String> gatherOwnerIDs(List<Filter> filters) {
     Set<String> result = new HashSet<>();
 
     filters.stream().parallel()
