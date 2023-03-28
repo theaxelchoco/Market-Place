@@ -101,7 +101,7 @@ public class ReceiverFragment extends Fragment {
           assert product != null;
           product.setDateAvailable(dateAvailable);
 
-          if (isFilterMatch(product, keyword, filter) && !product.getOwnerID().equals(User.getInstance().getEmail())) {
+          if (isFilterMatch(product, keyword, filter) && !product.getOwnerID().equals(User.getInstance().getEmail()) && product.getStatus().equals(Product.Status.AVAILABLE)) {
             searchResult.add(product);
           }
         }

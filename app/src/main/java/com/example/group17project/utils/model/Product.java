@@ -48,6 +48,7 @@ public class Product {
     locationID = place;
     preferredExchange = mapToProductType(prefExchange);
     this.price = price;
+    status = Status.AVAILABLE;
   }
 
   /**

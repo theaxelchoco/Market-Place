@@ -13,14 +13,10 @@ F
 app/proguard-rules.pro,9\e\9e08934d811afe28fbc77aaa3c0d747b94348db9
 c
 3app/src/main/res/layout/activity_advance_search.xml,a\5\a5efd6b40a11f2fee47ad635e0dccf58bef503e2
-o
-?app/src/main/java/com/example/group17project/utils/Methods.java,0\6\060e5f2b2adeb5fdb690c7641096c25dfc978cbb
 †
 Vapp/src/main/java/com/example/group17project/testhelper/ProductCRUDHelperActivity.java,3\e\3e624072ddd8296fabb987ae024a43455c6c0596
 O
 app/src/main/res/values/ids.xml,b\d\bd506d672607407c2d0357a9f7c1e4e7fdb6c3ad
-ƒ
-Sapp/src/main/java/com/example/group17project/utils/repository/FilterRepository.java,9\8\98639afc45314e37e40b4bdae2bc4117c5407fa6
 r
 Bapp/src/test/java/com/example/group17project/ReceiverUnitTest.java,2\f\2f5db1171f5ea3c261c7059e6bae3ccc10595058
 >
@@ -93,16 +89,8 @@ z
 Japp/src/main/java/com/example/group17project/ExpandedReceiverActivity.java,5\2\52e5b19ac04c8c60192ebed99d6dd599939dcac1
 z
 Japp/src/main/java/com/example/group17project/ExpandedProviderActivity.java,a\d\ad2e714938f42aaa0e78ba7297c255202e141fe4
-„
-Tapp/src/main/java/com/example/group17project/utils/repository/ProductRepository.java,b\1\b1baa8e5013efb929cdb493277e83795f1543c02
 r
 Bapp/src/main/java/com/example/group17project/ProviderFragment.java,2\b\2bf977932b47837a85934828abb4a2eb75c571ee
-u
-Eapp/src/main/java/com/example/group17project/utils/model/Product.java,1\c\1c090c14590bf7001b1e49f150fd5720fd93cac1
-y
-Iapp/src/main/java/com/example/group17project/utils/model/ListAdapter.java,7\4\7423034ff073e8863592dd731f9502083ec1c546
-y
-Iapp/src/main/java/com/example/group17project/utils/model/ProductType.java,4\8\4879357217c0162c1f6329f936fc559ae2d3fa14
 t
 Dapp/src/main/java/com/example/group17project/AddProductActivity.java,e\1\e1354780ea8f948fc80f8cd110b7a05076ed1217
 t
@@ -117,5 +105,3 @@ o
 Sapp/src/androidTest/java/com/example/group17project/AdvancedSearchEspressoTest.java,d\5\d5ba0212023b358a1db9c9006b5f3bfb858979cc
 {
 Kapp/src/androidTest/java/com/example/group17project/SignupEspressoTest.java,e\d\ed18e19ae756afc823a6f2c7e9d7ac87aa15a858
-‚
-Rapp/src/androidTest/java/com/example/group17project/ProvidersListEspressoTest.java,f\3\f3ab7322d1bed0322206919713e044c8f4bb82b0

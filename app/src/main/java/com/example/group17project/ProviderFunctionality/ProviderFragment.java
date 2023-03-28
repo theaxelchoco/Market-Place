@@ -103,6 +103,9 @@ public class ProviderFragment extends Fragment {
         intent.putExtra("date", productArrayList.get(i).getDateAvailable().getTime());
         intent.putExtra("price", productArrayList.get(i).getPrice());
         intent.putExtra("productId", productArrayList.get(i).getProductID());
+
+        boolean available = productArrayList.get(i).getStatus().equals(Product.Status.AVAILABLE);
+        intent.putExtra("availability", available);
         startActivity(intent);
 
       }

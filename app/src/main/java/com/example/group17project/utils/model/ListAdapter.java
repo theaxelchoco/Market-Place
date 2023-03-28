@@ -40,11 +40,17 @@ public class ListAdapter extends ArrayAdapter<Product> {
         TextView productName = convertView.findViewById(R.id.itemProductNameFrame);
         TextView productDescription = convertView.findViewById(R.id.itemProductDescriptionFrame);
         TextView productType = convertView.findViewById(R.id.itemProductTypeFrame);
+        TextView productAvailability = convertView.findViewById(R.id.itemAvailabilityText);
 
         productName.setText(product.getName());
         productDescription.setText(product.getDescription());
         productType.setText(product.getType());
-
+        if(product.getStatus().equals(Product.Status.SOLD_OUT)){
+            productAvailability.setText("SOLD");
+        }
+        else{
+            productAvailability.setText("");
+        }
 
         return convertView;
     }

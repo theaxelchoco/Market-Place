@@ -51,7 +51,7 @@ public class ProvidersListEspressoTest {
 
     @Before
     public void setUp() throws Exception{
-        User.getInstance().setUserDetails("test@dal.ca", 0, 0, 0);
+        User.getInstance().setUserDetails("test@dal.ca", 0, 0, 0, 0);
         Calendar cal = Calendar.getInstance();
         cal.set(2023, 3, 14);
         product = new Product("Test Iphone 12", "test@dal.ca", "test description", cal, "Mobile Phones", "Halifax", "Clothes", 100);

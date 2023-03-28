@@ -107,6 +107,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
                         databaseRef.child("users").child(encodeUserEmail(email)).child("RValuation").setValue(0);
                         databaseRef.child("users").child(encodeUserEmail(email)).child("PValuation").setValue(0);
                         databaseRef.child("users").child(encodeUserEmail(email)).child("rating").setValue(0);
+                        databaseRef.child("users").child(encodeUserEmail(email)).child("numRatings").setValue(0);
                         loginToast = Toast.makeText(Signup.this, "Sign up Successfully! Login now!", Toast.LENGTH_SHORT);
                         loginToast.show();
                         Intent i = new Intent(Signup.this, LoginLanding.class);

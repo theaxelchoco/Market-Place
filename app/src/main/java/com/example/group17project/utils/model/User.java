@@ -9,7 +9,8 @@ public class User {
     private String email = "test@dal.ca";
     private int pValuation = 0;
     private int rValuation = 0;
-    private float rating = 0;
+    private float ratingTotal = 0;
+    private int numRatings = 0;
 
     private String userLocation;
 
@@ -42,18 +43,27 @@ public class User {
     }
 
     public void setRating(float rating){
-        this.rating = rating;
+        this.ratingTotal = rating;
     }
 
     public float getRating() {
-        return rating;
+        return ratingTotal;
     }
 
-    public void setUserDetails(String email, int pVal, int rVal, float rate){
+    public void setNumRatings(int num){
+        this.numRatings = num;
+    }
+
+    public int getNumRatings(){
+        return numRatings;
+    }
+
+    public void setUserDetails(String email, int pVal, int rVal, float rate, int rateNums){
         this.email = email;
         this.pValuation = pVal;
         this.rValuation = rVal;
-        this.rating = rate;
+        this.ratingTotal = rate;
+        this.numRatings = rateNums;
     }
 
     public void setUserLocation(String userLocation){

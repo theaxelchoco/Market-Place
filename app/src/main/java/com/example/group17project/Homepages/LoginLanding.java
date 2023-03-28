@@ -85,7 +85,8 @@ public class LoginLanding extends AppCompatActivity {
                             int rVal = snapshot.child(encodeUserEmail(email)).child("RValuation").getValue(Integer.class);
                             int pVal = snapshot.child(encodeUserEmail(email)).child("PValuation").getValue(Integer.class);
                             float rating = snapshot.child(encodeUserEmail(email)).child("rating").getValue(Float.class);
-                            User.getInstance().setUserDetails(email, rVal, pVal, rating);
+                            int numRatings = snapshot.child(encodeUserEmail(email)).child("numRatings").getValue(Integer.class);
+                            User.getInstance().setUserDetails(email, rVal, pVal, rating, numRatings);
 
                             startActivity(new Intent( LoginLanding.this, UserLocation.class));
                         }
