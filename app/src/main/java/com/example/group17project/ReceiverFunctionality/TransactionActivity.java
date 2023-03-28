@@ -13,4 +13,21 @@ public class TransactionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
     }
+
+
+    public boolean isProductNameValid(String name){
+        return true;
+    }
+
+    public boolean isValidMarketValue(String val){
+        return true;
+    }
+
+    public boolean isRatingSet(){
+        return true;
+    }
+
+    public void setRating(float rating){
+
+    }
 }
