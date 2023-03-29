@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -16,9 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Group17Project"
         tools:targetApi="31">
-        <activity
-            android:name=".ReceiverFunctionality.TransactionActivity"
-            android:exported="true" />
         <activity
             android:name=".ReceiverFunctionality.AdvanceSearchActivity"
             android:exported="true">
@@ -46,6 +42,9 @@
             android:name=".ProviderFunctionality.AddProductActivity"
             android:exported="true" />
         <activity
+            android:name=".Homepages.Visualization"
+            android:exported="true" />
+        <activity
             android:name=".Homepages.Signup"
             android:exported="true" />
         <activity
@@ -53,16 +52,15 @@
             android:exported="true" />
         <activity
             android:name=".Homepages.MainActivity"
-            android:exported="true" />
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC6hwEEqETHiQwyeoDbf2ujCDSvDVJXHck" />
-
+            android:exported="true"/>
+            <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyC6hwEEqETHiQwyeoDbf2ujCDSvDVJXHck"/>
         <activity
             android:name=".utils.UserLocation"
             android:exported="true"
             android:label="@string/title_activity_maps">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
