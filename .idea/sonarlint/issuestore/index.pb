@@ -105,9 +105,3 @@ r
 Bapp/src/main/java/com/example/group17project/utils/model/User.java,3\9\393338d0dd529f07f85af0542ba023fcf60ebce3
 Ç
 Rapp/src/androidTest/java/com/example/group17project/ProvidersListEspressoTest.java,f\3\f3ab7322d1bed0322206919713e044c8f4bb82b0
-y
-Iapp/src/main/java/com/example/group17project/utils/model/ListAdapter.java,7\4\7423034ff073e8863592dd731f9502083ec1c546
-ê
-`app/src/main/java/com/example/group17project/ProviderFunctionality/ExpandedProviderActivity.java,0\f\0f664daf3bed538912a4ee961f06d54381b2e044
-à
-Xapp/src/main/java/com/example/group17project/ProviderFunctionality/ProviderFragment.java,8\9\89da09073037ca593160b845747cde79921f77d5
