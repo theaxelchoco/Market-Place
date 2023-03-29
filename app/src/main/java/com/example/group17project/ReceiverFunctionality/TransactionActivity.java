@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.group17project.R;
 import com.example.group17project.utils.model.Product;
+import com.example.group17project.utils.model.User;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -43,6 +44,7 @@ public class TransactionActivity extends AppCompatActivity {
     private String productId;
     private String ownerId;
     Date date;
+    User user;
 
     private String tradeItem;
     private String marketValue;
@@ -56,6 +58,7 @@ public class TransactionActivity extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
         productRepository = new ProductRepository(database, false);
+        user = User.getInstance();
 
         findViewComponents();
         setOnClickMethods();
@@ -100,8 +103,13 @@ public class TransactionActivity extends AppCompatActivity {
         if(isRatingSet() && isProductNameValid(tradeItem) && isValidMarketValue(marketValue)){
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
+
+            Date currentDate = new Date(System.currentTimeMillis());
+
             Product product = new Product(name, ownerId, desc, cal, type, location, exchange, price);
             product.setStatus(Product.Status.SOLD_OUT);
+            product.completeTransaction(tradeItem, marketValue, user.getEmail(), currentDate);
+
             productRepository.updateProduct(productId, product);
         }
         setErrors(tradeItem, marketValue);
