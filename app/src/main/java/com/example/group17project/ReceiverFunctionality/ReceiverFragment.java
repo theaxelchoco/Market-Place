@@ -67,7 +67,7 @@ public class ReceiverFragment extends Fragment {
             product.setDateAvailable(dateAvailable);
             //check if the user is identified as a receiver
             //if so, add the product read from database to the productArrayList
-            if (product.getOwnerID() != null && !product.getOwnerID().equals(User.getInstance().getEmail())) {
+            if (product.getOwnerID() != null && !product.getOwnerID().equals(User.getInstance().getEmail()) && product.getStatus().equals(Product.Status.AVAILABLE)) {
               searchList.add(product);
             }
           }
@@ -170,6 +170,7 @@ public class ReceiverFragment extends Fragment {
       intent.putExtra("date", searchList.get(i).getDateAvailable().getTime());
       intent.putExtra("price", searchList.get(i).getPrice());
       intent.putExtra("productId", searchList.get(i).getProductID());
+      intent.putExtra("ownerId", searchList.get(i).getOwnerID());
       startActivity(intent);
     });
   }

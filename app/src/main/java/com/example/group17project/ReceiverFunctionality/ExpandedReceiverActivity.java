@@ -33,6 +33,7 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
     private String exchange;
     private String desc;
     private String location;
+    private String ownerId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
             date = new Date(dateVal);
             price = intent.getIntExtra("price", 0);
             productId = intent.getStringExtra("productId");
+            ownerId = intent.getStringExtra("ownerId");
 
 
             SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy", Locale.CANADA);
@@ -98,6 +100,7 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
         intent.putExtra("date", dateVal);
         intent.putExtra("price", price);
         intent.putExtra("productId", productId);
+        intent.putExtra("ownerId", ownerId);
         startActivity(intent);
     }
 
