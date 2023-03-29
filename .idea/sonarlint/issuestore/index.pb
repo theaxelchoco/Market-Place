@@ -17,8 +17,6 @@ c
 Vapp/src/main/java/com/example/group17project/testhelper/ProductCRUDHelperActivity.java,3\e\3e624072ddd8296fabb987ae024a43455c6c0596
 O
 app/src/main/res/values/ids.xml,b\d\bd506d672607407c2d0357a9f7c1e4e7fdb6c3ad
-r
-Bapp/src/test/java/com/example/group17project/ReceiverUnitTest.java,2\f\2f5db1171f5ea3c261c7059e6bae3ccc10595058
 >
 app/.gitignore,5\1\51e1c5d383dfaa35e0e7e5873a0a99355a86880f
 U
@@ -79,8 +77,6 @@ t
 Dapp/src/main/java/com/example/group17project/utils/model/Filter.java,3\4\34c4ec1eb3aab310d16060d9e937829440b11a16
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-o
-?app/src/test/java/com/example/group17project/LoginUnitTest.java,b\5\b5fc6b39be4ce0eb9b6e6e15793e3de7392df2d8
 ƒ
 Sapp/src/androidTest/java/com/example/group17project/AdvancedSearchEspressoTest.java,d\5\d5ba0212023b358a1db9c9006b5f3bfb858979cc
 {
@@ -89,8 +85,6 @@ Kapp/src/androidTest/java/com/example/group17project/SignupEspressoTest.java,e\
 Mapp/src/androidTest/java/com/example/group17project/ReceiverEspressoTest.java,d\3\d3c7dad785f7848030a77f14938c6b31785e2664
 z
 Japp/src/androidTest/java/com/example/group17project/LoginEspressoTest.java,d\2\d2e7b78f49e3d1bb0c9882c86046a2fb941ca72f
-q
-Aapp/src/test/java/com/example/group17project/SignupJUnitTest.java,6\0\602a3e30e0c360bb43cd434eb55992cadee002e7
 t
 Dapp/src/test/java/com/example/group17project/AddProductUnitTest.java,a\3\a386a69d6040891fda3c247c4e70b32b8b5eb8cf
 o

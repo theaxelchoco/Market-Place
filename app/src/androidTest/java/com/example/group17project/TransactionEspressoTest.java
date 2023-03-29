@@ -60,7 +60,7 @@ public class TransactionEspressoTest {
     public void setUp() throws Exception{
         Calendar cal = Calendar.getInstance();
         cal.set(2023, 3, 14);
-        product = new Product("Test Transaction", "espresso@dal.ca", "test description", cal, "Mobile Phones", "Halifax", "Clothes", 100);
+        product = new Product("Test Transaction", "ta3130@dal.ca", "test description", cal, "Mobile Phones", "Halifax", "Clothes", 100);
         productRepo.createProduct(product);
 
         Thread.sleep(3000);
