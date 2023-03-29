@@ -105,8 +105,6 @@ r
 Bapp/src/main/java/com/example/group17project/utils/model/User.java,3\9\393338d0dd529f07f85af0542ba023fcf60ebce3
 ‚
 Rapp/src/androidTest/java/com/example/group17project/ProvidersListEspressoTest.java,f\3\f3ab7322d1bed0322206919713e044c8f4bb82b0
-r
-Bapp/src/main/java/com/example/group17project/Homepages/Signup.java,e\f\efc6a7a30d31b32d03f690f2db3f25cc41f5feec
 y
 Iapp/src/main/java/com/example/group17project/utils/model/ListAdapter.java,7\4\7423034ff073e8863592dd731f9502083ec1c546
 ˆ
