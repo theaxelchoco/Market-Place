@@ -91,12 +91,8 @@ z
 Japp/src/androidTest/java/com/example/group17project/LoginEspressoTest.java,d\2\d2e7b78f49e3d1bb0c9882c86046a2fb941ca72f
 q
 Aapp/src/test/java/com/example/group17project/SignupJUnitTest.java,6\0\602a3e30e0c360bb43cd434eb55992cadee002e7
-x
-Happ/src/androidTest/java/com/example/group17project/SetRatingAction.java,3\c\3ce295878ebccaefcb3a6f223a8b732ff56cf65c
 t
 Dapp/src/test/java/com/example/group17project/AddProductUnitTest.java,a\3\a386a69d6040891fda3c247c4e70b32b8b5eb8cf
-u
-Eapp/src/test/java/com/example/group17project/TransactionUnitTest.java,2\d\2ddf4808a7eabe1f865a3e91423bd96d3c3e6225
 o
 ?app/src/main/java/com/example/group17project/utils/Methods.java,0\6\060e5f2b2adeb5fdb690c7641096c25dfc978cbb
 t
@@ -113,8 +109,6 @@ Bapp/src/main/java/com/example/group17project/Homepages/Signup.java,e\f\efc6a7a
 Rapp/src/androidTest/java/com/example/group17project/ProvidersListEspressoTest.java,f\3\f3ab7322d1bed0322206919713e044c8f4bb82b0
 y
 Iapp/src/main/java/com/example/group17project/utils/model/ListAdapter.java,7\4\7423034ff073e8863592dd731f9502083ec1c546
-x
-Happ/src/main/java/com/example/group17project/Homepages/LoginLanding.java,0\a\0a1e831edaae0530e5af404c6c3539d9b30bbad3
 ê
 `app/src/main/java/com/example/group17project/ProviderFunctionality/ExpandedProviderActivity.java,0\f\0f664daf3bed538912a4ee961f06d54381b2e044
 à

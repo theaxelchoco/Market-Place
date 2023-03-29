@@ -85,8 +85,6 @@ o
 Sapp/src/androidTest/java/com/example/group17project/AdvancedSearchEspressoTest.java,d\5\d5ba0212023b358a1db9c9006b5f3bfb858979cc
 {
 Kapp/src/androidTest/java/com/example/group17project/SignupEspressoTest.java,e\d\ed18e19ae756afc823a6f2c7e9d7ac87aa15a858
-x
-Happ/src/androidTest/java/com/example/group17project/SetRatingAction.java,3\c\3ce295878ebccaefcb3a6f223a8b732ff56cf65c
 }
 Mapp/src/androidTest/java/com/example/group17project/ReceiverEspressoTest.java,d\3\d3c7dad785f7848030a77f14938c6b31785e2664
 z
@@ -95,8 +93,6 @@ q
 Aapp/src/test/java/com/example/group17project/SignupJUnitTest.java,6\0\602a3e30e0c360bb43cd434eb55992cadee002e7
 t
 Dapp/src/test/java/com/example/group17project/AddProductUnitTest.java,a\3\a386a69d6040891fda3c247c4e70b32b8b5eb8cf
-u
-Eapp/src/test/java/com/example/group17project/TransactionUnitTest.java,2\d\2ddf4808a7eabe1f865a3e91423bd96d3c3e6225
 o
 ?app/src/main/java/com/example/group17project/utils/Methods.java,0\6\060e5f2b2adeb5fdb690c7641096c25dfc978cbb
 t
@@ -115,7 +111,5 @@ y
 Iapp/src/main/java/com/example/group17project/utils/model/ListAdapter.java,7\4\7423034ff073e8863592dd731f9502083ec1c546
 à
 Xapp/src/main/java/com/example/group17project/ProviderFunctionality/ProviderFragment.java,8\9\89da09073037ca593160b845747cde79921f77d5
-x
-Happ/src/main/java/com/example/group17project/Homepages/LoginLanding.java,0\a\0a1e831edaae0530e5af404c6c3539d9b30bbad3
 ê
 `app/src/main/java/com/example/group17project/ProviderFunctionality/ExpandedProviderActivity.java,0\f\0f664daf3bed538912a4ee961f06d54381b2e044

@@ -100,7 +100,8 @@ public class TransactionEspressoTest {
         onView(withId(R.id.rExpandedBuyBtn)).perform(click());
         onView(withId(R.id.transactionItemEditText)).perform(typeText("Trade Item"), closeSoftKeyboard());
         onView(withId(R.id.transactionApproxEditText)).perform(typeText("80"), closeSoftKeyboard());
-        onView(withId(R.id.transactionRatingBar)).perform((ViewAction) new SetRatingAction(3.5f));
+        onView(withId(R.id.transactionRatingBar)).perform(click());
+        onView(withId(R.id.transactionConfirmBtn)).perform(click());
         onView(withId(R.id.searchResultList)).check(matches(isDisplayed()));
     }
 
@@ -110,7 +111,8 @@ public class TransactionEspressoTest {
         onView(withId(R.id.rExpandedBuyBtn)).perform(click());
         onView(withId(R.id.transactionItemEditText)).perform(typeText(""), closeSoftKeyboard());
         onView(withId(R.id.transactionApproxEditText)).perform(typeText("80"), closeSoftKeyboard());
-        onView(withId(R.id.transactionRatingBar)).perform((ViewAction) new SetRatingAction(3.5f));
+        onView(withId(R.id.transactionRatingBar)).perform((click()));
+        onView(withId(R.id.transactionConfirmBtn)).perform(click());
         onView(withId(R.id.transactionNameError)).check(matches(withText("Please enter a name for the item you will trade.")));
     }
 
@@ -120,7 +122,8 @@ public class TransactionEspressoTest {
         onView(withId(R.id.rExpandedBuyBtn)).perform(click());
         onView(withId(R.id.transactionItemEditText)).perform(typeText("Trade Item"), closeSoftKeyboard());
         onView(withId(R.id.transactionApproxEditText)).perform(typeText(""), closeSoftKeyboard());
-        onView(withId(R.id.transactionRatingBar)).perform((ViewAction) new SetRatingAction(3.5f));
+        onView(withId(R.id.transactionRatingBar)).perform(click());
+        onView(withId(R.id.transactionConfirmBtn)).perform(click());
         onView(withId(R.id.transactionMarketError)).check(matches(withText("Please enter an approximate market value.")));
     }
 
@@ -130,7 +133,8 @@ public class TransactionEspressoTest {
         onView(withId(R.id.rExpandedBuyBtn)).perform(click());
         onView(withId(R.id.transactionItemEditText)).perform(typeText("Trade Item"), closeSoftKeyboard());
         onView(withId(R.id.transactionApproxEditText)).perform(typeText("12.3"), closeSoftKeyboard());
-        onView(withId(R.id.transactionRatingBar)).perform((ViewAction) new SetRatingAction(3.5f));
+        onView(withId(R.id.transactionRatingBar)).perform(click());
+        onView(withId(R.id.transactionConfirmBtn)).perform(click());
         onView(withId(R.id.transactionMarketError)).check(matches(withText("Please enter an integer value.")));
     }
 
@@ -140,6 +144,7 @@ public class TransactionEspressoTest {
         onView(withId(R.id.rExpandedBuyBtn)).perform(click());
         onView(withId(R.id.transactionItemEditText)).perform(typeText("Trade Item"), closeSoftKeyboard());
         onView(withId(R.id.transactionApproxEditText)).perform(typeText("80"), closeSoftKeyboard());
+        onView(withId(R.id.transactionConfirmBtn)).perform(click());
         onView(withId(R.id.transactionRatingError)).check(matches(withText("Please enter a rating for this user.")));
     }
 
