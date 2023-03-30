@@ -3,13 +3,11 @@ package com.example.group17project;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.typeText;
+
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.junit.Assert.assertEquals;
 
@@ -58,5 +56,27 @@ public class VisualizationEspressoTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.group17project", appContext.getPackageName());
     }
+
+    @Test
+    public void checkIfVisualizationPageIsVisible(){
+        onView(withId(R.id.exchange_history_textview)).check(matches(withText(R.string.EMPTY_STRING)));
+        onView(withId(R.id.value_provided_textview)).check(matches(withText(R.string.EMPTY_STRING)));
+        onView(withId(R.id.value_received_textview)).check(matches(withText(R.string.EMPTY_STRING)));
+    }
+
+    @Test
+    public void checkIfRatingbarIsVisible(){
+        onView(withId(R.id.user_rating_ratingbar)).check(matches(isDisplayed()));
+        onView(withId(R.id.user_name_textview)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testBackButton(){
+        onView(withId(R.id.exchange_history_textview)).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.exchange_history_textview)).atPosition(0).perform(click());
+        onView(withId(R.id.VisualizationBackButton)).perform(click());
+        onView(withId(R.id.exchange_history_textview)).check(matches(isDisplayed()));
+    }
+
 
 }
