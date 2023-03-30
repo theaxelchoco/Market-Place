@@ -19,7 +19,7 @@
             android:id="@+id/user_name_textview"
             android:layout_width="266dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="72dp"
+            android:layout_marginStart="72dp"
             android:layout_marginTop="24dp"
             android:gravity="center"
             android:padding="16dp"
@@ -31,7 +31,7 @@
             android:id="@+id/user_rating_ratingbar"
             android:layout_width="267dp"
             android:layout_height="73dp"
-            android:layout_marginLeft="72dp"
+            android:layout_marginStart="72dp"
             android:layout_marginTop="12dp"
             android:numStars="5"
             android:padding="16dp"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:padding="16dp"
-            android:text="Value Received:"
+            android:text="@string/value_received"
             android:textSize="18sp" />
 
 
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="Value Provided:"
+            android:text="@string/value_provided"
             android:textSize="18sp" />
 
         <TextView
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:padding="16dp"
-            android:text="Exchange History:"
+            android:text="@string/exchange_history"
             android:textSize="18sp"
             android:textStyle="bold" />
 

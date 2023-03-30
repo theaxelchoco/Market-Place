@@ -67,5 +67,8 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="permissions_granted">Permissions granted</string>
     <string name="permissions_denied">Permissions denied</string>
+    <string name="value_provided">Value Provided:</string>
+    <string name="exchange_history">Exchange History:</string>
+    <string name="value_received">Value Received:</string>
 
 </resources>
