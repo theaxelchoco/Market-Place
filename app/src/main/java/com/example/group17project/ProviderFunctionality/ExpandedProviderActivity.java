@@ -169,4 +169,12 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         deleteBtn.setOnClickListener(this::deleteButtonOnClick);
         editBtn.setOnClickListener(this::editButtonOnClick);
     }
+
+    public boolean isRatingSet(){
+        return true;
+    }
+
+    public void setRating(float rating){
+
+    }
 }
