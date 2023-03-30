@@ -68,5 +68,7 @@
     <string name="permissions_granted">Permissions granted</string>
     <string name="permissions_denied">Permissions denied</string>
     <string name="RATING_ERROR">Please enter a rating for this user.</string>
+    <string name="CANNOT_EDIT_SOLD">Cannot edit a SOLD product</string>
+    <string name="SUCCESSFUL_RATING">Rating Successful!</string>
 
 </resources>

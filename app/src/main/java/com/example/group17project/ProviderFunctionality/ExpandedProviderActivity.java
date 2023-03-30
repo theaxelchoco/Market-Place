@@ -72,6 +72,10 @@ public class ExpandedProviderActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method is used to set the view according to whether the product is available or not. If available, user should
+     * see details about the product but if already sold, user should be shown rating for the buyer
+     */
     protected void setViewFromStatus(){
         if(available){
             ratingBar.setVisibility(View.GONE);
@@ -154,10 +158,14 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         backButtonOnClick(view);
     }
 
+    /**
+     * On click button for the confirm button, calls methods to assign rating to user and delete product
+     * @param view view of the screen
+     */
     private void confirmButtonOnClick(View view) {
         if(isRatingSet()){
             updateRating(buyerId);
-            Toast.makeText(ExpandedProviderActivity.this, "Rating Successful!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ExpandedProviderActivity.this, R.string.SUCCESSFUL_RATING, Toast.LENGTH_SHORT).show();
             deleteButtonOnClick(view);
         }
         else{
@@ -165,6 +173,10 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Ths method is used to access the rating of the buyer within the database
+     * @param buyer the email of the user who bought the particular item
+     */
     protected void updateRating(String buyer){
         buyerKey = LoginLanding.encodeUserEmail(buyer);
         userDB.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -187,10 +199,19 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method is used to replace the rating in the database with the new rating
+     * @param rating new total rating number
+     * @param num new number of ratings
+     */
     protected void setNewRating(float rating, int num){
         userDB.child(buyerKey).child("rating").setValue(rating);
         userDB.child(buyerKey).child("numRatings").setValue(num);
     }
+
+    /**
+     * This method is used to set the error label if the user forgets to leave a rating
+     */
     protected void setError(){
         ratingError.setText(getString(R.string.RATING_ERROR));
     }
@@ -214,12 +235,15 @@ public class ExpandedProviderActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else{
-            Toast.makeText(ExpandedProviderActivity.this, "Cannot edit a SOLD product", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ExpandedProviderActivity.this, R.string.CANNOT_EDIT_SOLD, Toast.LENGTH_SHORT).show();
         }
 
     }
 
 
+    /**
+     * This method is used to assign the view components to variables to be used
+     */
     protected void findViewComponents(){
         nameView = findViewById(R.id.pExpandedProductName);
         typeView = findViewById(R.id.pExpandedType);
@@ -235,6 +259,9 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         ratingTitle = findViewById(R.id.pExpandedRateUserTitle);
     }
 
+    /**
+     * This method is used to set the onclick methods as well as the rating on change event
+     */
     protected void setOnClickMethods(){
         backBtn.setOnClickListener(this::backButtonOnClick);
         deleteBtn.setOnClickListener(this::deleteButtonOnClick);
@@ -249,11 +276,18 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * This method is used to see if a rating has been assigned from the user
+     * @return returns a true if the rating is above 0, false otherwise
+     */
     public boolean isRatingSet(){
         return rating > 0;
     }
 
+    /**
+     * This method is used to set a rating value for the buyer
+     * @param rating the float number representing the rating
+     */
     public void setRating(float rating){
         this.rating = rating;
     }

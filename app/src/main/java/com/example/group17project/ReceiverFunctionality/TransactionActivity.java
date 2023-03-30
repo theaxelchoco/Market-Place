@@ -155,6 +155,10 @@ public class TransactionActivity extends AppCompatActivity {
         setErrors(tradeItem, marketValue);
     }
 
+    /**
+     * This method is used to access the rating of the owner of the product the transaction is being completed
+     * @param ownerId the email of the owner
+     */
     protected void updateRating(String ownerId){
 
         userDB.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -177,6 +181,11 @@ public class TransactionActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method is used to set the updated ratings into the database of the owner
+     * @param rating new rating total
+     * @param num new number of ratings
+     */
     protected void setNewRating(float rating, int num){
         userDB.child(ownerKey).child("rating").setValue(rating);
         userDB.child(ownerKey).child("numRatings").setValue(num);
