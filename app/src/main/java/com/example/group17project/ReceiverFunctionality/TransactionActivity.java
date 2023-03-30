@@ -180,8 +180,6 @@ public class TransactionActivity extends AppCompatActivity {
     protected void setNewRating(float rating, int num){
         userDB.child(ownerKey).child("rating").setValue(rating);
         userDB.child(ownerKey).child("numRatings").setValue(num);
-        user.setRating(rating);
-        user.setNumRatings(num);
     }
 
     /**

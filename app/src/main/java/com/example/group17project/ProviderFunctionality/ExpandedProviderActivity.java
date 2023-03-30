@@ -1,5 +1,6 @@
 package com.example.group17project.ProviderFunctionality;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,10 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.group17project.Homepages.HomepageActivity;
+import com.example.group17project.Homepages.LoginLanding;
 import com.example.group17project.R;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.repository.ProductRepository;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,6 +40,8 @@ public class ExpandedProviderActivity extends AppCompatActivity {
     private String desc;
     private String productId;
     private String location;
+    private String buyerId;
+    private String buyerKey;
     private long dateVal;
     private int price;
     private Date date;
@@ -45,6 +53,12 @@ public class ExpandedProviderActivity extends AppCompatActivity {
     private Button editBtn;
     private Button confirmBtn;
 
+    private float rating = 0;
+    private float databaseRating;
+    private int databaseNumRatings;
+
+    private DatabaseReference userDB = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +68,25 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         findViewComponents();
         setOnClickMethods();
         setViewFromIntentExtras();
+        setViewFromStatus();
 
-        ratingBar.setVisibility(View.GONE);
-        ratingTitle.setVisibility(View.GONE);
-        confirmBtn.setVisibility(View.GONE);
-        ratingError.setVisibility(View.GONE);
+    }
 
+    protected void setViewFromStatus(){
+        if(available){
+            ratingBar.setVisibility(View.GONE);
+            ratingTitle.setVisibility(View.GONE);
+            confirmBtn.setVisibility(View.GONE);
+            ratingError.setVisibility(View.GONE);
+        }
+        else{
+            typeView.setVisibility(View.GONE);
+            descView.setVisibility(View.GONE);
+            deleteBtn.setVisibility(View.GONE);
+            editBtn.setVisibility(View.GONE);
 
-
+            ratingTitle.setText("Rate User: " + buyerId);
+        }
     }
 
     /**
@@ -70,6 +95,7 @@ public class ExpandedProviderActivity extends AppCompatActivity {
     protected void setUp(){
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
         productRepository = new ProductRepository(database, false);
+        userDB = database.getReference("users");
     }
 
     /**
@@ -89,6 +115,9 @@ public class ExpandedProviderActivity extends AppCompatActivity {
             date = new Date(dateVal);
             price = intent.getIntExtra("price", 0);
             available = intent.getBooleanExtra("availability", true);
+            if(!available){
+                buyerId = intent.getStringExtra("buyerID");
+            }
 
             SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy", Locale.CANADA);
             String dateString = sdf.format(date);
@@ -122,6 +151,47 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         System.out.println(productId);
         productRepository.deleteProduct(productId);
         backButtonOnClick(view);
+    }
+
+    private void confirmButtonOnClick(View view) {
+        if(isRatingSet()){
+            updateRating(buyerId);
+            Toast.makeText(ExpandedProviderActivity.this, "Rating Successful!", Toast.LENGTH_SHORT).show();
+            deleteButtonOnClick(view);
+        }
+        else{
+            setError();
+        }
+    }
+
+    protected void updateRating(String buyer){
+        buyerKey = LoginLanding.encodeUserEmail(buyer);
+        userDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                databaseRating = snapshot.child(buyerKey).child("rating").getValue(Float.class);
+                databaseNumRatings = snapshot.child(buyerKey).child("numRatings").getValue(Integer.class);
+
+                databaseRating += rating;
+                databaseNumRatings++;
+
+                setNewRating(databaseRating, databaseNumRatings);
+                userDB.removeEventListener(this);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    protected void setNewRating(float rating, int num){
+        userDB.child(buyerKey).child("rating").setValue(rating);
+        userDB.child(buyerKey).child("numRatings").setValue(num);
+    }
+    protected void setError(){
+        ratingError.setText(getString(R.string.RATING_ERROR));
     }
 
     /**
@@ -168,13 +238,22 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         backBtn.setOnClickListener(this::backButtonOnClick);
         deleteBtn.setOnClickListener(this::deleteButtonOnClick);
         editBtn.setOnClickListener(this::editButtonOnClick);
+        confirmBtn.setOnClickListener(this::confirmButtonOnClick);
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                rating = v;
+            }
+        });
     }
 
+
     public boolean isRatingSet(){
-        return true;
+        return rating > 0;
     }
 
     public void setRating(float rating){
-
+        this.rating = rating;
     }
 }
