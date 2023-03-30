@@ -84,6 +84,10 @@ public class TransactionActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method is used to get the information about the product the user is trying to buy. Passed in from
+     * last activity which is the expandedReceiver
+     */
     protected void setViewFromIntentExtras(){
 
         Intent intent = this.getIntent();
@@ -102,6 +106,10 @@ public class TransactionActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method returns back to the expandedReceiver view of the item the user is inspecting
+     * @param view current view on screen
+     */
     protected void backButtonOnClick(View view){
         Intent intent = new Intent(TransactionActivity.this, ExpandedReceiverActivity.class);
         intent.putExtra("name", name);
@@ -115,6 +123,12 @@ public class TransactionActivity extends AppCompatActivity {
         intent.putExtra("ownerId", ownerId);
         startActivity(intent);
     }
+
+    /**
+     * This method initiates the transaction code when the user presses confirm on the button. Makes
+     * use of validation methods as well as database methods to successfully make the transaction appear
+     * @param view view on the screen
+     */
     protected void confirmButtonOnClick(View view){
         tradeItem = getTradeItem();
         marketValue = getMarketValue();
@@ -138,6 +152,11 @@ public class TransactionActivity extends AppCompatActivity {
         setErrors(tradeItem, marketValue);
     }
 
+    /**
+     * This method is used to adjust the P and R valuations of both the receiver and provider in question
+     * @param ownerId ID of the owner of the product in question
+     * @param buyerId ID of the buyer who wants to trade for the product
+     */
     protected void updateValuations(String ownerId, String buyerId){
         ownerKey = LoginLanding.encodeUserEmail(ownerId);
         buyerKey = LoginLanding.encodeUserEmail(buyerId);
@@ -170,6 +189,14 @@ public class TransactionActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method is used to change the values in the Users database according to the price of the provided
+     * item and the received item accordingly
+     * @param ownerPVal New provider value of owner after trade
+     * @param ownerRVal New receiver value of owner after trade
+     * @param buyerPVal New provider value of buyer after trade
+     * @param buyerRVal New receiver value of buyer after trade
+     */
     protected void setValuations(int ownerPVal, int ownerRVal, int buyerPVal, int buyerRVal) {
         userDB.child(ownerKey).child("PValuation").setValue(ownerPVal);
         userDB.child(ownerKey).child("RValuation").setValue(ownerRVal);
@@ -179,6 +206,13 @@ public class TransactionActivity extends AppCompatActivity {
         user.setpValuation(buyerPVal);
         user.setrValuation(buyerRVal);
     }
+
+    /**
+     * This method is used to set the error labels on the page according to if the user has entered
+     * valid information in the form fields
+     * @param productName name of the product which must be non-empty
+     * @param marketVal value of product which must be non-empty and a positive integer
+     */
     protected void setErrors(String productName, String marketVal) {
         String pNameError = "";
         String marketError = "";
@@ -195,7 +229,7 @@ public class TransactionActivity extends AppCompatActivity {
             }
         }
         if(!isRatingSet()){
-            ratingError = "Please enter a rating for this user.";
+            ratingError = getString(R.string.RATING_ERROR);
         }
 
         nameErrorText.setText(pNameError);
@@ -203,6 +237,9 @@ public class TransactionActivity extends AppCompatActivity {
         ratingErrorText.setText(ratingError);
     }
 
+    /**
+     * This method is used to assign every view component on the screen to a variable to be used
+     */
     protected void findViewComponents(){
         productNameText = findViewById(R.id.transactionItemEditText);
         approxValText = findViewById(R.id.transactionApproxEditText);
@@ -216,6 +253,9 @@ public class TransactionActivity extends AppCompatActivity {
         confirmBtn = findViewById(R.id.transactionConfirmBtn);
     }
 
+    /**
+     * This method is used to assign all the buttons on the screen to onClick methods within the code
+     */
     protected void setOnClickMethods(){
         confirmBtn.setOnClickListener(this::confirmButtonOnClick);
         backBtn.setOnClickListener(this::backButtonOnClick);
@@ -235,10 +275,24 @@ public class TransactionActivity extends AppCompatActivity {
         return approxValText.getText().toString().trim();
     }
 
+    public void setRating(float rating){
+        this.rating = rating;
+    }
+
+    /**
+     * This method is used to validate the product name entered by user
+     * @param name product name entered by user
+     * @return true if valid, false otherwise
+     */
     public boolean isProductNameValid(String name){
         return !name.isEmpty();
     }
 
+    /**
+     * This method is used to validate the market value entered by user
+     * @param val market value entered by user
+     * @return true if valid, false otherwise
+     */
     public boolean isValidMarketValue(String val){
         if (val.isEmpty()) {
             return false;
@@ -251,11 +305,13 @@ public class TransactionActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method is used to validate the rating set by user
+     * @return true if rating has been set, false otherwise (invalid)
+     */
     public boolean isRatingSet(){
         return rating > 0;
     }
 
-    public void setRating(float rating){
-        this.rating = rating;
-    }
+
 }
