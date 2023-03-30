@@ -82,6 +82,7 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         else{
             typeView.setVisibility(View.GONE);
             descView.setVisibility(View.GONE);
+            descView.setClickable(false);
             deleteBtn.setVisibility(View.GONE);
             editBtn.setVisibility(View.GONE);
 

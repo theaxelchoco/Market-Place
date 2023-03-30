@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 import android.content.Context;
 
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.Espresso;
 import androidx.test.espresso.contrib.DrawerActions;
 import androidx.test.espresso.contrib.NavigationViewActions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -55,7 +56,7 @@ public class RatingEspressoTest {
         cal.set(2023, 3, 14);
         product = new Product("Test Iphone 12", "test@dal.ca", "test description", cal, "Mobile Phones", "Halifax", "Clothes", 100);
         product.setStatus(Product.Status.SOLD_OUT);
-        product.setBuyer("ta@dal.ca");
+        product.setBuyer("ta3130@dal.ca");
         product.setBuyerItem("test item");
         product.setBuyerItemAmount("20");
         product.setTransactionDate(cal.getTime());
@@ -92,18 +93,27 @@ public class RatingEspressoTest {
     @Test
     public void testUnsoldItemDisallowsRating(){
         product.setStatus(Product.Status.AVAILABLE);
+        productRepo.updateProduct(product.getProductID(), product);
         onView(withId(R.id.productList)).check(matches(isDisplayed()));
         onData(anything()).inAdapterView(withId(R.id.productList)).atPosition(0).perform(click());
         onView(withId(R.id.pExpandedRatingBar)).check((matches(not(isDisplayed()))));
     }
 
     @Test
-    public void testLeaveSuccessfulRating(){
+    public void testLeaveSuccessfulRating() throws InterruptedException {
         onView(withId(R.id.productList)).check(matches(isDisplayed()));
         onData(anything()).inAdapterView(withId(R.id.productList)).atPosition(0).perform(click());
         onView(withId(R.id.pExpandedRatingBar)).check(matches(isDisplayed()));
         onView(withId(R.id.pExpandedRatingBar)).perform(click());
         onView(withId(R.id.pExpandedConfirmBtn)).perform(click());
+        onView(withId(R.id.productList)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testItemExpandedBackButton(){
+        onView(withId(R.id.productList)).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.productList)).atPosition(0).perform(click());
+        onView(withId(R.id.pExpandedBackBtn)).perform(click());
         onView(withId(R.id.productList)).check(matches(isDisplayed()));
     }
 
