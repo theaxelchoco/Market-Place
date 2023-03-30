@@ -57,6 +57,8 @@ public class TransactionActivity extends AppCompatActivity {
     private String tradeItem;
     private String marketValue;
     private float rating;
+    private float databaseRating;
+    private int databaseNumRatings;
 
     int ownerPVal = 0;
     int ownerRVal = 0;
@@ -145,11 +147,41 @@ public class TransactionActivity extends AppCompatActivity {
 
             productRepository.updateProduct(productId, product);
             updateValuations(ownerId, user.getEmail());
+            updateRating(ownerId);
             Toast.makeText(TransactionActivity.this, "Transaction Successful!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(TransactionActivity.this, HomepageActivity.class));
 
         }
         setErrors(tradeItem, marketValue);
+    }
+
+    protected void updateRating(String ownerId){
+
+        userDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                databaseRating = snapshot.child(ownerKey).child("rating").getValue(Float.class);
+                databaseNumRatings = snapshot.child(ownerKey).child("numRatings").getValue(Integer.class);
+
+                databaseRating += rating;
+                databaseNumRatings++;
+
+                setNewRating(databaseRating, databaseNumRatings);
+                userDB.removeEventListener(this);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    protected void setNewRating(float rating, int num){
+        userDB.child(ownerKey).child("rating").setValue(rating);
+        userDB.child(ownerKey).child("numRatings").setValue(num);
+        user.setRating(rating);
+        user.setNumRatings(num);
     }
 
     /**
