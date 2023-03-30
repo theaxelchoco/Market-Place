@@ -25,6 +25,7 @@ public class ExpandedProviderActivity extends AppCompatActivity {
     private TextView nameView;
     private TextView typeView;
     private TextView descView;
+    private TextView ratingError;
     private RatingBar ratingBar;
     private TextView ratingTitle;
     private String name;
@@ -42,6 +43,7 @@ public class ExpandedProviderActivity extends AppCompatActivity {
     private Button backBtn;
     private Button deleteBtn;
     private Button editBtn;
+    private Button confirmBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,9 @@ public class ExpandedProviderActivity extends AppCompatActivity {
 
         ratingBar.setVisibility(View.GONE);
         ratingTitle.setVisibility(View.GONE);
+        confirmBtn.setVisibility(View.GONE);
+        ratingError.setVisibility(View.GONE);
+
 
 
     }
@@ -148,10 +153,12 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         nameView = findViewById(R.id.pExpandedProductName);
         typeView = findViewById(R.id.pExpandedType);
         descView = findViewById(R.id.pExpandedDesc);
+        ratingError = findViewById(R.id.pExpandedRateError);
 
         backBtn = findViewById(R.id.pExpandedBackBtn);
         deleteBtn = findViewById(R.id.pExpandedDeleteBtn);
         editBtn = findViewById(R.id.pExpandedEditBtn);
+        confirmBtn = findViewById(R.id.pExpandedConfirmBtn);
 
         ratingBar = findViewById(R.id.pExpandedRatingBar);
         ratingTitle = findViewById(R.id.pExpandedRateUserTitle);
