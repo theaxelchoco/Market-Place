@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,8 @@ public class ExpandedProviderActivity extends AppCompatActivity {
     private TextView nameView;
     private TextView typeView;
     private TextView descView;
+    private RatingBar ratingBar;
+    private TextView ratingTitle;
     private String name;
     private String type;
     private String exchange;
@@ -49,6 +52,10 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         findViewComponents();
         setOnClickMethods();
         setViewFromIntentExtras();
+
+        ratingBar.setVisibility(View.GONE);
+        ratingTitle.setVisibility(View.GONE);
+
 
     }
 
@@ -145,6 +152,9 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.pExpandedBackBtn);
         deleteBtn = findViewById(R.id.pExpandedDeleteBtn);
         editBtn = findViewById(R.id.pExpandedEditBtn);
+
+        ratingBar = findViewById(R.id.pExpandedRatingBar);
+        ratingTitle = findViewById(R.id.pExpandedRateUserTitle);
     }
 
     protected void setOnClickMethods(){
