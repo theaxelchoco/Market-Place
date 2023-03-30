@@ -14,12 +14,11 @@ import static org.junit.Assert.assertEquals;
 
 import android.content.Context;
 
-import androidx.test.espresso.ViewAction;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.example.group17project.Homepages.HomepageActivity;
+import com.example.group17project.Homepages.Visualization;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.FirebaseDatabase;
@@ -40,7 +39,7 @@ import org.junit.runner.RunWith;
 
 public class VisualizationEspressoTest {
     @Rule
-    public ActivityScenarioRule<HomepageActivity> myRule = new ActivityScenarioRule<>(HomepageActivity.class);
+    public ActivityScenarioRule<Visualization> myRule = new ActivityScenarioRule<>(Visualization.class);
 
     @Before
     public void setUp() throws Exception{
