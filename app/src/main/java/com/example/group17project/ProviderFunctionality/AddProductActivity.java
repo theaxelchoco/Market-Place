@@ -1,4 +1,4 @@
-package com.example.group17project;
+package com.example.group17project.ProviderFunctionality;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.group17project.Homepages.HomepageActivity;
+import com.example.group17project.R;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.model.User;
 import com.example.group17project.utils.repository.ProductRepository;
@@ -251,7 +253,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
    * @param name product name entered by user
    * @return true if valid, false otherwise
    */
-  protected boolean validProductName(String name) {
+  public boolean validProductName(String name) {
     return !name.isEmpty();
   }
 
@@ -260,7 +262,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
    * @param marketValue market val entered by user
    * @return true if valid, false otherwise
    */
-  protected boolean validMarketValue(String marketValue) {
+  public boolean validMarketValue(String marketValue) {
     if (marketValue.isEmpty()) {
       return false;
     }
@@ -277,7 +279,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
    * @param place place of exchange entered by user
    * @return true if valid, false otherwise
    */
-  protected boolean validPlaceOfExchange(String place) {
+  public boolean validPlaceOfExchange(String place) {
     return !place.isEmpty();
   }
 

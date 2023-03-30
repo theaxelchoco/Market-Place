@@ -6,20 +6,17 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
+
 import static org.mockito.Mockito.*;
 
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import android.content.pm.PackageManager;
-import android.location.Location;
+import com.example.group17project.utils.UserLocation;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.sql.SQLOutput;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class UserLocationUnitTest {

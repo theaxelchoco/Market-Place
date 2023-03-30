@@ -1,4 +1,4 @@
-package com.example.group17project;
+package com.example.group17project.ProviderFunctionality;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.group17project.Homepages.HomepageActivity;
+import com.example.group17project.R;
+import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,6 +33,7 @@ public class ExpandedProviderActivity extends AppCompatActivity {
     private long dateVal;
     private int price;
     private Date date;
+    private boolean available;
     private ProductRepository productRepository;
 
     private Button backBtn;
@@ -71,6 +76,7 @@ public class ExpandedProviderActivity extends AppCompatActivity {
             productId = intent.getStringExtra("productId");
             date = new Date(dateVal);
             price = intent.getIntExtra("price", 0);
+            available = intent.getBooleanExtra("availability", true);
 
             SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy", Locale.CANADA);
             String dateString = sdf.format(date);
@@ -112,16 +118,22 @@ public class ExpandedProviderActivity extends AppCompatActivity {
      * @param view view of screen
      */
     public void editButtonOnClick(View view){
-        Intent intent = new Intent(ExpandedProviderActivity.this, AddProductActivity.class);
-        intent.putExtra("edit", productId);
-        intent.putExtra("name", name);
-        intent.putExtra("type", type);
-        intent.putExtra("exchange", exchange);
-        intent.putExtra("location", location);
-        intent.putExtra("desc", desc);
-        intent.putExtra("date", dateVal);
-        intent.putExtra("price", price);
-        startActivity(intent);
+        if(available){
+            Intent intent = new Intent(ExpandedProviderActivity.this, AddProductActivity.class);
+            intent.putExtra("edit", productId);
+            intent.putExtra("name", name);
+            intent.putExtra("type", type);
+            intent.putExtra("exchange", exchange);
+            intent.putExtra("location", location);
+            intent.putExtra("desc", desc);
+            intent.putExtra("date", dateVal);
+            intent.putExtra("price", price);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(ExpandedProviderActivity.this, "Cannot edit a SOLD product", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 

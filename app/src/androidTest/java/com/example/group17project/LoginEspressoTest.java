@@ -16,6 +16,8 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.example.group17project.Homepages.LoginLanding;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;

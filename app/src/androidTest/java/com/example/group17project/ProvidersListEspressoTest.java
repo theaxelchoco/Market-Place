@@ -20,6 +20,8 @@ import androidx.test.espresso.contrib.NavigationViewActions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.example.group17project.Homepages.HomepageActivity;
+import com.example.group17project.ProviderFunctionality.ProviderFragment;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.model.User;
 import com.example.group17project.utils.repository.ProductRepository;
@@ -32,7 +34,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.Calendar;
-import java.util.Date;
 
 @RunWith(AndroidJUnit4.class)
 public class ProvidersListEspressoTest {
@@ -50,7 +51,7 @@ public class ProvidersListEspressoTest {
 
     @Before
     public void setUp() throws Exception{
-        User.getInstance().setUserDetails("test@dal.ca");
+        User.getInstance().setUserDetails("test@dal.ca", 0, 0, 0, 0);
         Calendar cal = Calendar.getInstance();
         cal.set(2023, 3, 14);
         product = new Product("Test Iphone 12", "test@dal.ca", "test description", cal, "Mobile Phones", "Halifax", "Clothes", 100);

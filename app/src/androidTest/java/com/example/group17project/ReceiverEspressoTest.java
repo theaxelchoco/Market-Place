@@ -15,31 +15,24 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
-import android.support.test.rule.ActivityTestRule;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
 import androidx.test.core.app.ActivityScenario;
-import androidx.test.espresso.contrib.DrawerActions;
-import androidx.test.espresso.contrib.NavigationViewActions;
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.example.group17project.Homepages.HomepageActivity;
+import com.example.group17project.ProviderFunctionality.ProviderFragment;
 import com.example.group17project.utils.model.Product;
-import com.example.group17project.utils.model.User;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.Calendar;
-import java.util.Date;
 
 @RunWith(AndroidJUnit4.class)
 public class ReceiverEspressoTest {
@@ -60,7 +53,7 @@ public class ReceiverEspressoTest {
     public void setUp() throws Exception{
         Calendar cal = Calendar.getInstance();
         cal.set(2023, 3, 14);
-        product = new Product("Test Iphone 12", "test@dal.ca", "test description", cal, "Mobile Phones", "Halifax", "Clothes", 100);
+        product = new Product("Test Iphone 12", "espresso@dal.ca", "test description", cal, "Mobile Phones", "Halifax", "Clothes", 100);
         productRepo.createProduct(product);
 
         Thread.sleep(3000);

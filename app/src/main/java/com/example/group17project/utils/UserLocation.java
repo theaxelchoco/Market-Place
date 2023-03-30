@@ -1,10 +1,12 @@
-package com.example.group17project;
+package com.example.group17project.utils;
 
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.group17project.Homepages.HomepageActivity;
+import com.example.group17project.R;
 import com.example.group17project.utils.model.User;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -73,11 +75,11 @@ public class UserLocation extends AppCompatActivity {
     //Getting the current location
     public void getCurrentLocation() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(com.example.group17project.UserLocation.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(UserLocation.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
                 if (isLocationEnabled()) {
 
-                    LocationServices.getFusedLocationProviderClient(com.example.group17project.UserLocation.this)
+                    LocationServices.getFusedLocationProviderClient(UserLocation.this)
                             .requestLocationUpdates(locationRequest, new LocationCallback() {
                                 @Override
                                 public void onLocationResult(@NonNull LocationResult locationResult) {
@@ -160,7 +162,7 @@ public class UserLocation extends AppCompatActivity {
 
                 try {
                     LocationSettingsResponse response = task.getResult(ApiException.class);
-                    Toast.makeText(com.example.group17project.UserLocation.this, "Location is already turned on", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserLocation.this, "Location is already turned on", Toast.LENGTH_SHORT).show();
 
                 } catch (ApiException e) {
 
@@ -169,7 +171,7 @@ public class UserLocation extends AppCompatActivity {
 
                             try {
                                 ResolvableApiException resolvableApiException = (ResolvableApiException) e;
-                                resolvableApiException.startResolutionForResult(com.example.group17project.UserLocation.this, 2);
+                                resolvableApiException.startResolutionForResult(UserLocation.this, 2);
                             } catch (IntentSender.SendIntentException ex) {
                                 ex.printStackTrace();
                             }
