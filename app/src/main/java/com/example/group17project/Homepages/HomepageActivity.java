@@ -1,3 +1,8 @@
+/*
+HomepageActivity code
+Group 17
+*/
+
 package com.example.group17project.Homepages;
 
 import android.os.Bundle;

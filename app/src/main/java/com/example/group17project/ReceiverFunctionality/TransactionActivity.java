@@ -1,3 +1,8 @@
+/*
+Transaction code
+Group 17
+*/
+
 package com.example.group17project.ReceiverFunctionality;
 
 import androidx.appcompat.app.AppCompatActivity;
