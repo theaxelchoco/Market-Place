@@ -1,3 +1,8 @@
+/*
+MainActivity code
+Group 17
+*/
+
 package com.example.group17project.Homepages;
 
 import androidx.appcompat.app.AppCompatActivity;

@@ -1,3 +1,8 @@
+/*
+Search code
+Group 17
+*/
+
 package com.example.group17project.ReceiverFunctionality;
 
 import android.content.Intent;
