@@ -5,6 +5,7 @@ Group 17
 
 package com.example.group17project.Homepages;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -117,7 +118,9 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
       swapProfile();
     }
     else if(item.getItemId() == R.id.nav_profile){
-      setContentView(R.layout.activity_visualization);
+      //setContentView(R.layout.activity_visualization);
+      Intent i = new Intent(HomepageActivity.this, Visualization.class);
+      startActivity(i);
     }
     drawerLayout.closeDrawer(GravityCompat.START);
     return true;
