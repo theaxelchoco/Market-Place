@@ -43,24 +43,36 @@ public class Visualization extends AppCompatActivity {
         setContentView(R.layout.activity_visualization);
         databaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
         user = User.getInstance();
-        String email = "test@dal.ca";
-
-//        databaseRef.child("users").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // Get the String value from the snapshot
-//                PValuation = dataSnapshot.getValue(String.class);
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Handle any errors that occur
-//            }
-//        });
+        String email = "test@dal,ca";
 
 
 
+        databaseRef.child("users").child(email).child("PValuation").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Get the string value from the DataSnapshot object
+                PValuation = String.valueOf(dataSnapshot.getValue(int.class));
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("Firebase", "Error reading PValuation", databaseError.toException());
+            }
+        });
+
+
+        databaseRef.child("users").child(email).child("RValuation").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Get the string value from the DataSnapshot object
+                RValuation = String.valueOf(dataSnapshot.getValue(int.class));
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("Firebase", "Error reading PValuation", databaseError.toException());
+            }
+        });
 
 
         System.out.println(user.getEmail());
@@ -69,8 +81,8 @@ public class Visualization extends AppCompatActivity {
 
         //System.out.println(email.getText().toString().trim());
 
-        PValuation= String.valueOf(user.getpValuation());
-        RValuation= String.valueOf(user.getrValuation());
+        //PValuation= String.valueOf(user.getpValuation());
+        //RValuation= String.valueOf(user.getrValuation());
         Button backButton = findViewById(R.id.VisualizationBackButton);
         backButton.setOnClickListener(this::backButton);
 
