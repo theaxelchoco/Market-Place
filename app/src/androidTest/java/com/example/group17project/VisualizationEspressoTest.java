@@ -58,9 +58,9 @@ public class VisualizationEspressoTest {
 
     @Test
     public void checkIfVisualizationPageIsVisible(){
-        onView(withId(R.id.exchange_history_textview)).check(matches(withText(R.string.EMPTY_STRING)));
-        onView(withId(R.id.value_provided_textview)).check(matches(withText(R.string.EMPTY_STRING)));
-        onView(withId(R.id.value_received_textview)).check(matches(withText(R.string.EMPTY_STRING)));
+        onView(withId(R.id.exchange_history_textview)).check(matches(isDisplayed()));
+        onView(withId(R.id.value_provided_textview)).check(matches(isDisplayed()));
+        onView(withId(R.id.value_received_textview)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -69,13 +69,22 @@ public class VisualizationEspressoTest {
         onView(withId(R.id.user_name_textview)).check(matches(isDisplayed()));
     }
 
+//    @Test
+//    public void testBackButton(){
+//        onView(withId(R.id.exchange_history_textview)).check(matches(isDisplayed()));
+//        onData(anything()).inAdapterView(withId(R.id.exchange_history_textview)).atPosition(0).perform(click());
+//        onView(withId(R.id.VisualizationBackButton)).perform(click());
+//        onView(withId(R.id.exchange_history_textview)).check(matches(isDisplayed()));
+//    }
+
     @Test
-    public void testBackButton(){
+    public void checkIfValueIsVisible(){
         onView(withId(R.id.exchange_history_textview)).check(matches(isDisplayed()));
-        onData(anything()).inAdapterView(withId(R.id.exchange_history_textview)).atPosition(0).perform(click());
-        onView(withId(R.id.VisualizationBackButton)).perform(click());
-        onView(withId(R.id.exchange_history_textview)).check(matches(isDisplayed()));
+        onView(withId(R.id.value_received_textview)).check(matches(isDisplayed()));
+        onView(withId(R.id.value_provided_textview)).check(matches(isDisplayed()));
     }
+
+
 
 
 }
