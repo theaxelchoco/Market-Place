@@ -116,7 +116,9 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
     if (item.getItemId() == R.id.nav_swap) {
       swapProfile();
     }
-
+    else if(item.getItemId() == R.id.nav_profile){
+      setContentView(R.layout.activity_visualization);
+    }
     drawerLayout.closeDrawer(GravityCompat.START);
     return true;
   }

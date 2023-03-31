@@ -31,7 +31,7 @@ public class Visualization extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_visualization);
+        setContentView(R.layout.activity_visualization);
         databaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
         user = User.getInstance();
 
