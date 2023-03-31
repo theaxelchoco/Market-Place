@@ -7,6 +7,7 @@ package com.example.group17project.ReceiverFunctionality;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +17,10 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.group17project.R;
+import com.example.group17project.utils.model.ExchangeHistory;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.model.User;
+import com.example.group17project.utils.repository.ExchangeRepository;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -56,6 +59,7 @@ public class TransactionActivity extends AppCompatActivity {
     private float rating;
 
     private ProductRepository productRepository;
+    private ExchangeRepository exchangeRepository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +67,7 @@ public class TransactionActivity extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
         productRepository = new ProductRepository(database, false);
+        exchangeRepository = new ExchangeRepository(database,false);
         user = User.getInstance();
 
         findViewComponents();
@@ -101,6 +106,7 @@ public class TransactionActivity extends AppCompatActivity {
         intent.putExtra("ownerId", ownerId);
         startActivity(intent);
     }
+    @SuppressLint("DefaultLocale")
     protected void confirmButtonOnClick(View view){
         tradeItem = getTradeItem();
         marketValue = getMarketValue();
@@ -115,6 +121,10 @@ public class TransactionActivity extends AppCompatActivity {
             product.setStatus(Product.Status.SOLD_OUT);
             product.completeTransaction(tradeItem, marketValue, user.getEmail(), currentDate);
 
+            ExchangeHistory history = new ExchangeHistory(ownerId);
+            history.setDetails(String.format("Owner: %s | ItemName: %s | Location: %s | Price: %d",ownerId,name,location,price));
+
+            exchangeRepository.createHistory(history);
             productRepository.updateProduct(productId, product);
         }
         setErrors(tradeItem, marketValue);

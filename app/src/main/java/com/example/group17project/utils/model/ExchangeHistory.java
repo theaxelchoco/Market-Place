@@ -11,33 +11,41 @@ import java.util.Date;
  */
 public class ExchangeHistory {
 
-  private ArrayList<String> history;
-  private String ownerID;
+  private String details;
+  private String ownerId;
+  public String id;
 
   public ExchangeHistory() {}
 
-  public ExchangeHistory(String ownerID) {
-    this.history = new ArrayList<String>();
-    this.ownerID = ownerID;
+  public ExchangeHistory(String ownerId) {
+    this.ownerId = ownerId;
   }
 
-  public String getOwnerID() {
-    return ownerID;
+  public ExchangeHistory(String ownerId, String details) {
+    this.ownerId = ownerId;
+    this.details = details;
   }
 
-  public void setOwnerID(String ownerID) {
-    this.ownerID = ownerID;
+  public String getOwnerId() {
+    return ownerId;
   }
 
-  public ArrayList<String> getHistory(){return this.history;}
-
-  public void addHistory(String newExchange){
-    this.history.add(newExchange);
+  public void setOwnerId(String ownerId) {
+    this.ownerId = ownerId;
   }
+
+  public String getId(){return this.id;}
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public String getDetails(){return this.details;}
+  public void setDetails(String details){this.details = details;}
+
 
   @NonNull
   @Override
   public String toString() {
-    return this.history.toString();
+    return this.getDetails();
   }
 }

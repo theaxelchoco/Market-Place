@@ -48,6 +48,9 @@
             android:name=".Homepages.Signup"
             android:exported="true" />
         <activity
+            android:name=".ReceiverFunctionality.TransactionActivity"
+            android:exported="true" />
+        <activity
             android:name=".Homepages.LoginLanding"
             android:exported="true" />
         <activity
