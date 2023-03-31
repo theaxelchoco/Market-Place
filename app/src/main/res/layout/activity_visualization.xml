@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
+
         <Button
             android:id="@+id/VisualizationBackButton"
             android:layout_width="wrap_content"
@@ -81,8 +82,8 @@
 
         <ListView
             android:id="@+id/exchange_history_listview"
-            android:layout_width="match_parent"
-            android:layout_height="355dp"
+            android:layout_width="wrap_content"
+            android:layout_height="238dp"
             android:padding="16dp" />
 
     </LinearLayout>
