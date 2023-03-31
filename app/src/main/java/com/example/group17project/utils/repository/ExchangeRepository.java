@@ -33,9 +33,6 @@ public class ExchangeRepository {
   }
 
   public void createHistory(ExchangeHistory history) {
-    System.out.println(databaseRef);
-    System.out.println(history);
-
     String key = databaseRef.push().getKey();
     history.setId(key);
     history.setDetails(history.getDetails());
@@ -62,9 +59,6 @@ public class ExchangeRepository {
    * @param history The product to update.
    */
   public void updateHistory(String id, ExchangeHistory history) {
-    System.out.println(id);
-    System.out.println(history);
-
     databaseRef.child(id).setValue(history);
     databaseRef.child(id).child("ID").setValue(id);
   }
