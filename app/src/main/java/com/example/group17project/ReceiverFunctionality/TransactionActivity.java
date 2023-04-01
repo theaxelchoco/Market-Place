@@ -3,6 +3,7 @@ package com.example.group17project.ReceiverFunctionality;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +16,10 @@ import android.widget.Toast;
 import com.example.group17project.Homepages.HomepageActivity;
 import com.example.group17project.Homepages.LoginLanding;
 import com.example.group17project.R;
+import com.example.group17project.utils.model.ExchangeHistory;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.model.User;
+import com.example.group17project.utils.repository.ExchangeRepository;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -70,6 +74,8 @@ public class TransactionActivity extends AppCompatActivity {
 
     private ProductRepository productRepository;
     private DatabaseReference userDB = null;
+    private ExchangeRepository exchangeRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +84,8 @@ public class TransactionActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
         productRepository = new ProductRepository(database, false);
         userDB = database.getReference("users");
+
+        exchangeRepository = new ExchangeRepository(database,false);
         user = User.getInstance();
 
         findViewComponents();
@@ -131,6 +139,8 @@ public class TransactionActivity extends AppCompatActivity {
      * use of validation methods as well as database methods to successfully make the transaction appear
      * @param view view on the screen
      */
+
+    @SuppressLint("DefaultLocale")
     protected void confirmButtonOnClick(View view){
         tradeItem = getTradeItem();
         marketValue = getMarketValue();
@@ -140,11 +150,17 @@ public class TransactionActivity extends AppCompatActivity {
             cal.setTime(date);
 
             Date currentDate = new Date(System.currentTimeMillis());
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
 
             Product product = new Product(name, ownerId, desc, cal, type, location, exchange, price);
             product.setStatus(Product.Status.SOLD_OUT);
             product.completeTransaction(tradeItem, marketValue, user.getEmail(), currentDate);
 
+            ExchangeHistory history = new ExchangeHistory(ownerId,user.getEmail());
+            history.setDetails(String.format("Owner: %s | Owner Item: %s | Location: %s | Owner Price: %d | Date: %s | Buyer: %s| Buyer Item: %s | Buyer Price: %s "
+                    ,ownerId,name,location,price,dateFormat.format(date),user.getEmail(),tradeItem,marketValue));
+
+            exchangeRepository.createHistory(history);
             productRepository.updateProduct(productId, product);
             updateValuations(ownerId, user.getEmail());
             updateRating(ownerId);
