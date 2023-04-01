@@ -13,6 +13,7 @@ public class ExchangeHistory {
 
   private String details;
   private String ownerId;
+  private String buyerId;
   public String id;
 
   public ExchangeHistory() {}
@@ -21,9 +22,9 @@ public class ExchangeHistory {
     this.ownerId = ownerId;
   }
 
-  public ExchangeHistory(String ownerId, String details) {
+  public ExchangeHistory(String ownerId, String buyerId) {
     this.ownerId = ownerId;
-    this.details = details;
+    this.buyerId = buyerId;
   }
 
   public String getOwnerId() {
@@ -32,6 +33,14 @@ public class ExchangeHistory {
 
   public void setOwnerId(String ownerId) {
     this.ownerId = ownerId;
+  }
+
+  public String getBuyerId() {
+    return buyerId;
+  }
+
+  public void setBuyerId(String buyerId) {
+    this.buyerId = buyerId;
   }
 
   public String getId(){return this.id;}

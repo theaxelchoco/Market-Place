@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/itemProductNameFrame"
-        android:layout_width="0dp"
-        android:layout_height="35dp"
+        android:layout_width="408dp"
+        android:layout_height="55dp"
         android:text="hi"
         android:textAlignment="center"
         android:textColor="#000000"

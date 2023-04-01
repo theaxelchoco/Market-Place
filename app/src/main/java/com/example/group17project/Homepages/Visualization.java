@@ -105,7 +105,7 @@ public class Visualization extends Fragment {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     ExchangeHistory history = data.getValue(ExchangeHistory.class);
 
-                    if (history.getOwnerId() != null && history.getOwnerId().equals(user.getEmail())){
+                    if (history.getOwnerId() != null && (history.getOwnerId().equals(user.getEmail()) || history.getBuyerId().equals(user.getEmail()))){
                         searchList.add(history);
                     }
                 }

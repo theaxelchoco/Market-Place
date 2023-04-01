@@ -24,6 +24,7 @@ import com.example.group17project.utils.repository.ExchangeRepository;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -116,13 +117,15 @@ public class TransactionActivity extends AppCompatActivity {
             cal.setTime(date);
 
             Date currentDate = new Date(System.currentTimeMillis());
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
 
             Product product = new Product(name, ownerId, desc, cal, type, location, exchange, price);
             product.setStatus(Product.Status.SOLD_OUT);
             product.completeTransaction(tradeItem, marketValue, user.getEmail(), currentDate);
 
-            ExchangeHistory history = new ExchangeHistory(ownerId);
-            history.setDetails(String.format("Owner: %s | ItemName: %s | Location: %s | Price: %d",ownerId,name,location,price));
+            ExchangeHistory history = new ExchangeHistory(ownerId,user.getEmail());
+            history.setDetails(String.format("Owner: %s | Owner Item: %s | Location: %s | Owner Price: %d | Date: %s | Buyer: %s| Buyer Item: %s | Buyer Price: %s "
+                    ,ownerId,name,location,price,dateFormat.format(date),user.getEmail(),tradeItem,marketValue));
 
             exchangeRepository.createHistory(history);
             productRepository.updateProduct(productId, product);
