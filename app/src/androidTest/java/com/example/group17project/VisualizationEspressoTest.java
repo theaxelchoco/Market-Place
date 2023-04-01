@@ -39,7 +39,7 @@ import org.junit.runner.RunWith;
 
 public class VisualizationEspressoTest {
     @Rule
-    public ActivityScenarioRule<Visualization> myRule = new ActivityScenarioRule<>(Visualization.class);
+    //public ActivityScenarioRule<Visualization> myRule = new ActivityScenarioRule<>(Visualization.class);
 
     @Before
     public void setUp() throws Exception{
