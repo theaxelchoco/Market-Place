@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.group17project.Homepages.HomepageActivity;
+import com.example.group17project.ProviderFunctionality.AddUtils.ProxyAddProduct;
 import com.example.group17project.R;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.model.User;
@@ -151,20 +152,26 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     String exchangePlace = getPlaceOfExchange();
     String marketVal = getMarketValue();
     Calendar date = getDate();
+    ProxyAddProduct proxyAdder = ProxyAddProduct.getInstance();
+    boolean operationStatus;
 
+    if(edit){
+      operationStatus = proxyAdder.edit(productNameText, user.getEmail(), descriptionText, date, productTypeText, exchangePlace, prefExchange, marketVal, productId);
+    }
+    else{
+      operationStatus = proxyAdder.add(productNameText, user.getEmail(), descriptionText, date, productTypeText, exchangePlace, prefExchange, marketVal);
+    }
 
-    if (validPlaceOfExchange(exchangePlace) && validMarketValue(marketVal) && validProductName(productNameText)) {
-      Product product = new Product(productNameText, user.getEmail(), descriptionText, date, productTypeText, exchangePlace, prefExchange, Integer.parseInt(marketVal));
-      if (edit) {
-        productRepository.updateProduct(productId, product);
+    if(operationStatus){
+      if(edit){
         Toast.makeText(this, getResources().getString(R.string.SUCCESSFUL_PRODUCT_UPDATE).trim(), Toast.LENGTH_SHORT).show();
-      } else {
-        productRepository.createProduct(product);
+      }
+      else{
         Toast.makeText(this, getResources().getString(R.string.SUCCESSFUL_PRODUCT_CREATION).trim(), Toast.LENGTH_SHORT).show();
       }
-
       switchBack();
-    } else {
+    }
+    else{
       setErrors(productNameText, exchangePlace, marketVal);
     }
   }
@@ -189,10 +196,10 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     String excError = "";
     String marketError = "";
 
-    if (!validProductName(productName)) {
+    if (!productName.isEmpty()) {
       pNameError = getString(R.string.PRODUCT_NAME_ERROR);
     }
-    if (!validPlaceOfExchange(placeOfExchange)) {
+    if (!placeOfExchange.isEmpty()) {
       excError = getString(R.string.EXCHANGE_PLACE_ERROR);
 
     }
