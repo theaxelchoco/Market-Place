@@ -42,9 +42,6 @@
             android:name=".ProviderFunctionality.AddProductActivity"
             android:exported="true" />
         <activity
-            android:name=".Homepages.Visualization"
-            android:exported="true" />
-        <activity
             android:name=".Homepages.Signup"
             android:exported="true" />
         <activity
