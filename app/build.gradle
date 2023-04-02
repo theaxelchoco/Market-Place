@@ -5,9 +5,9 @@ plugins {
 }
 
 // Apply cloud messaging api
-def credentialsPropertiesFile = rootProject.file("local.properties")
-def credentialsProperties = new Properties()
-credentialsProperties.load(new FileInputStream(credentialsPropertiesFile))
+//def credentialsPropertiesFile = rootProject.file("local.properties")
+//def credentialsProperties = new Properties()
+//credentialsProperties.load(new FileInputStream(credentialsPropertiesFile))
 
 android {
     namespace 'com.example.group17project'
@@ -20,7 +20,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //        buildConfigField "String", "FIREBASE_SERVER_KEY",
 //                ("\"".concat(credentialsProperties["FIREBASE_SERVER_KEY"]).concat("\""))
     }
