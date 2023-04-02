@@ -42,7 +42,6 @@ public class ProductAlert {
 
   private void sendNotification(String ownerID) {
     // TODO: send notification to user
-    System.out.println("====================Sending notification to " + ownerID);
-
+    
   }
 }

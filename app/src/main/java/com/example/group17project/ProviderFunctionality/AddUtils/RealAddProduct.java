@@ -52,6 +52,11 @@ public class RealAddProduct implements AddEditProduct {
     return true;
   }
 
+  /**
+   * This method is used to alert users when a product is added or edited
+   *
+   * @param product the product that was added or edited
+   */
   private void alertUsers(Product product) {
     filterRepository.getDatabaseRef().addValueEventListener(new ValueEventListener() {
       @Override
