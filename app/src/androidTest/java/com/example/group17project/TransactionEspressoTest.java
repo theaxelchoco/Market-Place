@@ -60,7 +60,7 @@ public class TransactionEspressoTest {
     public void setUp() throws Exception{
         Calendar cal = Calendar.getInstance();
         cal.set(2023, 3, 14);
-        product = new Product("Test Transaction", "espresso@dal.ca", "test description", cal, "Mobile Phones", "Halifax", "Clothes", 100);
+        product = new Product("Test Transaction", "ta3130@dal.ca", "test description", cal, "Mobile Phones", "Halifax", "Clothes", 100);
         productRepo.createProduct(product);
 
         Thread.sleep(3000);
@@ -100,7 +100,8 @@ public class TransactionEspressoTest {
         onView(withId(R.id.rExpandedBuyBtn)).perform(click());
         onView(withId(R.id.transactionItemEditText)).perform(typeText("Trade Item"), closeSoftKeyboard());
         onView(withId(R.id.transactionApproxEditText)).perform(typeText("80"), closeSoftKeyboard());
-        onView(withId(R.id.transactionRatingBar)).perform((ViewAction) new SetRatingAction(3.5f));
+        onView(withId(R.id.transactionRatingBar)).perform(click());
+        onView(withId(R.id.transactionConfirmBtn)).perform(click());
         onView(withId(R.id.searchResultList)).check(matches(isDisplayed()));
     }
 
@@ -110,8 +111,9 @@ public class TransactionEspressoTest {
         onView(withId(R.id.rExpandedBuyBtn)).perform(click());
         onView(withId(R.id.transactionItemEditText)).perform(typeText(""), closeSoftKeyboard());
         onView(withId(R.id.transactionApproxEditText)).perform(typeText("80"), closeSoftKeyboard());
-        onView(withId(R.id.transactionRatingBar)).perform((ViewAction) new SetRatingAction(3.5f));
-        onView(withId(R.id.transactionNameError)).check(matches(withText("Please enter a name for the item you will trade.")));
+        onView(withId(R.id.transactionRatingBar)).perform((click()));
+        onView(withId(R.id.transactionConfirmBtn)).perform(click());
+        onView(withId(R.id.transactionNameError)).check(matches(withText(R.string.PRODUCT_NAME_ERROR)));
     }
 
     @Test
@@ -120,8 +122,9 @@ public class TransactionEspressoTest {
         onView(withId(R.id.rExpandedBuyBtn)).perform(click());
         onView(withId(R.id.transactionItemEditText)).perform(typeText("Trade Item"), closeSoftKeyboard());
         onView(withId(R.id.transactionApproxEditText)).perform(typeText(""), closeSoftKeyboard());
-        onView(withId(R.id.transactionRatingBar)).perform((ViewAction) new SetRatingAction(3.5f));
-        onView(withId(R.id.transactionMarketError)).check(matches(withText("Please enter an approximate market value.")));
+        onView(withId(R.id.transactionRatingBar)).perform(click());
+        onView(withId(R.id.transactionConfirmBtn)).perform(click());
+        onView(withId(R.id.transactionMarketError)).check(matches(withText(R.string.EMPTY_MARKET_VAL)));
     }
 
     @Test
@@ -130,8 +133,9 @@ public class TransactionEspressoTest {
         onView(withId(R.id.rExpandedBuyBtn)).perform(click());
         onView(withId(R.id.transactionItemEditText)).perform(typeText("Trade Item"), closeSoftKeyboard());
         onView(withId(R.id.transactionApproxEditText)).perform(typeText("12.3"), closeSoftKeyboard());
-        onView(withId(R.id.transactionRatingBar)).perform((ViewAction) new SetRatingAction(3.5f));
-        onView(withId(R.id.transactionMarketError)).check(matches(withText("Please enter an integer value.")));
+        onView(withId(R.id.transactionRatingBar)).perform(click());
+        onView(withId(R.id.transactionConfirmBtn)).perform(click());
+        onView(withId(R.id.transactionMarketError)).check(matches(withText(R.string.MARKET_VAL_NEED_INT_ERROR)));
     }
 
     @Test
@@ -140,7 +144,8 @@ public class TransactionEspressoTest {
         onView(withId(R.id.rExpandedBuyBtn)).perform(click());
         onView(withId(R.id.transactionItemEditText)).perform(typeText("Trade Item"), closeSoftKeyboard());
         onView(withId(R.id.transactionApproxEditText)).perform(typeText("80"), closeSoftKeyboard());
-        onView(withId(R.id.transactionRatingError)).check(matches(withText("Please enter a rating for this user.")));
+        onView(withId(R.id.transactionConfirmBtn)).perform(click());
+        onView(withId(R.id.transactionRatingError)).check(matches(withText(R.string.RATING_ERROR)));
     }
 
 

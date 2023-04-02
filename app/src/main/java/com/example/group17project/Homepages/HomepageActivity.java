@@ -33,7 +33,6 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
   private ActionBarDrawerToggle toggle;
   private FragmentManager fragmentManager;
 
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -116,6 +115,8 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
   public boolean onNavigationItemSelected(@NonNull MenuItem item) {
     if (item.getItemId() == R.id.nav_swap) {
       swapProfile();
+    } else if (item.getItemId() == R.id.nav_profile){
+      fragmentTransaction(new Visualization());
     }
     else if(item.getItemId() == R.id.nav_profile){
       //setContentView(R.layout.activity_visualization);

@@ -1,10 +1,10 @@
 package com.example.group17project;
 
+import static org.junit.Assert.*;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import static org.junit.Assert.*;
 import org.junit.Test;
-import com.example.group17project.Homepages.Signup;
 import com.example.group17project.ReceiverFunctionality.TransactionActivity;
 
 public class TransactionUnitTest {
@@ -12,7 +12,7 @@ public class TransactionUnitTest {
     static TransactionActivity transaction;
 
     @BeforeClass
-    public void setup() throws Exception{
+    public static void setup() throws Exception{
         transaction = new TransactionActivity();
     }
 
@@ -24,7 +24,7 @@ public class TransactionUnitTest {
     @Test
     public void checkIfNameEmpty(){
         assertFalse(transaction.isProductNameValid(""));
-        assertFalse(transaction.isProductNameValid("Trade Item"));
+        assertTrue(transaction.isProductNameValid("Trade Item"));
     }
 
     @Test

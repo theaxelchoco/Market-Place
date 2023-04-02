@@ -42,10 +42,10 @@
             android:name=".ProviderFunctionality.AddProductActivity"
             android:exported="true" />
         <activity
-            android:name=".Homepages.Visualization"
+            android:name=".Homepages.Signup"
             android:exported="true" />
         <activity
-            android:name=".Homepages.Signup"
+            android:name=".ReceiverFunctionality.TransactionActivity"
             android:exported="true" />
         <activity
             android:name=".Homepages.LoginLanding"

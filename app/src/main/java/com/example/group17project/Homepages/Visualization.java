@@ -5,143 +5,140 @@ Group 17
 
 package com.example.group17project.Homepages;
 
+import static java.lang.String.*;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.group17project.R;
+
 import com.example.group17project.ReceiverFunctionality.TransactionActivity;
+
+import com.example.group17project.ReceiverFunctionality.AdvanceSearchActivity;
+import com.example.group17project.utils.model.ExchangeAdaptor;
+import com.example.group17project.utils.model.ExchangeHistory;
+
 import com.example.group17project.utils.model.User;
+import com.example.group17project.utils.repository.ExchangeRepository;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
 
-public class Visualization extends AppCompatActivity {
+public class Visualization extends Fragment {
 
-    DatabaseReference databaseRef = null;
+    FirebaseDatabase database = null;
     User user;
-    TransactionActivity transactionActivity = new TransactionActivity();
-    String PValuation = "0";
-    String RValuation = "0";
-
+    private ListView historyList;
+    private ArrayList<ExchangeHistory> searchList;
+    private ExchangeAdaptor exchangeAdapter;
+    private ExchangeRepository exchangeRepository;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_visualization, container, false);
+
+        TextView userName = view.findViewById(R.id.user_name_textview);
+        RatingBar rating = view.findViewById(R.id.user_rating_ratingbar);
+        TextView valR = view.findViewById(R.id.value_received_textview);
+        TextView valP = view.findViewById(R.id.value_provided_textview);
+
+        userName.setText(getEmail());
+        rating.setRating(user.getRating());
+        valR.setText("Value Received: " + String.valueOf(user.getrValuation()));
+        valP.setText("Value Provided: " + String.valueOf(user.getpValuation()));
+
+        historyList = view.findViewById(R.id.exchange_history_listview);
+        historyList.setAdapter(exchangeAdapter);
+
+        return view;
+    }
+
+    @SuppressLint("DefaultLocale")
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visualization);
-        databaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
+        //setContentView(R.layout.fragment_visualization);
+        database = FirebaseDatabase.getInstance(getResources().getString(R.string.firebase_database_url));
+        exchangeRepository = new ExchangeRepository(database,false);
+
         user = User.getInstance();
-        String email = "test@dal,ca";
+        searchList = new ArrayList<>();
+
+        /*
+        ExchangeHistory history = new ExchangeHistory(user.getEmail());
+        history.setDetails(format("Owner: %s | ItemName: %s | Location: %s | Price: %d",user.getEmail(),"TestItem","The moon (Test)",200));
+
+        exchangeRepository.createHistory(history);
+
+        System.out.println("Visualization active");
+         */
 
 
 
-        databaseRef.child("users").child(email).child("PValuation").addListenerForSingleValueEvent(new ValueEventListener() {
+        /*
+        TextView userName = findViewById(R.id.user_name_textview);
+        RatingBar rating = findViewById(R.id.user_rating_ratingbar);
+        TextView valR = findViewById(R.id.value_received_textview);
+        TextView valP = findViewById(R.id.value_provided_textview);
+
+        userName.setText(getEmail());
+        rating.setRating(user.getRating());
+        valR.setText("Value Received: " + String.valueOf(user.getrValuation()));
+        valP.setText("Value Provided: " + String.valueOf(user.getpValuation()));
+
+         */
+
+        exchangeRepository.getDatabaseRef().addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // Get the string value from the DataSnapshot object
-                PValuation = String.valueOf(dataSnapshot.getValue(int.class));
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                searchList.clear();
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    ExchangeHistory history = data.getValue(ExchangeHistory.class);
 
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("Firebase", "Error reading PValuation", databaseError.toException());
-            }
-        });
-
-
-        databaseRef.child("users").child(email).child("RValuation").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // Get the string value from the DataSnapshot object
-                RValuation = String.valueOf(dataSnapshot.getValue(int.class));
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("Firebase", "Error reading PValuation", databaseError.toException());
-            }
-        });
-
-
-        System.out.println(user.getEmail());
-        System.out.println(getEmail());
-
-
-        //System.out.println(email.getText().toString().trim());
-
-        //PValuation= String.valueOf(user.getpValuation());
-        //RValuation= String.valueOf(user.getrValuation());
-        Button backButton = findViewById(R.id.VisualizationBackButton);
-        backButton.setOnClickListener(this::backButton);
-
-        TextView valueReceived = findViewById(R.id.value_received_textview);
-        valueReceived.setText("Value Received: "+ RValuation);
-        TextView valueProvided = findViewById(R.id.value_provided_textview);
-        valueProvided.setText("Value Provided: "+ PValuation);
-    }
-
-
-    public void backButton(View view){
-        Intent i = new Intent(Visualization.this, HomepageActivity.class);
-        startActivity(i);
-    }
-
-    protected String getEmail(){
-        return encodeUserEmail(user.getEmail());
-    }
-
-
-   /*
-    protected int GetRating(){
-        databaseRef.child("users").addListenerForSingleValueEvent(new ValueEventListener(){
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot){
-
-                if(snapshot.hasChild(encodeUserEmail(email))){
-
-                    String retrievePassword = snapshot.child(encodeUserEmail(email)).child("password").getValue(String.class);
-
-                    if (retrievePassword.equals(password)){
-                        Toast correctPasswordToast = Toast.makeText(LoginLanding.this,"Successfully Logged in", Toast.LENGTH_SHORT);
-                        correctPasswordToast.show();
-                        User.getInstance().setUserDetails(email);
-
-                        startActivity(new Intent( LoginLanding.this, UserLocation.class));
+                    if (history.getOwnerId() != null && (history.getOwnerId().equals(user.getEmail()) || history.getBuyerId().equals(user.getEmail()))){
+                        searchList.add(history);
                     }
-                    else{
-
-                        Toast incorrectPasswordToast= Toast.makeText(LoginLanding.this,R.string.INCORRECT_PASSWORD_LOGIN, Toast.LENGTH_SHORT);
-                        incorrectPasswordToast.show();
-                    }
-
                 }
-                else {
-                    Toast invalidEmailToast = Toast.makeText(LoginLanding.this, R.string.NEW_EMAIL_LOGIN, Toast.LENGTH_SHORT);
-                    invalidEmailToast.show();
-                }
-
+                //when data changed, notify that
+                exchangeAdapter.notifyDataSetChanged();
             }
 
+            //error handler
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
+        exchangeAdapter = new ExchangeAdaptor(getActivity(), searchList);
+        System.out.println(searchList);
+
     }
-    */
+        protected String getEmail(){
+        return encodeUserEmail(user.getEmail());
+    }
+
 
     public static String encodeUserEmail(String email){
         return email.replace(".", ",");
