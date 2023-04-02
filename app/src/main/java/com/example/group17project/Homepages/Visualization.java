@@ -53,6 +53,8 @@ public class Visualization extends Fragment {
     private ArrayList<ExchangeHistory> searchList;
     private ExchangeAdaptor exchangeAdapter;
     private ExchangeRepository exchangeRepository;
+    private int numberOfRatings;
+    private float totalRating;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,6 +67,10 @@ public class Visualization extends Fragment {
 
         userName.setText(getEmail());
         rating.setRating(user.getRating());
+
+        numberOfRatings = user.getNumRatings();
+        totalRating = user.getRating();
+
         valR.setText("Value Received: " + String.valueOf(user.getrValuation()));
         valP.setText("Value Provided: " + String.valueOf(user.getpValuation()));
 

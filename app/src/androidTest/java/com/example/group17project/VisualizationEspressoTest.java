@@ -69,13 +69,6 @@ public class VisualizationEspressoTest {
         onView(withId(R.id.user_name_textview)).check(matches(isDisplayed()));
     }
 
-//    @Test
-//    public void testBackButton(){
-//        onView(withId(R.id.exchange_history_textview)).check(matches(isDisplayed()));
-//        onData(anything()).inAdapterView(withId(R.id.exchange_history_textview)).atPosition(0).perform(click());
-//        onView(withId(R.id.VisualizationBackButton)).perform(click());
-//        onView(withId(R.id.exchange_history_textview)).check(matches(isDisplayed()));
-//    }
 
     @Test
     public void checkIfValueIsVisible(){
