@@ -3,18 +3,15 @@ package com.example.group17project;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.Looper;
 
-import androidx.core.app.ActivityCompat;
-import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.IdlingRegistry;
 import androidx.test.espresso.idling.CountingIdlingResource;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.GrantPermissionRule;
+
+import com.example.group17project.utils.UserLocation;
 
 import org.junit.After;
 import org.junit.Before;

@@ -13,7 +13,10 @@ import androidx.annotation.Nullable;
 
 import com.example.group17project.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class ListAdapter extends ArrayAdapter<Product> {
 
@@ -40,11 +43,26 @@ public class ListAdapter extends ArrayAdapter<Product> {
         TextView productName = convertView.findViewById(R.id.itemProductNameFrame);
         TextView productDescription = convertView.findViewById(R.id.itemProductDescriptionFrame);
         TextView productType = convertView.findViewById(R.id.itemProductTypeFrame);
+        TextView productAvailability = convertView.findViewById(R.id.itemAvailabilityText);
 
         productName.setText(product.getName());
         productDescription.setText(product.getDescription());
         productType.setText(product.getType());
+        if(product.getStatus().equals(Product.Status.SOLD_OUT)){
+            productAvailability.setText("SOLD");
 
+            Date date = product.getTransactionDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy", Locale.CANADA);
+            String dateString = sdf.format(date);
+
+            productDescription.setText("Buyer: " + product.getBuyer() +
+                    "\nTrade Item: " + product.getBuyerItem() +
+                    "\nValue: " + product.getBuyerItemAmount() +
+                    "\nPurchased On: " + dateString);
+        }
+        else{
+            productAvailability.setText("");
+        }
 
         return convertView;
     }

@@ -1,4 +1,9 @@
-package com.example.group17project;
+/*
+LoginLanding code
+Group 17
+*/
+
+package com.example.group17project.Homepages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +17,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.group17project.R;
+import com.example.group17project.utils.UserLocation;
 import com.example.group17project.utils.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -79,7 +86,12 @@ public class LoginLanding extends AppCompatActivity {
                         if (retrievePassword.equals(password)){
                            Toast correctPasswordToast = Toast.makeText(LoginLanding.this,"Successfully Logged in", Toast.LENGTH_SHORT);
                             correctPasswordToast.show();
-                            User.getInstance().setUserDetails(email);
+
+                            int rVal = snapshot.child(encodeUserEmail(email)).child("RValuation").getValue(Integer.class);
+                            int pVal = snapshot.child(encodeUserEmail(email)).child("PValuation").getValue(Integer.class);
+                            float rating = snapshot.child(encodeUserEmail(email)).child("rating").getValue(Float.class);
+                            int numRatings = snapshot.child(encodeUserEmail(email)).child("numRatings").getValue(Integer.class);
+                            User.getInstance().setUserDetails(email, rVal, pVal, rating, numRatings);
 
                             startActivity(new Intent( LoginLanding.this, UserLocation.class));
                         }
@@ -139,15 +151,15 @@ public class LoginLanding extends AppCompatActivity {
         return password.getText().toString().trim();
     }
 
-    protected boolean isEmptyEmail(String email) {
+    public boolean isEmptyEmail(String email) {
         return email.isEmpty();
     }
 
-    protected boolean isValidEmailAddress(String email){
+    public boolean isValidEmailAddress(String email){
         return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-    protected boolean isEmptyPassword(String password){
+    public boolean isEmptyPassword(String password){
         return password.isEmpty();
     }
 }

@@ -11,11 +11,12 @@ import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 
-import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
+
+import com.example.group17project.ProviderFunctionality.AddProductActivity;
 
 import org.junit.After;
 import org.junit.Before;

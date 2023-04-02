@@ -1,4 +1,9 @@
-package com.example.group17project;
+/*
+HomepageActivity code
+Group 17
+*/
+
+package com.example.group17project.Homepages;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,7 +19,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.group17project.utils.model.User;
+import com.example.group17project.ProviderFunctionality.ProviderFragment;
+import com.example.group17project.R;
+import com.example.group17project.ReceiverFunctionality.ReceiverFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
@@ -24,7 +31,6 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
   private DrawerLayout drawerLayout;
   private ActionBarDrawerToggle toggle;
   private FragmentManager fragmentManager;
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +114,8 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
   public boolean onNavigationItemSelected(@NonNull MenuItem item) {
     if (item.getItemId() == R.id.nav_swap) {
       swapProfile();
+    } else if (item.getItemId() == R.id.nav_profile){
+      fragmentTransaction(new Visualization());
     }
 
     drawerLayout.closeDrawer(GravityCompat.START);

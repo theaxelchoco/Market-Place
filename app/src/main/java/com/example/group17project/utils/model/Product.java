@@ -28,6 +28,11 @@ public class Product {
   private int imageId;
   private String productID;
 
+  private String buyer;
+  private String buyerItem;
+  private String buyerItemAmount;
+  private Date transactionDate;
+
   public Product() {
   }
 
@@ -48,6 +53,7 @@ public class Product {
     locationID = place;
     preferredExchange = mapToProductType(prefExchange);
     this.price = price;
+    status = Status.AVAILABLE;
   }
 
   /**
@@ -70,6 +76,45 @@ public class Product {
       default:
         return null;
     }
+  }
+
+  public void completeTransaction(String product, String val, String buyerID, Date date){
+    buyer = buyerID;
+    buyerItem = product;
+    buyerItemAmount = val;
+    transactionDate = date;
+  }
+
+  public String getBuyer() {
+    return buyer;
+  }
+
+  public void setBuyer(String buyer) {
+    this.buyer = buyer;
+  }
+
+  public String getBuyerItem() {
+    return buyerItem;
+  }
+
+  public void setBuyerItem(String buyerItem) {
+    this.buyerItem = buyerItem;
+  }
+
+  public String getBuyerItemAmount() {
+    return buyerItemAmount;
+  }
+
+  public void setBuyerItemAmount(String buyerItemAmount) {
+    this.buyerItemAmount = buyerItemAmount;
+  }
+
+  public Date getTransactionDate() {
+    return transactionDate;
+  }
+
+  public void setTransactionDate(Date transactionDate) {
+    this.transactionDate = transactionDate;
   }
 
   public int getImageId() {

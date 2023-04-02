@@ -12,7 +12,6 @@
     <string name="SHORT_PASSWORD">Password must contain 6 or more characters.</string>
 
 
-
     <string name="EMPTY_EMAIL_LOGIN">Please enter an email to login with.</string>
     <string name="EMPTY_PASSWORD_LOGIN">Password field cannot be left empty!</string>
     <string name="INCORRECT_PASSWORD_LOGIN">Invalid email/password. Please try again.</string>
@@ -68,5 +67,12 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="permissions_granted">Permissions granted</string>
     <string name="permissions_denied">Permissions denied</string>
+    <string name="RATING_ERROR">Please enter a rating for this user.</string>
+    <string name="CANNOT_EDIT_SOLD">Cannot edit a SOLD product</string>
+    <string name="SUCCESSFUL_RATING">Rating Successful!</string>
+    <string name="value_provided">Value Provided:</string>
+    <string name="exchange_history">Exchange History:</string>
+    <string name="value_received">Value Received:</string>
+
 
 </resources>
