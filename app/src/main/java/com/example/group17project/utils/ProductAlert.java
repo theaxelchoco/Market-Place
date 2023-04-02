@@ -4,14 +4,13 @@ import com.example.group17project.utils.model.Filter;
 import com.example.group17project.utils.model.Product;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class ProductAlert {
   private final Set<String> ownerIDs;
   private final Product product;
 
-  public ProductAlert(Product product, List<Filter> filters) {
+  public ProductAlert(Product product, Set<Filter> filters) {
     this.product = product;
     ownerIDs = gatherOwnerIDs(filters);
   }
@@ -26,7 +25,7 @@ public class ProductAlert {
    * @param filters the list of filters to applied
    * @return the set of ownerIDs that match the product
    */
-  public Set<String> gatherOwnerIDs(List<Filter> filters) {
+  public Set<String> gatherOwnerIDs(Set<Filter> filters) {
     Set<String> result = new HashSet<>();
 
     filters.stream()

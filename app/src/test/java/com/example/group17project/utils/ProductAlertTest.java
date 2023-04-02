@@ -9,16 +9,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class ProductAlertTest {
   private ProductAlert productAlert;
   private Product product;
-  private List<Filter> filters;
+  private Set<Filter> filters;
 
   @Before
   public void setUp() throws Exception {
@@ -42,7 +40,7 @@ public class ProductAlertTest {
   }
 
   private void makingMockFilters() {
-    filters = new ArrayList<>();
+    filters = new HashSet<>();
     Filter filter1 = makingMockFilter(true, "testOwner@dal.ca");
     Filter filter2 = makingMockFilter(false, "testOwner@dal.ca");
     Filter filter3 = makingMockFilter(true, "testOwner@dal.ca");
