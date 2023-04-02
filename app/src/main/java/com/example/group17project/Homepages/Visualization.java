@@ -66,8 +66,8 @@ public class Visualization extends Fragment {
         TextView valR = view.findViewById(R.id.value_received_textview);
         TextView valP = view.findViewById(R.id.value_provided_textview);
 
-        user.setUserDetails("test@dal.ca",2329,185,13,3);
-        userName.setText(getEmail());
+
+        userName.setText(user.getEmail());
         //rating.setRating(user.getRating());
 
         numberOfRatings = user.getNumRatings();
