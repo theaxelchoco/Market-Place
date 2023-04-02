@@ -20,10 +20,16 @@ public class ProductAlert {
     return ownerIDs;
   }
 
+  /**
+   * This is the attach method for the observer pattern
+   *
+   * @param filters the list of filters to applied
+   * @return the set of ownerIDs that match the product
+   */
   public Set<String> gatherOwnerIDs(List<Filter> filters) {
     Set<String> result = new HashSet<>();
 
-    filters.stream().parallel()
+    filters.stream()
         .filter(filter -> filter.isMatch(product))
         .forEach(filter -> result.add(filter.getOwnerID()));
 
