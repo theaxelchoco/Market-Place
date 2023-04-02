@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,31 +31,40 @@ public class ProductAlertTest {
   }
 
   private void makingMockProduct() {
-    product = Mockito.mock(Product.class);
-    Mockito.when(product.getType()).thenReturn(Product.COMPUTERACCESSORIES);
-    Mockito.when(product.getPreferredExchange()).thenReturn(Product.MOBILEPHONES);
-    Mockito.when(product.getPrice()).thenReturn(100);
-    Mockito.when(product.getLocationID()).thenReturn("halifax");
-    Mockito.when(product.getOwnerID()).thenReturn("testOwner@dal.ca");
+    product = new Product("testProduct",
+        "testOwner@dal.ca",
+        "testDescription",
+        Calendar.getInstance(),
+        Product.COMPUTERACCESSORIES,
+        "halifax",
+        Product.MOBILEPHONES,
+        100);
   }
 
   private void makingMockFilters() {
     filters = new ArrayList<>();
-    Filter filter1 = Mockito.mock(Filter.class);
-    Filter filter2 = Mockito.mock(Filter.class);
-    Filter filter3 = Mockito.mock(Filter.class);
-    Mockito.when(filter1.isMatch(product)).thenReturn(true);
-    Mockito.when(filter2.isMatch(product)).thenReturn(false);
-    Mockito.when(filter3.isMatch(product)).thenReturn(true);
+    Filter filter1 = makingMockFilter(true, "testOwner@dal.ca");
+    Filter filter2 = makingMockFilter(false, "testOwner@dal.ca");
+    Filter filter3 = makingMockFilter(true, "testOwner@dal.ca");
+    Filter filter4 = makingMockFilter(true, "ta3130@dal.ca");
     filters.add(filter1);
     filters.add(filter2);
     filters.add(filter3);
+    filters.add(filter4);
+  }
+
+  private Filter makingMockFilter(boolean isMatch, String ownerID) {
+    Filter filter = Mockito.mock(Filter.class);
+    Mockito.when(filter.isMatch(product)).thenReturn(isMatch);
+    Mockito.when(filter.getOwnerID()).thenReturn(ownerID);
+    return filter;
   }
 
   @Test
   public void gatherOwnerIDs() {
     Set<String> fakeOwnerIDs = new HashSet<>();
+    fakeOwnerIDs.add("ta3130@dal.ca");
     fakeOwnerIDs.add("testOwner@dal.ca");
-    assertEquals(fakeOwnerIDs, productAlert.gatherOwnerIDs(filters));
+    assertEquals(fakeOwnerIDs.toString(), productAlert.getOwnerIDs().toString());
   }
 }
