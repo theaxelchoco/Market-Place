@@ -64,4 +64,8 @@ public class Filter {
   public void setId(String id) {
     this.id = id;
   }
+  
+  public boolean equals(Filter filter) {
+    return this.id.equals(filter.getId());
+  }
 }
