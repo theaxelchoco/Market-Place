@@ -55,6 +55,7 @@ public class Visualization extends Fragment {
     private ExchangeRepository exchangeRepository;
     private int numberOfRatings;
     private float totalRating;
+    private float averageRating;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,12 +66,15 @@ public class Visualization extends Fragment {
         TextView valR = view.findViewById(R.id.value_received_textview);
         TextView valP = view.findViewById(R.id.value_provided_textview);
 
+        user.setUserDetails("test@dal.ca",2329,185,13,3);
         userName.setText(getEmail());
-        rating.setRating(user.getRating());
+        //rating.setRating(user.getRating());
 
         numberOfRatings = user.getNumRatings();
         totalRating = user.getRating();
+        averageRating = totalRating/ numberOfRatings;
 
+        rating.setRating(averageRating);
         valR.setText("Value Received: " + String.valueOf(user.getrValuation()));
         valP.setText("Value Provided: " + String.valueOf(user.getpValuation()));
 

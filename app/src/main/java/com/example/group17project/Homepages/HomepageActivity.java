@@ -118,11 +118,11 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
     } else if (item.getItemId() == R.id.nav_profile){
       fragmentTransaction(new Visualization());
     }
-    else if(item.getItemId() == R.id.nav_profile){
-      //setContentView(R.layout.activity_visualization);
-      Intent i = new Intent(HomepageActivity.this, Visualization.class);
-      startActivity(i);
-    }
+//    else if(item.getItemId() == R.id.nav_profile){
+//      //setContentView(R.layout.activity_visualization);
+//      Intent i = new Intent(HomepageActivity.this, Visualization.class);
+//      startActivity(i);
+//    }
     drawerLayout.closeDrawer(GravityCompat.START);
     return true;
   }
