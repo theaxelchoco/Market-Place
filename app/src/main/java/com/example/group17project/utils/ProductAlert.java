@@ -30,6 +30,7 @@ public class ProductAlert {
 
     filters.stream()
         .filter(filter -> filter.isMatch(product))
+        .filter(filter -> !filter.getOwnerID().equals(product.getOwnerID()))
         .forEach(filter -> result.add(filter.getOwnerID()));
 
     return result;
@@ -41,6 +42,7 @@ public class ProductAlert {
 
   private void sendNotification(String ownerID) {
     // TODO: send notification to user
-    System.out.println("Sending notification to " + ownerID);
+    System.out.println("====================Sending notification to " + ownerID);
+
   }
 }
