@@ -14,11 +14,15 @@ import static org.junit.Assert.assertEquals;
 
 import android.content.Context;
 
+import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.contrib.NavigationViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.example.group17project.Homepages.HomepageActivity;
 import com.example.group17project.Homepages.Visualization;
+import com.example.group17project.ProviderFunctionality.ProviderFragment;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.FirebaseDatabase;
@@ -38,11 +42,15 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 
 public class VisualizationEspressoTest {
-    @Rule
-    //public ActivityScenarioRule<Visualization> myRule = new ActivityScenarioRule<>(Visualization.class);
+    private Visualization visualization;
+    public ActivityScenario<HomepageActivity> scenario = ActivityScenario.launch(HomepageActivity.class);
+
 
     @Before
     public void setUp() throws Exception{
+
+        visualization = new Visualization();
+        onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_profile));
     }
 
     @After
@@ -58,6 +66,7 @@ public class VisualizationEspressoTest {
 
     @Test
     public void checkIfVisualizationPageIsVisible(){
+        onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_profile));
         onView(withId(R.id.exchange_history_textview)).check(matches(isDisplayed()));
         onView(withId(R.id.value_provided_textview)).check(matches(isDisplayed()));
         onView(withId(R.id.value_received_textview)).check(matches(isDisplayed()));
