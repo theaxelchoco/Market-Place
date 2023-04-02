@@ -50,3 +50,4 @@ public class RealAddProduct implements AddEditProduct {
     productAlert.alertUsers();
   }
 }
+

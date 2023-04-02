@@ -1,8 +1,8 @@
 package com.example.group17project.utils.model;
 
-import android.util.Range;
 
 import com.example.group17project.utils.Methods;
+import com.example.group17project.utils.Range;
 
 import java.util.Objects;
 

@@ -1,7 +1,6 @@
 package com.example.group17project.utils;
 
 import android.os.Bundle;
-import android.util.Range;
 
 import com.example.group17project.utils.model.Filter;
 import com.example.group17project.utils.model.ProductType;
@@ -28,32 +27,6 @@ public class Methods {
         bundle.getString("location")
     );
   }
-
-//  public static boolean isNearBy(String city1, String city2, Context context) {
-//    if (city1.isEmpty() || city2.isEmpty()) {
-//      return true;
-//    }
-//
-//    Geocoder geocoder = new Geocoder(context);
-//    try {
-//      List<Address> address1 = geocoder.getFromLocationName(city1, 1);
-//      List<Address> address2 = geocoder.getFromLocationName(city2, 1);
-//      if (!address1.isEmpty() && !address2.isEmpty()) {
-//        float[] results = new float[1];
-//        android.location.Location.distanceBetween(
-//            address1.get(0).getLatitude(),
-//            address1.get(0).getLongitude(),
-//            address2.get(0).getLatitude(),
-//            address2.get(0).getLongitude(),
-//            results
-//        );
-//        return results[0] < DISTANCE_NEARBY;
-//      }
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
-//    return false;
-//  }
 
   public static boolean isSameLocation(String city1, String city2) {
     if (city1.isEmpty() || city2.isEmpty()) {
