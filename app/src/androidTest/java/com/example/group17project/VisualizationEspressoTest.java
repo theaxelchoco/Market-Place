@@ -15,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 import android.content.Context;
 
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.contrib.DrawerActions;
 import androidx.test.espresso.contrib.NavigationViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -50,7 +51,7 @@ public class VisualizationEspressoTest {
     public void setUp() throws Exception{
 
         visualization = new Visualization();
-        onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_profile));
+        //onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_profile));
     }
 
     @After
@@ -66,6 +67,7 @@ public class VisualizationEspressoTest {
 
     @Test
     public void checkIfVisualizationPageIsVisible(){
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
         onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_profile));
         onView(withId(R.id.exchange_history_textview)).check(matches(isDisplayed()));
         onView(withId(R.id.value_provided_textview)).check(matches(isDisplayed()));
@@ -74,6 +76,8 @@ public class VisualizationEspressoTest {
 
     @Test
     public void checkIfRatingbarIsVisible(){
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
+        onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_profile));
         onView(withId(R.id.user_rating_ratingbar)).check(matches(isDisplayed()));
         onView(withId(R.id.user_name_textview)).check(matches(isDisplayed()));
     }
@@ -81,6 +85,8 @@ public class VisualizationEspressoTest {
 
     @Test
     public void checkIfValueIsVisible(){
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
+        onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_profile));
         onView(withId(R.id.exchange_history_textview)).check(matches(isDisplayed()));
         onView(withId(R.id.value_received_textview)).check(matches(isDisplayed()));
         onView(withId(R.id.value_provided_textview)).check(matches(isDisplayed()));
