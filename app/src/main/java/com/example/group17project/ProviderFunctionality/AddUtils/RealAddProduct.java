@@ -1,10 +1,16 @@
 package com.example.group17project.ProviderFunctionality.AddUtils;
 
+import androidx.annotation.NonNull;
+
 import com.example.group17project.utils.ProductAlert;
+import com.example.group17project.utils.model.Filter;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.repository.FilterRepository;
 import com.example.group17project.utils.repository.ProductRepository;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.HashSet;
@@ -47,8 +53,22 @@ public class RealAddProduct implements AddEditProduct {
   }
 
   private void alertUsers(Product product) {
-    productAlert = new ProductAlert(product, new HashSet<>());
-    productAlert.alertUsers();
+    filterRepository.getDatabaseRef().addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot snapshot) {
+        HashSet<Filter> filters = new HashSet<>();
+        for (DataSnapshot data : snapshot.getChildren()) {
+          Filter filter = data.getValue(Filter.class);
+          filters.add(filter);
+        }
+        productAlert = new ProductAlert(product, filters);
+        productAlert.alertUsers();
+      }
+
+      @Override
+      public void onCancelled(@NonNull DatabaseError error) {
+      }
+    });
   }
 }
 
