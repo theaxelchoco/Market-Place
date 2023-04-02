@@ -1,6 +1,7 @@
 <resources>
     <string name="firebase_database_url">https://w23-csci3130-group-17-default-rtdb.firebaseio.com/</string>
     <string name="push_notification_endpoint">https://fcm.googleapis.com/fcm/send</string>
+    <string name="FIREBASE_SERVER_KEY">AAAAxboTxUY:APA91bEb4AHqF1QrCK0Xk2wNCxSP40PVk9jg2FyNwD3VILMrxUUol1m7yrCPWKCNYtco1y8ClnImBQEUnrv3cFdGRYJXXr5QCVyGwznjFZbDKHFBwfuGpP53NopyV32HL70QX2kFs6NU</string>
 
     <string name="app_name">Barter Trader</string>
     <string name="EMPTY_STRING" />

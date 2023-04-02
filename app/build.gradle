@@ -20,9 +20,9 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "FIREBASE_SERVER_KEY",
-                ("\"".concat(credentialsProperties["FIREBASE_SERVER_KEY"]).concat("\""))
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        buildConfigField "String", "FIREBASE_SERVER_KEY",
+//                ("\"".concat(credentialsProperties["FIREBASE_SERVER_KEY"]).concat("\""))
     }
     buildFeatures {
         viewBinding true
