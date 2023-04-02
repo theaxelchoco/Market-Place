@@ -68,7 +68,6 @@ public class Visualization extends Fragment {
 
 
         userName.setText(user.getEmail());
-        //rating.setRating(user.getRating());
 
         numberOfRatings = user.getNumRatings();
         totalRating = user.getRating();
@@ -88,36 +87,13 @@ public class Visualization extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.fragment_visualization);
+
         database = FirebaseDatabase.getInstance(getResources().getString(R.string.firebase_database_url));
         exchangeRepository = new ExchangeRepository(database,false);
 
         user = User.getInstance();
         searchList = new ArrayList<>();
 
-        /*
-        ExchangeHistory history = new ExchangeHistory(user.getEmail());
-        history.setDetails(format("Owner: %s | ItemName: %s | Location: %s | Price: %d",user.getEmail(),"TestItem","The moon (Test)",200));
-
-        exchangeRepository.createHistory(history);
-
-        System.out.println("Visualization active");
-         */
-
-
-
-        /*
-        TextView userName = findViewById(R.id.user_name_textview);
-        RatingBar rating = findViewById(R.id.user_rating_ratingbar);
-        TextView valR = findViewById(R.id.value_received_textview);
-        TextView valP = findViewById(R.id.value_provided_textview);
-
-        userName.setText(getEmail());
-        rating.setRating(user.getRating());
-        valR.setText("Value Received: " + String.valueOf(user.getrValuation()));
-        valP.setText("Value Provided: " + String.valueOf(user.getpValuation()));
-
-         */
 
         exchangeRepository.getDatabaseRef().addValueEventListener(new ValueEventListener() {
             @Override
