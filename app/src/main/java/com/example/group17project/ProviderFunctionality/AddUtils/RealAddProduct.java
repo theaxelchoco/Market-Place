@@ -7,6 +7,7 @@ import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.HashSet;
 
 public class RealAddProduct implements AddEditProduct {
   private static RealAddProduct instance = null;
@@ -46,7 +47,7 @@ public class RealAddProduct implements AddEditProduct {
   }
 
   private void alertUsers(Product product) {
-    productAlert = new ProductAlert(product, filterRepository.getAllFilters());
+    productAlert = new ProductAlert(product, new HashSet<>());
     productAlert.alertUsers();
   }
 }

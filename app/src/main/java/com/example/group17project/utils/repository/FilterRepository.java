@@ -1,13 +1,10 @@
 package com.example.group17project.utils.repository;
 
 import com.example.group17project.utils.model.Filter;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 public class FilterRepository {
   private final DatabaseReference databaseRef;
@@ -40,15 +37,7 @@ public class FilterRepository {
     databaseRef.child(id).removeValue();
   }
 
-  public Set<Filter> getAllFilters() {
-    Set<Filter> filters = new HashSet<>();
-    databaseRef.get().addOnCompleteListener(task -> {
-      if (task.isSuccessful()) {
-        for (DataSnapshot snapshot : task.getResult().getChildren()) {
-          filters.add(snapshot.getValue(Filter.class));
-        }
-      }
-    });
-    return filters;
+  public DatabaseReference getDatabaseRef() {
+    return databaseRef;
   }
 }
