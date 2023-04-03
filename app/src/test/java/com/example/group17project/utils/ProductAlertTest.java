@@ -43,7 +43,7 @@ public class ProductAlertTest {
     filters = new HashSet<>();
     Filter filter1 = makingMockFilter(true, "testOwner@dal.ca");
     Filter filter2 = makingMockFilter(false, "testOwner@dal.ca");
-    Filter filter3 = makingMockFilter(true, "testOwner@dal.ca");
+    Filter filter3 = makingMockFilter(true, "ta3130@dal.ca");
     Filter filter4 = makingMockFilter(true, "ta3130@dal.ca");
     filters.add(filter1);
     filters.add(filter2);
@@ -61,8 +61,8 @@ public class ProductAlertTest {
   @Test
   public void gatherOwnerIDs() {
     Set<String> fakeOwnerIDs = new HashSet<>();
+    // explain: the product owner should not be notified, and the same ownerID should not be added twice
     fakeOwnerIDs.add("ta3130@dal.ca");
-    fakeOwnerIDs.add("testOwner@dal.ca");
     assertEquals(fakeOwnerIDs.toString(), productAlert.getOwnerIDs().toString());
   }
 }
