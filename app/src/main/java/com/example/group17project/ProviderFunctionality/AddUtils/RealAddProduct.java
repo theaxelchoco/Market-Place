@@ -2,7 +2,7 @@ package com.example.group17project.ProviderFunctionality.AddUtils;
 
 import androidx.annotation.NonNull;
 
-import com.example.group17project.utils.ProductAlert;
+import com.example.group17project.utils.alert.ProductAlert;
 import com.example.group17project.utils.model.Filter;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.repository.FilterRepository;

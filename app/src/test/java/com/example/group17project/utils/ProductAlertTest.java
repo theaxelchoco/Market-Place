@@ -2,6 +2,7 @@ package com.example.group17project.utils;
 
 import static org.junit.Assert.assertEquals;
 
+import com.example.group17project.utils.alert.ProductAlert;
 import com.example.group17project.utils.model.Filter;
 import com.example.group17project.utils.model.Product;
 
