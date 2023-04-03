@@ -1,6 +1,6 @@
-package com.example.group17project.utils.model.user;
+package com.example.group17project.utils.model;
 
-public class User extends Observer {
+public class User {
   private static User instance = null;
 
   private String email = "test@dal.ca";
@@ -13,7 +13,6 @@ public class User extends Observer {
 
 
   private User() {
-
   }
 
   public static User getInstance() {
@@ -77,10 +76,5 @@ public class User extends Observer {
 
   public String getEmail() {
     return email;
-  }
-
-  @Override
-  public void update(String message) {
-
   }
 }

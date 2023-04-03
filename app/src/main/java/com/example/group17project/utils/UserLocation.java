@@ -22,7 +22,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.group17project.Homepages.HomepageActivity;
 import com.example.group17project.R;
-import com.example.group17project.utils.model.user.User;
+import com.example.group17project.utils.model.User;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.LocationCallback;

@@ -16,8 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.group17project.Homepages.HomepageActivity;
 import com.example.group17project.R;
 import com.example.group17project.utils.Methods;
-import com.example.group17project.utils.model.Filter;
-import com.example.group17project.utils.model.user.User;
+import com.example.group17project.utils.model.User;
+import com.example.group17project.utils.model.observer.Filter;
 import com.example.group17project.utils.repository.FilterRepository;
 import com.google.firebase.database.FirebaseDatabase;
 

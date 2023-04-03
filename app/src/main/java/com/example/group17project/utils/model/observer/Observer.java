@@ -1,4 +1,4 @@
-package com.example.group17project.utils.model.user;
+package com.example.group17project.utils.model.observer;
 
 import com.example.group17project.utils.alert.AlertManager;
 

@@ -1,9 +1,9 @@
 package com.example.group17project.utils.alert;
 
-import com.example.group17project.utils.model.user.Observer;
+import com.example.group17project.utils.model.observer.Observer;
 
 public interface AlertManager {
-  public void attach(Observer user);
+  public void attach(Observer observer);
 
   public void alertUsers();
 }

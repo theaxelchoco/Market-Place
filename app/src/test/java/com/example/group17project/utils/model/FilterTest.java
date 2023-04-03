@@ -2,6 +2,8 @@ package com.example.group17project.utils.model;
 
 import static org.junit.Assert.assertEquals;
 
+import com.example.group17project.utils.model.observer.Filter;
+
 import org.junit.Test;
 
 import java.util.HashSet;

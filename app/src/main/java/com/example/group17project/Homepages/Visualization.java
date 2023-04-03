@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment;
 import com.example.group17project.R;
 import com.example.group17project.utils.model.ExchangeAdaptor;
 import com.example.group17project.utils.model.ExchangeHistory;
-import com.example.group17project.utils.model.user.User;
+import com.example.group17project.utils.model.User;
 import com.example.group17project.utils.repository.ExchangeRepository;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

@@ -19,7 +19,7 @@ import androidx.core.util.PatternsCompat;
 
 import com.example.group17project.R;
 import com.example.group17project.utils.UserLocation;
-import com.example.group17project.utils.model.user.User;
+import com.example.group17project.utils.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

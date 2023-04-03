@@ -18,7 +18,7 @@ import com.example.group17project.Homepages.LoginLanding;
 import com.example.group17project.R;
 import com.example.group17project.utils.model.ExchangeHistory;
 import com.example.group17project.utils.model.Product;
-import com.example.group17project.utils.model.user.User;
+import com.example.group17project.utils.model.User;
 import com.example.group17project.utils.repository.ExchangeRepository;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.DataSnapshot;

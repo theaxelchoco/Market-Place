@@ -1,12 +1,14 @@
-package com.example.group17project.utils.model;
+package com.example.group17project.utils.model.observer;
 
 
 import com.example.group17project.utils.Methods;
 import com.example.group17project.utils.Range;
+import com.example.group17project.utils.model.Product;
+import com.example.group17project.utils.model.ProductType;
 
 import java.util.Objects;
 
-public class Filter {
+public class Filter extends Observer {
   public static final Filter ofDefault = new Filter(null, null, null, null, null);
   private final ProductType type;
   private final ProductType preferredExchange;
@@ -82,5 +84,10 @@ public class Filter {
   @Override
   public int hashCode() {
     return Objects.hash(id);
+  }
+
+  @Override
+  public void update(String message) {
+    
   }
 }

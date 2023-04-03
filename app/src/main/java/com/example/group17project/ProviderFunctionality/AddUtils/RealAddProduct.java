@@ -3,8 +3,8 @@ package com.example.group17project.ProviderFunctionality.AddUtils;
 import androidx.annotation.NonNull;
 
 import com.example.group17project.utils.alert.ProductAlert;
-import com.example.group17project.utils.model.Filter;
 import com.example.group17project.utils.model.Product;
+import com.example.group17project.utils.model.observer.Filter;
 import com.example.group17project.utils.repository.FilterRepository;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.DataSnapshot;

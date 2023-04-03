@@ -2,8 +2,8 @@ package com.example.group17project.utils;
 
 import android.os.Bundle;
 
-import com.example.group17project.utils.model.Filter;
 import com.example.group17project.utils.model.ProductType;
+import com.example.group17project.utils.model.observer.Filter;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;

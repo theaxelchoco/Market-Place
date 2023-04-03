@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.group17project.R;
+import com.example.group17project.utils.model.observer.Filter;
 
 import java.util.List;
 

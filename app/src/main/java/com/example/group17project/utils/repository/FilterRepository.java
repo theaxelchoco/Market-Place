@@ -1,6 +1,6 @@
 package com.example.group17project.utils.repository;
 
-import com.example.group17project.utils.model.Filter;
+import com.example.group17project.utils.model.observer.Filter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
