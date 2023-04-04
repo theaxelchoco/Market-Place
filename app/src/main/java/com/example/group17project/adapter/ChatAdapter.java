@@ -17,6 +17,7 @@ import com.example.group17project.Chat;
 import com.example.group17project.UserSession;
 import com.example.group17project.FirebaseRecyclerAdapter;
 import com.example.group17project.FirebaseRecyclerOptions;
+import com.example.group17project.utils.model.User;
 
 public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, ChatAdapter.ChatViewHolder> {
 
@@ -41,7 +42,7 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, ChatAdapter.ChatV
     @Override
     protected void onBindViewHolder(@NonNull ChatViewHolder holder, int position, @NonNull Chat chat) {
 //        if the user is logged into the app, the session username is equal to the chat message username,
-        if (UserSession.getInstance().getUser().getUsername().equals(chat.getUsername())) {
+        if (User.getInstance().getEmail().equals(chat.getUsername())) {
 //            hiding the any user layout and displaying current user layout
             holder.anyUserLL.setVisibility(View.GONE);
             holder.currentUserLL.setVisibility(View.VISIBLE);
