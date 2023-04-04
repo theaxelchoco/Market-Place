@@ -1,4 +1,4 @@
-package com.example.group17project.model;
+package com.example.group17project.utils.model;
 
 public class Chat {
     //    keys

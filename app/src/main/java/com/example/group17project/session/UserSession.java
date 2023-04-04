@@ -1,4 +1,7 @@
 package com.example.group17project.session;
+
+import com.example.group17project.utils.model.User;
+
 public class UserSession {
 
     private static UserSession instance;

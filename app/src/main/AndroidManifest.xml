@@ -33,6 +33,9 @@
             android:name=".Homepages.HomepageActivity"
             android:exported="true" />
         <activity
+            android:name=".ChatActivity"
+            android:exported="true" />
+        <activity
             android:name=".ProviderFunctionality.ExpandedProviderActivity"
             android:exported="true" />
         <activity

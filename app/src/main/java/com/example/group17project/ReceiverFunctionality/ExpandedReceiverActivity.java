@@ -13,8 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.group17project.ChatActivity;
 import com.example.group17project.Homepages.HomepageActivity;
+import com.example.group17project.Homepages.LoginLanding;
 import com.example.group17project.R;
+import com.example.group17project.utils.model.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -115,7 +118,19 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
      * @param view view on screen
      */
     public void contactButtonOnClick(View view){
-        backButtonOnClick(view);
+        String newCollection;
+        String currentUser = LoginLanding.encodeUserEmail(User.getInstance().getEmail());
+        String ownerEmail = LoginLanding.encodeUserEmail(ownerId);
+
+        if (currentUser.compareTo(ownerEmail) <= 0) {
+            newCollection = currentUser + "_" + ownerEmail;
+        } else {
+            newCollection = ownerEmail + "_" + currentUser;
+        }
+//       passing the chat collection from one activity to another
+        Intent chatActivityIntent = new Intent(ExpandedReceiverActivity.this, ChatActivity.class);
+        chatActivityIntent.putExtra(ChatActivity.CHAT_COLLECTION, newCollection);
+        startActivity(chatActivityIntent);
     }
 
 

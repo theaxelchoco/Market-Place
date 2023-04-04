@@ -1,4 +1,4 @@
-package com.example.group17project.adapter;
+package com.example.group17project.utils.model;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,15 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.group17project.model.Chat;
-import com.example.group17project.session.UserSession;
-
 import com.example.group17project.R;
-import com.example.group17project.Chat;
-import com.example.group17project.UserSession;
-import com.example.group17project.FirebaseRecyclerAdapter;
-import com.example.group17project.FirebaseRecyclerOptions;
-import com.example.group17project.utils.model.User;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, ChatAdapter.ChatViewHolder> {
 

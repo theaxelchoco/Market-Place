@@ -73,6 +73,9 @@
     <string name="value_provided">Value Provided:</string>
     <string name="exchange_history">Exchange History:</string>
     <string name="value_received">Value Received:</string>
+    <string name="type_your_message">Type your message</string>
+    <string name="send">send</string>
+    <string name="failed_to_send_message">Failed to send message</string>
 
 
 </resources>
