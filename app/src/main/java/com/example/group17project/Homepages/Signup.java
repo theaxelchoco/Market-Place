@@ -1,3 +1,8 @@
+/*
+Signup code
+Group 17
+*/
+
 package com.example.group17project.Homepages;
 
 import androidx.annotation.NonNull;
