@@ -22,7 +22,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.group17project.ProviderFunctionality.ProviderFragment;
 import com.example.group17project.R;
 import com.example.group17project.ReceiverFunctionality.ReceiverFragment;
+import com.example.group17project.utils.model.User;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Objects;
 
@@ -36,6 +38,8 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_homepage);
+
+    FirebaseMessaging.getInstance().subscribeToTopic(User.getInstance().getEmail());
 
     makeNavigation();
 

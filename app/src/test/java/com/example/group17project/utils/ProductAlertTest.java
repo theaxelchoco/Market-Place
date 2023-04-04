@@ -66,6 +66,6 @@ public class ProductAlertTest {
     Set<String> fakeOwnerIDs = new HashSet<>();
     // explain: the product owner should not be notified, and the same ownerID should not be added twice
     fakeOwnerIDs.add("ta3130@dal.ca");
-    assertEquals(fakeOwnerIDs.toString(), productAlert.getOwnerIDs().toString());
+    assertEquals(fakeOwnerIDs.toString(), productAlert.getReceiverIDs().toString());
   }
 }
