@@ -164,7 +164,6 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     if (edit) {
       operationStatus =
           proxyAdder.edit(
-              this,
               productNameText,
               user.getEmail(),
               descriptionText,
@@ -178,7 +177,6 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     } else {
       operationStatus =
           proxyAdder.add(
-              this,
               productNameText,
               user.getEmail(),
               descriptionText,

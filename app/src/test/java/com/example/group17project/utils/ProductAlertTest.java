@@ -2,7 +2,7 @@ package com.example.group17project.utils;
 
 import static org.junit.Assert.assertEquals;
 
-import android.content.Context;
+import android.content.pm.PackageManager;
 
 import com.example.group17project.utils.alert.ProductAlert;
 import com.example.group17project.utils.model.Product;
@@ -22,11 +22,11 @@ public class ProductAlertTest {
   private Set<Filter> filters;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() throws PackageManager.NameNotFoundException {
     makingMockProduct();
     makingMockFilters();
 
-    productAlert = new ProductAlert(product, filters, Mockito.mock(Context.class));
+    productAlert = new ProductAlert(product, filters);
 
     System.out.println(filters);
   }
