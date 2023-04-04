@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Group17Project"
         tools:targetApi="31">
+
         <activity
             android:name=".ReceiverFunctionality.AdvanceSearchActivity"
             android:exported="true">

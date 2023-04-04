@@ -1,5 +1,7 @@
 package com.example.group17project.ProviderFunctionality.AddUtils;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import com.example.group17project.utils.alert.ProductAlert;
@@ -37,18 +39,18 @@ public class RealAddProduct implements AddEditProduct {
 
 
   @Override
-  public boolean add(String name, String ownerId, String desc, Calendar date, String productType, String exchangePlace, String prefExchange, String marketVal) {
+  public boolean add(Context context, String name, String ownerId, String desc, Calendar date, String productType, String exchangePlace, String prefExchange, String marketVal) {
     Product product = new Product(name, ownerId, desc, date, productType, exchangePlace, prefExchange, Integer.parseInt(marketVal));
     productRepository.createProduct(product);
-    alertUsers(product);
+    alertUsers(product, context);
     return true;
   }
 
   @Override
-  public boolean edit(String name, String ownerId, String desc, Calendar date, String productType, String exchangePlace, String prefExchange, String marketVal, String productId) {
+  public boolean edit(Context context, String name, String ownerId, String desc, Calendar date, String productType, String exchangePlace, String prefExchange, String marketVal, String productId) {
     Product product = new Product(name, ownerId, desc, date, productType, exchangePlace, prefExchange, Integer.parseInt(marketVal));
     productRepository.updateProduct(productId, product);
-    alertUsers(product);
+    alertUsers(product, context);
     return true;
   }
 
@@ -57,7 +59,7 @@ public class RealAddProduct implements AddEditProduct {
    *
    * @param product the product that was added or edited
    */
-  private void alertUsers(Product product) {
+  private void alertUsers(Product product, Context context) {
     filterRepository.getDatabaseRef().addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -66,7 +68,7 @@ public class RealAddProduct implements AddEditProduct {
           Filter filter = data.getValue(Filter.class);
           filters.add(filter);
         }
-        productAlert = new ProductAlert(product, filters);
+        productAlert = new ProductAlert(product, filters, context);
         productAlert.alertUsers();
       }
 

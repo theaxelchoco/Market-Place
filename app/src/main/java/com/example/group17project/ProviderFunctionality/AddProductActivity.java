@@ -162,9 +162,32 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     boolean operationStatus;
 
     if (edit) {
-      operationStatus = proxyAdder.edit(productNameText, user.getEmail(), descriptionText, date, productTypeText, exchangePlace, prefExchange, marketVal, productId);
+      operationStatus =
+          proxyAdder.edit(
+              this,
+              productNameText,
+              user.getEmail(),
+              descriptionText,
+              date,
+              productTypeText,
+              exchangePlace,
+              prefExchange,
+              marketVal,
+              productId
+          );
     } else {
-      operationStatus = proxyAdder.add(productNameText, user.getEmail(), descriptionText, date, productTypeText, exchangePlace, prefExchange, marketVal);
+      operationStatus =
+          proxyAdder.add(
+              this,
+              productNameText,
+              user.getEmail(),
+              descriptionText,
+              date,
+              productTypeText,
+              exchangePlace,
+              prefExchange,
+              marketVal
+          );
     }
 
     if (operationStatus) {

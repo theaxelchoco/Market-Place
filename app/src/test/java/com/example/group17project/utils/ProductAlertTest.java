@@ -2,6 +2,8 @@ package com.example.group17project.utils;
 
 import static org.junit.Assert.assertEquals;
 
+import android.content.Context;
+
 import com.example.group17project.utils.alert.ProductAlert;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.model.observer.Filter;
@@ -24,7 +26,7 @@ public class ProductAlertTest {
     makingMockProduct();
     makingMockFilters();
 
-    productAlert = new ProductAlert(product, filters);
+    productAlert = new ProductAlert(product, filters, Mockito.mock(Context.class));
 
     System.out.println(filters);
   }

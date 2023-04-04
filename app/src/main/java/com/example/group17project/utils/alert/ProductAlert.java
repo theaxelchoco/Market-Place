@@ -1,5 +1,7 @@
 package com.example.group17project.utils.alert;
 
+import android.content.Context;
+
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.model.observer.Filter;
 import com.example.group17project.utils.model.observer.Observer;
@@ -10,6 +12,7 @@ import java.util.Set;
 public class ProductAlert implements AlertManager {
   private final Set<String> ownerIDs;
   private final Product product;
+  private final Context context;
 
   /**
    * The HashSet filters is all the filters that are currently in the database
@@ -17,9 +20,10 @@ public class ProductAlert implements AlertManager {
    * @param product the product to be alerted
    * @param filters the list of filters to applied
    */
-  public ProductAlert(Product product, Set<Filter> filters) {
+  public ProductAlert(Product product, Set<Filter> filters, Context context) {
     this.product = product;
     this.ownerIDs = new HashSet<>();
+    this.context = context;
     gatherOwnerIDs(filters);
   }
 
@@ -52,6 +56,5 @@ public class ProductAlert implements AlertManager {
   }
 
   private void sendNotification(String ownerID) {
-    // TODO: send notification to user
   }
 }

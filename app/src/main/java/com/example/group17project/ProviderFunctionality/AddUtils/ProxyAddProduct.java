@@ -1,6 +1,6 @@
 package com.example.group17project.ProviderFunctionality.AddUtils;
 
-import com.example.group17project.utils.model.Product;
+import android.content.Context;
 
 import java.util.Calendar;
 
@@ -21,9 +21,9 @@ public class ProxyAddProduct implements AddEditProduct{
 
 
     @Override
-    public boolean add(String name, String ownerId, String desc, Calendar date, String productType, String exchangePlace, String prefExchange, String marketVal) {
+    public boolean add(Context context, String name, String ownerId, String desc, Calendar date, String productType, String exchangePlace, String prefExchange, String marketVal) {
         if(validProductName(name) && validMarketValue(marketVal) && validPlaceOfExchange(exchangePlace)){
-            return addProductInstance.add(name, ownerId, desc, date, productType, exchangePlace, prefExchange, marketVal);
+            return addProductInstance.add(context, name, ownerId, desc, date, productType, exchangePlace, prefExchange, marketVal);
 
         }
         else{
@@ -32,9 +32,9 @@ public class ProxyAddProduct implements AddEditProduct{
     }
 
     @Override
-    public boolean edit(String name, String ownerId, String desc, Calendar date, String productType, String exchangePlace, String prefExchange, String marketVal, String productId) {
+    public boolean edit(Context context, String name, String ownerId, String desc, Calendar date, String productType, String exchangePlace, String prefExchange, String marketVal, String productId) {
         if(validProductName(name) && validMarketValue(marketVal) && validPlaceOfExchange(exchangePlace)){
-            return addProductInstance.edit(name, ownerId, desc, date, productType, exchangePlace, prefExchange, marketVal, productId);
+            return addProductInstance.edit(context, name, ownerId, desc, date, productType, exchangePlace, prefExchange, marketVal, productId);
         }
         else{
             return false;
