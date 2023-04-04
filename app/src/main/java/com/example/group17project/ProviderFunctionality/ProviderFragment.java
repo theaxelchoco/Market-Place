@@ -17,10 +17,8 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.group17project.ProviderFunctionality.AddProductActivity;
-import com.example.group17project.ProviderFunctionality.ExpandedProviderActivity;
 import com.example.group17project.R;
-import com.example.group17project.utils.model.ListAdapter;
+import com.example.group17project.utils.adapters.ListAdapter;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.model.User;
 import com.example.group17project.utils.repository.ProductRepository;

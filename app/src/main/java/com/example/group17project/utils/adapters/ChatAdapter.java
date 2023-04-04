@@ -1,4 +1,4 @@
-package com.example.group17project.utils.model;
+package com.example.group17project.utils.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.group17project.R;
+import com.example.group17project.utils.model.Chat;
+import com.example.group17project.utils.model.User;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 

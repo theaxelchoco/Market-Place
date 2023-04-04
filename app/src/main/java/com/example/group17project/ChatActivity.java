@@ -8,10 +8,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.group17project.utils.model.ChatAdapter;
+import com.example.group17project.utils.adapters.ChatAdapter;
 import com.example.group17project.utils.FirebaseConstants;
 import com.example.group17project.utils.model.Chat;
-import com.example.group17project.session.UserSession;
+import com.example.group17project.utils.model.User;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -62,7 +62,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void sendMessage() {
         final String chatMessage = chatMessageET.getText().toString();
-        final Chat chatMessageObj = new Chat(UserSession.getInstance().getUser().getEmail(), chatMessage);
+        final Chat chatMessageObj = new Chat(User.getInstance().getEmail(), chatMessage);
 //storing the message and the username in the chat collection in database
         FirebaseDatabase.getInstance(FirebaseConstants.FIREBASE_URL)
                 .getReference()
