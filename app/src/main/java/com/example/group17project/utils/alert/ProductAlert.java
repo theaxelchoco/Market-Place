@@ -25,6 +25,10 @@ public class ProductAlert implements AlertManager {
     gatherOwnerIDs(filters);
   }
 
+  public Product getProduct() {
+    return product;
+  }
+
   public Set<String> getReceiverIDs() {
     return receiverIDs;
   }
