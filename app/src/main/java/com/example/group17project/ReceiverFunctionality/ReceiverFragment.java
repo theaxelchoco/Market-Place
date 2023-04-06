@@ -5,6 +5,7 @@ Group 17
 
 package com.example.group17project.ReceiverFunctionality;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +35,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class ReceiverFragment extends Fragment {
@@ -47,43 +49,7 @@ public class ReceiverFragment extends Fragment {
     String searchKeyword;
     super.onCreate(savedInstanceState);
 
-    AlertRepository
-        .getDatabaseRef()
-        .child(User.getInstance().getEmail().replace(".", ","))
-        .addValueEventListener(new ValueEventListener() {
-
-          /**
-           * This method will be called with a snapshot of the data at this location. It will also be called
-           * each time that data changes.
-           *
-           * @param snapshot The current data at the location
-           */
-          @Override
-          public void onDataChange(@NonNull DataSnapshot snapshot) {
-            Log.println(Log.DEBUG, "Alerts", snapshot.toString());
-            snapshot.getChildren().forEach(data -> {
-              Log.println(Log.DEBUG, "======", data.toString());
-              String name = data.getKey();
-              long time = data.getValue(Long.class);
-
-
-            });
-          }
-
-          /**
-           * This method will be triggered in the event that this listener either failed at the server, or
-           * is removed as a result of the security and Firebase Database rules. For more information on
-           * securing your data, see: <a
-           * href="https://firebase.google.com/docs/database/security/quickstart" target="_blank"> Security
-           * Quickstart</a>
-           *
-           * @param error A description of the error that occurred
-           */
-          @Override
-          public void onCancelled(@NonNull DatabaseError error) {
-
-          }
-        });
+    makeAlert();
 
     FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.firebase_database_url));
     productRepository = new ProductRepository(database);
@@ -128,6 +94,53 @@ public class ReceiverFragment extends Fragment {
     }
 
     productAdapter = new ListAdapter(getActivity(), searchList);
+  }
+
+  private void makeAlert() {
+    AlertRepository
+        .getDatabaseRef()
+        .child(User.getInstance().getEmail().replace(".", ","))
+        .addValueEventListener(new ValueEventListener() {
+
+          /**
+           * This method will be called with a snapshot of the data at this location. It will also be called
+           * each time that data changes.
+           *
+           * @param snapshot The current data at the location
+           */
+          @Override
+          public void onDataChange(@NonNull DataSnapshot snapshot) {
+            Log.println(Log.DEBUG, "Alerts", snapshot.toString());
+            snapshot.getChildren().forEach(data -> {
+              Log.println(Log.DEBUG, "======", data.toString());
+              String name = data.getKey();
+              long time = data.getValue(Long.class);
+
+              if (Calendar.getInstance().getTimeInMillis() >= time) {
+                AlertRepository.deleteAlert(User.getInstance().getEmail(), name);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("You May Be Interested In This Product");
+                builder.setMessage("Product: " + name + " is available now");
+                builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+                builder.show();
+              }
+            });
+          }
+
+          /**
+           * This method will be triggered in the event that this listener either failed at the server, or
+           * is removed as a result of the security and Firebase Database rules. For more information on
+           * securing your data, see: <a
+           * href="https://firebase.google.com/docs/database/security/quickstart" target="_blank"> Security
+           * Quickstart</a>
+           *
+           * @param error A description of the error that occurred
+           */
+          @Override
+          public void onCancelled(@NonNull DatabaseError error) {
+
+          }
+        });
   }
 
   private void performSearch(String keyword, Filter filter) {

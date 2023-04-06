@@ -22,6 +22,13 @@ public class AlertRepository {
         .setValue(product.getTime());
   }
 
+  public static void deleteAlert(String receiverID, String key) {
+    databaseRef
+        .child(receiverID.replace(".", ","))
+        .child(key)
+        .setValue(Long.MAX_VALUE);
+  }
+
   public static DatabaseReference getDatabaseRef() {
     return databaseRef;
   }
