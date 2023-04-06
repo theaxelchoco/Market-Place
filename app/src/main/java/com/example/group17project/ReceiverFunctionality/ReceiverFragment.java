@@ -6,6 +6,7 @@ Group 17
 package com.example.group17project.ReceiverFunctionality;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,7 +50,7 @@ public class ReceiverFragment extends Fragment {
     String searchKeyword;
     super.onCreate(savedInstanceState);
 
-    makeAlert();
+    makeAlert(this.getContext());
 
     FirebaseDatabase database = FirebaseDatabase.getInstance(getResources().getString(R.string.firebase_database_url));
     productRepository = new ProductRepository(database);
@@ -96,7 +97,7 @@ public class ReceiverFragment extends Fragment {
     productAdapter = new ListAdapter(getActivity(), searchList);
   }
 
-  private void makeAlert() {
+  private void makeAlert(Context context) {
     AlertRepository
         .getDatabaseRef()
         .child(User.getInstance().getEmail().replace(".", ","))
@@ -118,7 +119,7 @@ public class ReceiverFragment extends Fragment {
 
               if (Calendar.getInstance().getTimeInMillis() >= time) {
                 AlertRepository.deleteAlert(User.getInstance().getEmail(), name);
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("You May Be Interested In This Product");
                 builder.setMessage("Product: " + name + " is available now");
                 builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
