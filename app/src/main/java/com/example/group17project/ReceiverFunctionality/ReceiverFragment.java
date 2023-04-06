@@ -23,11 +23,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.group17project.R;
 import com.example.group17project.utils.Methods;
-import com.example.group17project.utils.model.Filter;
+import com.example.group17project.utils.model.observer.Filter;
 import com.example.group17project.utils.adapters.ListAdapter;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.model.User;
-import com.example.group17project.utils.model.observer.Filter;
 import com.example.group17project.utils.repository.AlertRepository;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.DataSnapshot;
