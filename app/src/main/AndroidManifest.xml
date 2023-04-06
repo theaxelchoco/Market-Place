@@ -23,20 +23,10 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".testhelper.ProductCRUDHelperActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".Homepages.HomepageActivity"
             android:exported="true" />
         <activity
-            android:name=".UserActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ChatActivity"
+            android:name=".Homepages.ChatActivity"
             android:exported="true" />
         <activity
             android:name=".ProviderFunctionality.ExpandedProviderActivity"

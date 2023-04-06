@@ -7,19 +7,29 @@
     android:layout_height="wrap_content">
 
     <!--for the users, clickable since you're going to that person's chat-->
+    <View
+        android:id="@+id/view5"
+        android:layout_width="409dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="@+id/usernameTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/usernameTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="405dp"
+        android:layout_height="64dp"
         android:layout_marginHorizontal="16dp"
-        android:clickable="true"
-        android:focusable="true"
         android:paddingVertical="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="Omar Dahleh" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

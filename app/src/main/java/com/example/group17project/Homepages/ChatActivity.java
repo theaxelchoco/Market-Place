@@ -1,6 +1,8 @@
-package com.example.group17project;
+package com.example.group17project.Homepages;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -8,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.group17project.R;
 import com.example.group17project.utils.adapters.ChatAdapter;
 import com.example.group17project.utils.FirebaseConstants;
 import com.example.group17project.utils.model.Chat;
@@ -22,6 +25,7 @@ public class ChatActivity extends AppCompatActivity {
     private ChatAdapter chatAdapter;
     private EditText chatMessageET;
     private Button chatSendBtn;
+    private Button chatBackBtn;
     private String chatCollection;
 
     @Override
@@ -38,6 +42,7 @@ public class ChatActivity extends AppCompatActivity {
         chatRecyclerView = findViewById(R.id.chatRecyclerView);
         chatMessageET = findViewById(R.id.chatMessageET);
         chatSendBtn = findViewById(R.id.chatSendBtn);
+        chatBackBtn = findViewById(R.id.chatBackBtn);
     }
 
     private void getChatCollection() {
@@ -46,13 +51,18 @@ public class ChatActivity extends AppCompatActivity {
 
     private void setListeners() {
         chatSendBtn.setOnClickListener(view -> sendMessage());
+        chatBackBtn.setOnClickListener(this::backButtonOnClick);
+    }
+
+    private void backButtonOnClick(View view){
+        startActivity(new Intent(ChatActivity.this, HomepageActivity.class));
     }
 
     private void getChatMessages() {
 //        getting the chat messages
         final FirebaseRecyclerOptions<Chat> options = new FirebaseRecyclerOptions.Builder<Chat>()
                 .setQuery(FirebaseDatabase.getInstance(FirebaseConstants.FIREBASE_URL)
-                        .getReference()
+                        .getReference("chat")
                         .child(chatCollection), Chat.class)
                 .build();
 //        getting chat adapter object and then bind the recycler view to the adapter
@@ -65,7 +75,7 @@ public class ChatActivity extends AppCompatActivity {
         final Chat chatMessageObj = new Chat(User.getInstance().getEmail(), chatMessage);
 //storing the message and the username in the chat collection in database
         FirebaseDatabase.getInstance(FirebaseConstants.FIREBASE_URL)
-                .getReference()
+                .getReference("chat")
                 .child(chatCollection)
                 .push()
                 .setValue(chatMessageObj)
