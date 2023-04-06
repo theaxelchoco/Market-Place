@@ -7,7 +7,6 @@ package com.example.group17project.ProviderFunctionality;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ import com.example.group17project.R;
 import com.example.group17project.utils.model.ListAdapter;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.model.User;
-import com.example.group17project.utils.repository.AlertRepository;
 import com.example.group17project.utils.repository.ProductRepository;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,25 +40,6 @@ public class ProviderFragment extends Fragment {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
-    AlertRepository
-        .getDatabaseRef()
-        .child(User.getInstance().getEmail().replace(".", ","))
-        .addValueEventListener(new ValueEventListener() {
-          @Override
-          public void onDataChange(@NonNull DataSnapshot snapshot) {
-            for (DataSnapshot data : snapshot.getChildren()) {
-              for (DataSnapshot alert : data.getChildren()) {
-                Log.println(Log.DEBUG, "----------", alert.getValue().toString());
-              }
-            }
-          }
-
-          @Override
-          public void onCancelled(@NonNull DatabaseError error) {
-
-          }
-        });
 
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
     productRepository = new ProductRepository(database, false);
