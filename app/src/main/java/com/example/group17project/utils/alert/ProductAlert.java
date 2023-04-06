@@ -3,8 +3,10 @@ package com.example.group17project.utils.alert;
 import android.util.Log;
 
 import com.example.group17project.utils.model.Product;
+import com.example.group17project.utils.model.ProductInfo;
 import com.example.group17project.utils.model.observer.Filter;
 import com.example.group17project.utils.model.observer.Observer;
+import com.example.group17project.utils.repository.AlertRepository;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -58,7 +60,7 @@ public class ProductAlert implements AlertManager {
   }
 
   private void sendNotification(String receiverID) {
-    // TODO: send notification
+    AlertRepository.createAlert(new ProductInfo(product), receiverID);
     Log.println(Log.DEBUG, "", "---------notifying " + receiverID);
   }
 }

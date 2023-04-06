@@ -59,6 +59,16 @@ public class ProductInfo {
   }
 
   @Override
+  public String toString() {
+    return "ProductInfo{" +
+        "id='" + id + '\'' +
+        ", name='" + name + '\'' +
+        ", time=" + time +
+        ", isNotified=" + isNotified +
+        '}';
+  }
+
+  @Override
   public int hashCode() {
     return Objects.hash(id);
   }
