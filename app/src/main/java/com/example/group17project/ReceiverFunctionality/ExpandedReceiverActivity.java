@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.group17project.ChatActivity;
+import com.example.group17project.Homepages.ChatActivity;
 import com.example.group17project.Homepages.HomepageActivity;
 import com.example.group17project.Homepages.LoginLanding;
 import com.example.group17project.R;

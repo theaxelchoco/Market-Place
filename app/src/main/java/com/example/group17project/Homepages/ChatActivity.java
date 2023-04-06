@@ -1,4 +1,4 @@
-package com.example.group17project;
+package com.example.group17project.Homepages;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.group17project.Homepages.HomepageActivity;
+import com.example.group17project.R;
 import com.example.group17project.utils.adapters.ChatAdapter;
 import com.example.group17project.utils.FirebaseConstants;
 import com.example.group17project.utils.model.Chat;

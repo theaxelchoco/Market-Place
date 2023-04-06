@@ -5,7 +5,6 @@ Group 17
 
 package com.example.group17project.Homepages;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,24 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.AdapterView;
-import android.widget.TextView;
 import android.widget.ListView;
-import android.widget.RatingBar;
 
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.group17project.ChatActivity;
 import com.example.group17project.R;
 
-import com.example.group17project.utils.adapters.ExchangeAdaptor;
 import com.example.group17project.utils.adapters.UserAdapter;
-import com.example.group17project.utils.model.ExchangeHistory;
 
 import com.example.group17project.utils.model.User;
-import com.example.group17project.utils.repository.ExchangeRepository;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
