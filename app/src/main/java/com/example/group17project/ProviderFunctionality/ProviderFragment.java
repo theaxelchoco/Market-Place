@@ -17,8 +17,6 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.group17project.ProviderFunctionality.AddProductActivity;
-import com.example.group17project.ProviderFunctionality.ExpandedProviderActivity;
 import com.example.group17project.R;
 import com.example.group17project.utils.model.ListAdapter;
 import com.example.group17project.utils.model.Product;
@@ -111,7 +109,7 @@ public class ProviderFragment extends Fragment {
 
         boolean available = productArrayList.get(i).getStatus().equals(Product.Status.AVAILABLE);
         intent.putExtra("availability", available);
-        if(!available){
+        if (!available) {
           intent.putExtra("buyerID", productArrayList.get(i).getBuyer());
         }
         startActivity(intent);
