@@ -11,9 +11,15 @@ public class AlertRepository {
       FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com")
           .getReference("alerts");
 
+  private AlertRepository() {
+  }
+
   public static void createAlert(ProductInfo product, String receiverID) {
     Log.println(Log.DEBUG, "----------", product.toString());
-    //databaseRef.child(receiverID.replace(".", ",")).child(product.getId()).setValue(product);
+    databaseRef
+        .child(receiverID.replace(".", ","))
+        .child(product.toString())
+        .setValue(product.isNotified());
   }
 
   public static DatabaseReference getDatabaseRef() {

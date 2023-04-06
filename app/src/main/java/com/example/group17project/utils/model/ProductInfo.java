@@ -60,12 +60,7 @@ public class ProductInfo {
 
   @Override
   public String toString() {
-    return "ProductInfo{" +
-        "id='" + id + '\'' +
-        ", name='" + name + '\'' +
-        ", time=" + time +
-        ", isNotified=" + isNotified +
-        '}';
+    return String.format("%s-%s", name, time);
   }
 
   @Override
