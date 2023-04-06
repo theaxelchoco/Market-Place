@@ -20,7 +20,7 @@ public class ProductInfo {
     this.id = product.getProductID();
     this.name = product.getName();
     this.time = product.getDateAvailable().getTime();
-    isNotified = false;
+    isNotified = true;
   }
 
   public boolean shouldNotify(Date date) {
@@ -56,11 +56,6 @@ public class ProductInfo {
     }
 
     return false;
-  }
-
-  @Override
-  public String toString() {
-    return String.format("%s-%s", name, time);
   }
 
   @Override

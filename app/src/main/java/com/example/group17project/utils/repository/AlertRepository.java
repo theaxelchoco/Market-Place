@@ -18,8 +18,8 @@ public class AlertRepository {
     Log.println(Log.DEBUG, "----------", product.toString());
     databaseRef
         .child(receiverID.replace(".", ","))
-        .child(product.toString())
-        .setValue(product.isNotified());
+        .child(product.getName())
+        .setValue(product.getTime());
   }
 
   public static DatabaseReference getDatabaseRef() {
