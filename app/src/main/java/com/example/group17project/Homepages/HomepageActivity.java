@@ -23,7 +23,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.group17project.ProviderFunctionality.ProviderFragment;
 import com.example.group17project.R;
 import com.example.group17project.ReceiverFunctionality.ReceiverFragment;
-import com.example.group17project.UserActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
@@ -125,8 +124,7 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
       Intent i = new Intent(HomepageActivity.this, LoginLanding.class);
       startActivity(i);
     } else if(item.getItemId() == R.id.nav_messages){
-      Intent i = new Intent(HomepageActivity.this, UserActivity.class);
-      startActivity(i);
+      fragmentTransaction(new UserChatFragment());
     }
 
     drawerLayout.closeDrawer(GravityCompat.START);

@@ -1,0 +1,128 @@
+/*
+Visualization code
+Group 17
+*/
+
+package com.example.group17project.Homepages;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+
+import android.view.View;
+import android.view.ViewGroup;
+
+import android.widget.AdapterView;
+import android.widget.TextView;
+import android.widget.ListView;
+import android.widget.RatingBar;
+
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.group17project.ChatActivity;
+import com.example.group17project.R;
+
+import com.example.group17project.utils.adapters.ExchangeAdaptor;
+import com.example.group17project.utils.adapters.UserAdapter;
+import com.example.group17project.utils.model.ExchangeHistory;
+
+import com.example.group17project.utils.model.User;
+import com.example.group17project.utils.repository.ExchangeRepository;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+public class UserChatFragment extends Fragment {
+
+    DatabaseReference databaseRef;
+    private UserAdapter userAdapter;
+    private ListView availableUsers;
+    FirebaseDatabase database = null;
+    ArrayList<String> userList;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        database = FirebaseDatabase.getInstance(getResources().getString(R.string.firebase_database_url));
+        databaseRef = database.getReference("chat");
+        userList = new ArrayList<>();
+        userAdapter = new UserAdapter(getActivity(), userList);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_user, container, false);
+        availableUsers = view.findViewById(R.id.usersListView);
+        availableUsers.setAdapter(userAdapter);
+
+        return view;
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        databaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userList.clear();
+                for(DataSnapshot data : snapshot.getChildren()){
+                    String chatInteractions = data.getKey();
+                    String[] usernames = chatInteractions.split("_");
+                    String user1 = LoginLanding.decodeUserEmail(usernames[0]);
+                    String user2 = LoginLanding.decodeUserEmail(usernames[1]);
+
+                    if(user1.equals(User.getInstance().getEmail())){
+                        userList.add(user2);
+                    }
+                    else if(user2.equals(User.getInstance().getEmail())){
+                        userList.add(user1);
+                    }
+                }
+
+                userAdapter.notifyDataSetChanged();
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+
+        availableUsers.setClickable(true);
+        availableUsers.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedUser = userList.get(i);
+                String newCollection;
+                String currentUser = LoginLanding.encodeUserEmail(User.getInstance().getEmail());
+                String otherEmail = LoginLanding.encodeUserEmail(selectedUser);
+
+                if (currentUser.compareTo(otherEmail) <= 0) {
+                    newCollection = currentUser + "_" + otherEmail;
+                } else {
+                    newCollection = otherEmail + "_" + currentUser;
+                }
+
+                Intent chatActivityIntent = new Intent(getActivity(), ChatActivity.class);
+                chatActivityIntent.putExtra(ChatActivity.CHAT_COLLECTION, newCollection);
+                startActivity(chatActivityIntent);
+            }
+        });
+
+    }
+
+
+
+}

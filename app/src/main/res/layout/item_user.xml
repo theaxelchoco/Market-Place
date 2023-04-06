@@ -9,14 +9,15 @@
     <!--for the users, clickable since you're going to that person's chat-->
     <TextView
         android:id="@+id/usernameTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="398dp"
+        android:layout_height="87dp"
         android:layout_marginHorizontal="16dp"
         android:clickable="true"
         android:focusable="true"
         android:paddingVertical="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
