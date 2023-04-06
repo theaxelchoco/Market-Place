@@ -109,7 +109,7 @@ public class ProviderFragment extends Fragment {
 
         boolean available = productArrayList.get(i).getStatus().equals(Product.Status.AVAILABLE);
         intent.putExtra("availability", available);
-        if(!available){
+        if (!available) {
           intent.putExtra("buyerID", productArrayList.get(i).getBuyer());
         }
         startActivity(intent);

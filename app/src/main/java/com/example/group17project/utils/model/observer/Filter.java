@@ -1,10 +1,14 @@
-package com.example.group17project.utils.model;
+package com.example.group17project.utils.model.observer;
 
-import android.util.Range;
 
 import com.example.group17project.utils.Methods;
+import com.example.group17project.utils.Range;
+import com.example.group17project.utils.model.Product;
+import com.example.group17project.utils.model.ProductType;
 
-public class Filter {
+import java.util.Objects;
+
+public class Filter extends Observer {
   public static final Filter ofDefault = new Filter(null, null, null, null, null);
   private final ProductType type;
   private final ProductType preferredExchange;
@@ -19,6 +23,10 @@ public class Filter {
     this.preferredExchange = preferredExchange;
     this.priceRange = priceRange;
     this.location = location;
+  }
+
+  public Filter() {
+    this(null, null, null, null, null);
   }
 
   public boolean isMatch(Product product) {
@@ -63,5 +71,23 @@ public class Filter {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Filter filter = (Filter) o;
+    return id.equals(filter.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
+  }
+
+  @Override
+  public void update(String message) {
+    
   }
 }

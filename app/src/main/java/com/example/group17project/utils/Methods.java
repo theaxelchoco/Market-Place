@@ -1,10 +1,9 @@
 package com.example.group17project.utils;
 
 import android.os.Bundle;
-import android.util.Range;
 
-import com.example.group17project.utils.model.Filter;
 import com.example.group17project.utils.model.ProductType;
+import com.example.group17project.utils.model.observer.Filter;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
@@ -14,6 +13,7 @@ import java.io.IOException;
 
 public class Methods {
   private final static String GOOGLE_MAPS_API_KEY = "AIzaSyADgAur80t_vb3uX2PEm75aNBiUq9yFOOU";
+  private final static int DISTANCE_NEARBY = 10;
 
   private Methods() {
   }

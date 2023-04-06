@@ -147,6 +147,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
   /**
    * This is the onlclick method for the submit button. Checks to see if all required fields are filled out.
    * Adds item to repo and switches intent after validation, otherwise displays errors.
+   *
    * @param view the view on the screen
    */
   public void onClick(View view) {
@@ -160,23 +161,41 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     ProxyAddProduct proxyAdder = ProxyAddProduct.getInstance();
     boolean operationStatus;
 
-    if(edit){
-      operationStatus = proxyAdder.edit(productNameText, user.getEmail(), descriptionText, date, productTypeText, exchangePlace, prefExchange, marketVal, productId);
-    }
-    else{
-      operationStatus = proxyAdder.add(productNameText, user.getEmail(), descriptionText, date, productTypeText, exchangePlace, prefExchange, marketVal);
+    if (edit) {
+      operationStatus =
+          proxyAdder.edit(
+              productNameText,
+              user.getEmail(),
+              descriptionText,
+              date,
+              productTypeText,
+              exchangePlace,
+              prefExchange,
+              marketVal,
+              productId
+          );
+    } else {
+      operationStatus =
+          proxyAdder.add(
+              productNameText,
+              user.getEmail(),
+              descriptionText,
+              date,
+              productTypeText,
+              exchangePlace,
+              prefExchange,
+              marketVal
+          );
     }
 
-    if(operationStatus){
-      if(edit){
+    if (operationStatus) {
+      if (edit) {
         Toast.makeText(this, getResources().getString(R.string.SUCCESSFUL_PRODUCT_UPDATE).trim(), Toast.LENGTH_SHORT).show();
-      }
-      else{
+      } else {
         Toast.makeText(this, getResources().getString(R.string.SUCCESSFUL_PRODUCT_CREATION).trim(), Toast.LENGTH_SHORT).show();
       }
       switchBack();
-    }
-    else{
+    } else {
       setErrors(productNameText, exchangePlace, marketVal);
     }
   }
@@ -192,9 +211,10 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
 
   /**
    * This method is used to set the corresponding error labels with designated messages helping the user correct their input
-   * @param productName the entered product name
+   *
+   * @param productName     the entered product name
    * @param placeOfExchange the entered place of exchange
-   * @param marketVal the entered market value
+   * @param marketVal       the entered market value
    */
   protected void setErrors(String productName, String placeOfExchange, String marketVal) {
     String pNameError = "";
@@ -262,6 +282,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
 
   /**
    * Checks to see if the product name is valid (not empty)
+   *
    * @param name product name entered by user
    * @return true if valid, false otherwise
    */
@@ -271,6 +292,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
 
   /**
    * Checks to see if market value is valid (not empty and only integer)
+   *
    * @param marketValue market val entered by user
    * @return true if valid, false otherwise
    */
@@ -288,6 +310,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
 
   /**
    * Checks to see if place of exchange is valid (not empty)
+   *
    * @param place place of exchange entered by user
    * @return true if valid, false otherwise
    */
