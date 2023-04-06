@@ -1,7 +1,5 @@
 package com.example.group17project.ProviderFunctionality.AddUtils;
 
-import com.example.group17project.utils.model.Product;
-
 import java.util.Calendar;
 
 public interface AddEditProduct {
