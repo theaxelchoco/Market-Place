@@ -114,17 +114,20 @@ public class UserChatFragment extends Fragment {
 
     }
 
-    private String[] usernameSplitter(String key){
+    public String[] usernameSplitter(String key){
         String[] usernames = key.split("_");
-        String user1 = LoginLanding.decodeUserEmail(usernames[0]);
-        String user2 = LoginLanding.decodeUserEmail(usernames[1]);
+        if(usernames.length == 2){
+            String user1 = LoginLanding.decodeUserEmail(usernames[0]);
+            String user2 = LoginLanding.decodeUserEmail(usernames[1]);
 
-        usernames[0] = user1;
-        usernames[1] = user2;
+            usernames[0] = user1;
+            usernames[1] = user2;
+        }
+
         return usernames;
     }
 
-    private String chatCollectionCreator(String user1, String user2){
+    public String chatCollectionCreator(String user1, String user2){
         String currentUser = LoginLanding.encodeUserEmail(user1);
         String otherEmail = LoginLanding.encodeUserEmail(user2);
 
