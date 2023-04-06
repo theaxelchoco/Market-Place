@@ -101,7 +101,9 @@ public class UserChatFragment extends Fragment {
         });
 
         availableUsers.setClickable(true);
-        availableUsers.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        availableUsers.setEnabled(true);
+
+        availableUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedUser = userList.get(i);
