@@ -69,9 +69,10 @@ public class UserChatFragment extends Fragment {
                 userList.clear();
                 for(DataSnapshot data : snapshot.getChildren()){
                     String chatInteractions = data.getKey();
-                    String[] usernames = chatInteractions.split("_");
-                    String user1 = LoginLanding.decodeUserEmail(usernames[0]);
-                    String user2 = LoginLanding.decodeUserEmail(usernames[1]);
+
+                    String[] usernames = usernameSplitter(chatInteractions);
+                    String user1 = usernames[0];
+                    String user2 = usernames[1];
 
                     if(user1.equals(User.getInstance().getEmail())){
                         userList.add(user2);
@@ -100,14 +101,10 @@ public class UserChatFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedUser = userList.get(i);
                 String newCollection;
-                String currentUser = LoginLanding.encodeUserEmail(User.getInstance().getEmail());
-                String otherEmail = LoginLanding.encodeUserEmail(selectedUser);
+                String currentUser = User.getInstance().getEmail();
+                String otherEmail = selectedUser;
 
-                if (currentUser.compareTo(otherEmail) <= 0) {
-                    newCollection = currentUser + "_" + otherEmail;
-                } else {
-                    newCollection = otherEmail + "_" + currentUser;
-                }
+                newCollection = chatCollectionCreator(currentUser, otherEmail);
 
                 Intent chatActivityIntent = new Intent(getActivity(), ChatActivity.class);
                 chatActivityIntent.putExtra(ChatActivity.CHAT_COLLECTION, newCollection);
@@ -117,6 +114,25 @@ public class UserChatFragment extends Fragment {
 
     }
 
+    private String[] usernameSplitter(String key){
+        String[] usernames = key.split("_");
+        String user1 = LoginLanding.decodeUserEmail(usernames[0]);
+        String user2 = LoginLanding.decodeUserEmail(usernames[1]);
 
+        usernames[0] = user1;
+        usernames[1] = user2;
+        return usernames;
+    }
+
+    private String chatCollectionCreator(String user1, String user2){
+        String currentUser = LoginLanding.encodeUserEmail(user1);
+        String otherEmail = LoginLanding.encodeUserEmail(user2);
+
+        if (currentUser.compareTo(otherEmail) <= 0) {
+            return currentUser + "_" + otherEmail;
+        } else {
+            return otherEmail + "_" + currentUser;
+        }
+    }
 
 }

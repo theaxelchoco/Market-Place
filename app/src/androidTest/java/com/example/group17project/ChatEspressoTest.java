@@ -15,6 +15,9 @@ import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItem;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 
 
+import static org.junit.Assert.assertEquals;
+
+import android.content.Context;
 import android.support.test.espresso.ViewAction;
 import android.util.Log;
 
@@ -22,15 +25,21 @@ import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 
 import com.example.group17project.Homepages.HomepageActivity;
 import com.example.group17project.Homepages.LoginLanding;
 
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(AndroidJUnit4.class)
 public class ChatEspressoTest {
     private static final String USER1_EMAIL = "ta3130@dal.ca";
     private static final String USER1_PASSWORD = "ta3130";
@@ -42,7 +51,29 @@ public class ChatEspressoTest {
     public ActivityScenarioRule<LoginLanding> activityScenarioRule =
             new ActivityScenarioRule<>(LoginLanding.class);
 
+    @Before
+    public void setUp() throws Exception {
 
+    }
+
+    @After
+    public void tearDown() throws Exception {
+
+    }
+
+    @Test
+    public void useAppContext() {
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        assertEquals("com.example.group17project", appContext.getPackageName());
+    }
+
+    @Test
+    public void chatBackBtnNavbar(){
+        onView(withId(R.id.emailLogin)).perform(typeText("hello"), closeSoftKeyboard());
+        onView(withId(R.id.passwordLogin)).perform(typeText("test"), closeSoftKeyboard());
+        onView(withId(R.id.loginBtn)).perform(click());
+    }
     @Test
     public void testSendAndReceiveChatMessage() {
         // Log in as user1
