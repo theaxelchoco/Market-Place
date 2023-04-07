@@ -108,7 +108,7 @@ public class LoginLanding extends AppCompatActivity {
 
         @Override
         public void onCancelled(@NonNull DatabaseError error) {
-
+          //This method should not do anything if cancelled, hence why it is empty
         }
       });
     }

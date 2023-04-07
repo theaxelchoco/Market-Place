@@ -2,7 +2,6 @@ package com.example.group17project.utils.repository;
 
 
 import com.example.group17project.utils.model.ExchangeHistory;
-import com.example.group17project.utils.model.Product;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -14,7 +13,6 @@ public class ExchangeRepository {
 
   public ExchangeRepository(FirebaseDatabase database, boolean isTest) {
     this.databaseRef = database.getReference(isTest ? "test-exchange_history" : "exchange_history");
-    System.out.println(this.databaseRef);
   }
 
   public ExchangeRepository(FirebaseDatabase database) {

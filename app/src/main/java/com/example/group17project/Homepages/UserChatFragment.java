@@ -88,7 +88,7 @@ public class UserChatFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // This method should not do anything if cancelled, hence why it is empty
             }
 
         });
@@ -96,20 +96,17 @@ public class UserChatFragment extends Fragment {
         availableUsers.setClickable(true);
         availableUsers.setEnabled(true);
 
-        availableUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedUser = userList.get(i);
-                String newCollection;
-                String currentUser = User.getInstance().getEmail();
-                String otherEmail = selectedUser;
+        availableUsers.setOnItemClickListener((adapterView, view, i, l) -> {
+            String selectedUser = userList.get(i);
+            String newCollection;
+            String currentUser = User.getInstance().getEmail();
+            String otherEmail = selectedUser;
 
-                newCollection = chatCollectionCreator(currentUser, otherEmail);
+            newCollection = chatCollectionCreator(currentUser, otherEmail);
 
-                Intent chatActivityIntent = new Intent(getActivity(), ChatActivity.class);
-                chatActivityIntent.putExtra(ChatActivity.CHAT_COLLECTION, newCollection);
-                startActivity(chatActivityIntent);
-            }
+            Intent chatActivityIntent = new Intent(getActivity(), ChatActivity.class);
+            chatActivityIntent.putExtra(ChatActivity.CHAT_COLLECTION, newCollection);
+            startActivity(chatActivityIntent);
         });
 
     }

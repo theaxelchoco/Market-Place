@@ -56,7 +56,6 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
   private String selectedProductType;
   private String selectedPreferredExchange;
 
-  private ProductRepository productRepository;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -327,6 +326,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
   }
 
   private void setUp() {
+    ProductRepository productRepository;
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com/");
     productRepository = new ProductRepository(database, false);
 
@@ -373,6 +373,6 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
 
   @Override
   public void onNothingSelected(AdapterView<?> adapterView) {
-
+    //This method should not do anything if nothing selected, hence why it is empty
   }
 }

@@ -88,6 +88,6 @@ public class Filter extends Observer {
 
   @Override
   public void update(String message) {
-    
+    //This method should not do anything hence why it is empty
   }
 }

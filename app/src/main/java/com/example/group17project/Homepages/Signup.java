@@ -123,7 +123,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
+                    //This method should not do anything if cancelled, hence why it is empty
                 }
 
             });
