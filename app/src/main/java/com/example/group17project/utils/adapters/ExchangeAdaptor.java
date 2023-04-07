@@ -1,4 +1,4 @@
-package com.example.group17project.utils.model;
+package com.example.group17project.utils.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.group17project.R;
+import com.example.group17project.utils.model.ExchangeHistory;
 
 import java.util.ArrayList;
 

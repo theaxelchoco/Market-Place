@@ -127,6 +127,8 @@ public class HomepageActivity extends AppCompatActivity implements NavigationVie
     } else if(item.getItemId() ==R.id.nav_logout){
       Intent i = new Intent(HomepageActivity.this, LoginLanding.class);
       startActivity(i);
+    } else if(item.getItemId() == R.id.nav_messages){
+      fragmentTransaction(new UserChatFragment());
     }
 
     drawerLayout.closeDrawer(GravityCompat.START);

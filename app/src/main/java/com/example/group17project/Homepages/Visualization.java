@@ -5,24 +5,16 @@ Group 17
 
 package com.example.group17project.Homepages;
 
-import static java.lang.String.*;
-
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ListView;
 import android.widget.RatingBar;
-import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
@@ -30,10 +22,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.group17project.R;
 
-import com.example.group17project.ReceiverFunctionality.TransactionActivity;
-
-import com.example.group17project.ReceiverFunctionality.AdvanceSearchActivity;
-import com.example.group17project.utils.model.ExchangeAdaptor;
+import com.example.group17project.utils.adapters.ExchangeAdaptor;
 import com.example.group17project.utils.model.ExchangeHistory;
 
 import com.example.group17project.utils.model.User;
