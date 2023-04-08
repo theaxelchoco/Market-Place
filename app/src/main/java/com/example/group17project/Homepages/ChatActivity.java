@@ -59,13 +59,13 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void getChatMessages() {
-//        getting the chat messages
+        //getting the chat messages
         final FirebaseRecyclerOptions<Chat> options = new FirebaseRecyclerOptions.Builder<Chat>()
                 .setQuery(FirebaseDatabase.getInstance(FirebaseConstants.FIREBASE_URL)
                         .getReference("chat")
                         .child(chatCollection), Chat.class)
                 .build();
-//        getting chat adapter object and then bind the recycler view to the adapter
+        //getting chat adapter object and then bind the recycler view to the adapter
         chatAdapter = new ChatAdapter(options);
         chatRecyclerView.setAdapter(chatAdapter);
     }
@@ -73,7 +73,8 @@ public class ChatActivity extends AppCompatActivity {
     private void sendMessage() {
         final String chatMessage = chatMessageET.getText().toString();
         final Chat chatMessageObj = new Chat(User.getInstance().getEmail(), chatMessage);
-//storing the message and the username in the chat collection in database
+
+        //storing the message and the username in the chat collection in database
         FirebaseDatabase.getInstance(FirebaseConstants.FIREBASE_URL)
                 .getReference("chat")
                 .child(chatCollection)

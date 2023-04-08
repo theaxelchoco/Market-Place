@@ -63,6 +63,7 @@ public class UserChatFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        //First check to see which chats the user has interacted in, and only display those
         databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -74,6 +75,7 @@ public class UserChatFragment extends Fragment {
                     String user1 = usernames[0];
                     String user2 = usernames[1];
 
+                    //We only want the user to see users in their message history that they have interacted with
                     if(user1.equals(User.getInstance().getEmail())){
                         userList.add(user2);
                     }
@@ -96,6 +98,7 @@ public class UserChatFragment extends Fragment {
         availableUsers.setClickable(true);
         availableUsers.setEnabled(true);
 
+        //Setting the onclick method for the items in the listView, passing the chat collection string to the next activity to correspond to a chat
         availableUsers.setOnItemClickListener((adapterView, view, i, l) -> {
             String selectedUser = userList.get(i);
             String newCollection;
@@ -111,6 +114,11 @@ public class UserChatFragment extends Fragment {
 
     }
 
+    /**
+     * This method is used to check a chat collection string to see if the user is part of the interaction
+     * @param key the chat collection key
+     * @return a string array with the two users parsed from collection key
+     */
     public String[] usernameSplitter(String key){
         String[] usernames = key.split("_");
         if(usernames.length == 2){
@@ -124,6 +132,12 @@ public class UserChatFragment extends Fragment {
         return usernames;
     }
 
+    /**
+     * This method is used to create a chat collection string from two user strings
+     * @param user1 the first user
+     * @param user2 the second user
+     * @return the string representing the chat interaction
+     */
     public String chatCollectionCreator(String user1, String user2){
         String currentUser = LoginLanding.encodeUserEmail(user1);
         String otherEmail = LoginLanding.encodeUserEmail(user2);
