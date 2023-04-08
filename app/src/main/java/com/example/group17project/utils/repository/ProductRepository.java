@@ -8,6 +8,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
+/**
+ * class to interact with firebase to handle product data
+ */
 public class ProductRepository {
   private final DatabaseReference databaseRef;
 

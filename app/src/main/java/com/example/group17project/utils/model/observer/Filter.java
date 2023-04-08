@@ -5,6 +5,7 @@ import com.example.group17project.utils.Methods;
 import com.example.group17project.utils.Range;
 import com.example.group17project.utils.model.Product;
 import com.example.group17project.utils.model.ProductType;
+import com.example.group17project.utils.model.User;
 
 import java.util.Objects;
 
@@ -88,6 +89,6 @@ public class Filter extends Observer {
 
   @Override
   public void update(String message) {
-    
+    //This method should not do anything hence why it is empty
   }
 }

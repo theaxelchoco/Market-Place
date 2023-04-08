@@ -36,6 +36,18 @@ public class RealAddProduct implements AddEditProduct {
   }
 
 
+  /**
+   * Method used to add a product to the firebase database
+   * @param name of product
+   * @param ownerId of product
+   * @param desc of product
+   * @param date of product
+   * @param productType of product
+   * @param exchangePlace of product
+   * @param prefExchange of product
+   * @param marketVal of product
+   * @return true because product has been verified and therefore will result in a successful addition
+   */
   @Override
   public boolean add(String name, String ownerId, String desc, Calendar date, String productType, String exchangePlace, String prefExchange, String marketVal) {
     Product product = new Product(name, ownerId, desc, date, productType, exchangePlace, prefExchange, Integer.parseInt(marketVal));
@@ -44,6 +56,19 @@ public class RealAddProduct implements AddEditProduct {
     return true;
   }
 
+  /**
+   * Method used to edit a product in the firebase database
+   * @param name of product
+   * @param ownerId of product
+   * @param desc of product
+   * @param date of product
+   * @param productType of product
+   * @param exchangePlace of product
+   * @param prefExchange of product
+   * @param marketVal of product
+   * @param productId of product
+   * @return true because product has been verified and therefore will result in a successful edit
+   */
   @Override
   public boolean edit(String name, String ownerId, String desc, Calendar date, String productType, String exchangePlace, String prefExchange, String marketVal, String productId) {
     Product product = new Product(name, ownerId, desc, date, productType, exchangePlace, prefExchange, Integer.parseInt(marketVal));

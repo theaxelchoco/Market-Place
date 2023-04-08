@@ -2,12 +2,9 @@ package com.example.group17project.utils.model;
 
 import androidx.annotation.NonNull;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
- *
+ * This class represents a particular exchange that will be showcased in the user history
  */
 public class ExchangeHistory {
 

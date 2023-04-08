@@ -127,7 +127,7 @@ public class ExpandedReceiverActivity extends AppCompatActivity {
         } else {
             newCollection = ownerEmail + "_" + currentUser;
         }
-//       passing the chat collection from one activity to another
+       //passing the chat collection from one activity to another
         Intent chatActivityIntent = new Intent(ExpandedReceiverActivity.this, ChatActivity.class);
         chatActivityIntent.putExtra(ChatActivity.CHAT_COLLECTION, newCollection);
         startActivity(chatActivityIntent);

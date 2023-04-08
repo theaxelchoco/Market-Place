@@ -41,7 +41,6 @@ import java.util.Locale;
 
 public class UserLocation extends AppCompatActivity {
 
-  private EditText mSearchText;
   private LocationRequest locationRequest;
   private Location userLocation;
 
@@ -92,8 +91,6 @@ public class UserLocation extends AppCompatActivity {
                     int Index = locationResult.getLocations().size() - 1;
                     userLocation = locationResult.getLocations().get(Index);
                     User.getInstance().setUserLocation(getLocationName(userLocation.getLatitude(), userLocation.getLongitude()));
-                    System.out.println(userLocation.getLatitude());
-                    System.out.println(userLocation.getLongitude());
                     startActivity(new Intent(UserLocation.this, HomepageActivity.class));
                   }
                 }
@@ -129,7 +126,6 @@ public class UserLocation extends AppCompatActivity {
           String city = adrs.getLocality();
           if (city != null && !city.equals("")) {
             cityName = city;
-            System.out.println("city ::  " + cityName);
           }
 
 

@@ -42,6 +42,8 @@ public class AdvanceSearchActivity extends AppCompatActivity {
     cancelButton.setOnClickListener(v -> startActivity(intent));
 
     Button saveButton = findViewById(R.id.advanceSearchSaveButton);
+
+    //If the user chooses to save their filter, we use the filter repository to store the information
     saveButton.setOnClickListener(v -> {
       makeFilter();
       Filter filter = Methods.makeFilter(filterBundle, User.getInstance().getEmail());
@@ -52,6 +54,7 @@ public class AdvanceSearchActivity extends AppCompatActivity {
     });
   }
 
+  //Method grabs all the filtered data the user decides to specify and uses it to filter out the products
   private void makeFilter() {
     EditText keywordEditView = findViewById(R.id.advanceSearchKeywordEditView);
     EditText locationEditView = findViewById(R.id.advanceSearchExchangePlaceEditView);

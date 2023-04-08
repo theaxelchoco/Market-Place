@@ -88,7 +88,7 @@ public class ReceiverFragment extends Fragment {
         //error handler
         @Override
         public void onCancelled(@NonNull DatabaseError error) {
-
+          //This method should not do anything if cancelled, hence why it is empty
         }
       });
 
@@ -139,7 +139,7 @@ public class ReceiverFragment extends Fragment {
            */
           @Override
           public void onCancelled(@NonNull DatabaseError error) {
-
+            //This method should not do anything if cancelled, hence why it is empty
           }
         });
   }
@@ -158,6 +158,7 @@ public class ReceiverFragment extends Fragment {
           assert product != null;
           product.setDateAvailable(dateAvailable);
 
+          //Based off their filter, we match certain products to display in the list adapter
           if (isFilterMatch(product, keyword, filter) && !product.getOwnerID().equals(User.getInstance().getEmail()) && product.getStatus().equals(Product.Status.AVAILABLE)) {
             searchResult.add(product);
           }
@@ -199,7 +200,6 @@ public class ReceiverFragment extends Fragment {
 
     searchListView = view.findViewById(R.id.searchResultList);
     searchListView.setAdapter(productAdapter);
-    ;
 
 
     Button advancedSearchButton = view.findViewById(R.id.advanceSearchButton);

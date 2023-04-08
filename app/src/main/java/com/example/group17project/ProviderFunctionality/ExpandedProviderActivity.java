@@ -49,7 +49,7 @@ public class ExpandedProviderActivity extends AppCompatActivity {
     private String buyerKey;
     private long dateVal;
     private int price;
-    private Date date;
+
     private boolean available;
     private ProductRepository productRepository;
 
@@ -113,6 +113,7 @@ public class ExpandedProviderActivity extends AppCompatActivity {
      * in expanded format, based off the passed information
      */
     protected void setViewFromIntentExtras(){
+        Date date;
         Intent intent = this.getIntent();
         if(intent != null){
             name = intent.getStringExtra("name");
@@ -158,7 +159,6 @@ public class ExpandedProviderActivity extends AppCompatActivity {
      * @param view view of screen
      */
     public void deleteButtonOnClick(View view){
-        System.out.println(productId);
         productRepository.deleteProduct(productId);
         backButtonOnClick(view);
     }
@@ -199,7 +199,7 @@ public class ExpandedProviderActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                //This method should not do anything if cancelled, hence why it is empty
             }
         });
     }
@@ -273,12 +273,7 @@ public class ExpandedProviderActivity extends AppCompatActivity {
         editBtn.setOnClickListener(this::editButtonOnClick);
         confirmBtn.setOnClickListener(this::confirmButtonOnClick);
 
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                rating = v;
-            }
-        });
+        ratingBar.setOnRatingBarChangeListener((ratingBar, v, b) -> rating = v);
     }
 
     /**

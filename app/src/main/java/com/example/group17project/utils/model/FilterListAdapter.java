@@ -20,6 +20,14 @@ public class FilterListAdapter extends ArrayAdapter<Filter> {
     super(context, R.layout.filter_frame, resource);
   }
 
+  /**
+   * Method used to format the listview in way particular to our desire. In this case, we want to format our listview
+   * to display information about the filter
+   * @param position index representing the location of the particular item in the list view
+   * @param convertView The view of the screen
+   * @param parent The view that holds this one
+   * @return list view formatted correctly
+   */
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
     Filter filter = getItem(position);

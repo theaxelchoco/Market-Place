@@ -71,6 +71,9 @@ public class ProviderFragment extends Fragment {
       @Override
       public void onDataChange(@NonNull DataSnapshot snapshot) {
         productArrayList.clear();
+
+
+        //We only want to display products that the provider has created, so we make sure that the product owner is equal to current user
         for (DataSnapshot data : snapshot.getChildren()) {
           Product product = data.getValue(Product.class);
           Long dateAvailableMillis = data.child("dateAvailable").child("time").getValue(Long.class);
@@ -93,28 +96,26 @@ public class ProviderFragment extends Fragment {
 
 
     productListView.setClickable(true);
-    productListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-      @Override
-      public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent(getActivity(), ExpandedProviderActivity.class);
-        intent.putExtra("name", productArrayList.get(i).getName());
-        intent.putExtra("type", productArrayList.get(i).getType());
-        intent.putExtra("exchange", productArrayList.get(i).getPreferredExchange());
-        intent.putExtra("location", productArrayList.get(i).getLocationID());
-        intent.putExtra("desc", productArrayList.get(i).getDescription());
-        intent.putExtra("date", productArrayList.get(i).getDateAvailable().getTime());
-        intent.putExtra("price", productArrayList.get(i).getPrice());
-        intent.putExtra("productId", productArrayList.get(i).getProductID());
+    //When we click on an item, we have to pass along all the item's data to the next activity
+    productListView.setOnItemClickListener((adapterView, view, i, l) -> {
+      Intent intent = new Intent(getActivity(), ExpandedProviderActivity.class);
+      intent.putExtra("name", productArrayList.get(i).getName());
+      intent.putExtra("type", productArrayList.get(i).getType());
+      intent.putExtra("exchange", productArrayList.get(i).getPreferredExchange());
+      intent.putExtra("location", productArrayList.get(i).getLocationID());
+      intent.putExtra("desc", productArrayList.get(i).getDescription());
+      intent.putExtra("date", productArrayList.get(i).getDateAvailable().getTime());
+      intent.putExtra("price", productArrayList.get(i).getPrice());
+      intent.putExtra("productId", productArrayList.get(i).getProductID());
 
-        boolean available = productArrayList.get(i).getStatus().equals(Product.Status.AVAILABLE);
-        intent.putExtra("availability", available);
-        if (!available) {
-          intent.putExtra("buyerID", productArrayList.get(i).getBuyer());
-        }
-        startActivity(intent);
-
+      boolean available = productArrayList.get(i).getStatus().equals(Product.Status.AVAILABLE);
+      intent.putExtra("availability", available);
+      if (!available) {
+        intent.putExtra("buyerID", productArrayList.get(i).getBuyer());
       }
+      startActivity(intent);
+
     });
 
 

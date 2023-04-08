@@ -6,6 +6,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
+/**
+ * class to interact with firebase to handle filter data
+ */
 public class FilterRepository {
   private final DatabaseReference databaseRef;
 

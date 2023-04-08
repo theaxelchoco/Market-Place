@@ -18,6 +18,18 @@ public class ProxyAddProduct implements AddEditProduct{
     }
 
 
+    /**
+     * This method is used to verify if the product is valid THEN pass it along to the realAddProduct implementation to interact with the database
+     * @param name of product
+     * @param ownerId of product
+     * @param desc of product
+     * @param date of product
+     * @param productType of product
+     * @param exchangePlace of product
+     * @param prefExchange of product
+     * @param marketVal of product
+     * @return true if the product has been successfully added, false otherwise
+     */
     @Override
     public boolean add(String name, String ownerId, String desc, Calendar date, String productType, String exchangePlace, String prefExchange, String marketVal) {
         if(validProductName(name) && validMarketValue(marketVal) && validPlaceOfExchange(exchangePlace)){
@@ -29,6 +41,19 @@ public class ProxyAddProduct implements AddEditProduct{
         }
     }
 
+    /**
+     * This method is used to verify if the productis valid THEN pass it along to the realAddProduct implementation of edit to interact w/ database
+     * @param name of product
+     * @param ownerId of product
+     * @param desc of product
+     * @param date of product
+     * @param productType of product
+     * @param exchangePlace of product
+     * @param prefExchange of product
+     * @param marketVal of product
+     * @param productId of product
+     * @return true if succesfully editted, false otherwise
+     */
     @Override
     public boolean edit(String name, String ownerId, String desc, Calendar date, String productType, String exchangePlace, String prefExchange, String marketVal, String productId) {
         if(validProductName(name) && validMarketValue(marketVal) && validPlaceOfExchange(exchangePlace)){

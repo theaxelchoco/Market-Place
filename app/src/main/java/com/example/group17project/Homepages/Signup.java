@@ -123,7 +123,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
+                    //This method should not do anything if cancelled, hence why it is empty
                 }
 
             });
@@ -141,11 +141,8 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         return email.replace(".", ",");
     }
 
-    public static String decodeUserEmail(String email){
-        return email.replace(",", ".");
-    }
 
-
+    //getters for various textViews
     protected String getEmail(){
         EditText email =findViewById(R.id.emailReg);
         return email.getText().toString().trim();
@@ -161,33 +158,74 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         return confirmPassword.getText().toString().trim();
     }
 
+    /**
+     * This method is used to see if the email is empty
+     * @param email to be validated
+     * @return true if empty, false otherwise
+     */
     public boolean isEmptyEmail(String email) {
         return email.isEmpty();
     }
 
+    /**
+     * This method is used to see if the password is empty
+     * @param password to be validated
+     * @return true if empty, false otherwise
+     */
     public boolean isEmptyPassword(String password){
         return password.isEmpty();
     }
 
+    /**
+     * This method is used to see if the confirm password is empty
+     * @param confirmPassword to be validated
+     * @return true if empty, false otherwise
+     */
     public boolean isEmptyConfirmPassword(String confirmPassword){
         return confirmPassword.isEmpty();
     }
 
+    /**
+     * This method is used to check if the email is valid (xxx@xx.xx) for example
+     * @param email to be validated
+     * @return true if valid, false otherwise
+     */
     public boolean isValidEmailAddress(String email){
         return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches();
     }
 
+    /**
+     * This method is used to check if the password is valid, can only use alphanumeric characters
+     * @param password to be validated
+     * @return true if valid, false otherwise
+     */
     public boolean isValidPassword(String password){
         return password.matches("[A-Za-z0-9]*");
     }
 
+    /**
+     * This method is used to check if the password is too short, must be at least 6 chars
+     * @param password to be validated
+     * @return true if short, false otherwise
+     */
     public boolean passwordTooShort(String password){
         return password.length() < 6;
     }
+
+    /**
+     * this method is used to check if the password and confirm password are the same
+     * @param password to be compared
+     * @param confirmPassword to be compared
+     * @return true if same, false otherwise
+     */
     public boolean isPasswordMatch(String password, String confirmPassword){
         return password.equals(confirmPassword);
     }
 
+    /**
+     * Method used to set the error label on the sign up screen
+     * @param message error message to be displayed
+     */
     protected void setMessage(String message){
         TextView errorLabel = findViewById(R.id.errorLabelReg);
         errorLabel.setText(message);

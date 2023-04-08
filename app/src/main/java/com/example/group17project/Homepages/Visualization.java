@@ -58,6 +58,7 @@ public class Visualization extends Fragment {
 
         userName.setText(user.getEmail());
 
+        //The rating that corresponds to a user will be their total rating divided by the number of ratings they have received
         numberOfRatings = user.getNumRatings();
         totalRating = user.getRating();
         averageRating = totalRating/ numberOfRatings;
@@ -85,12 +86,14 @@ public class Visualization extends Fragment {
 
 
         exchangeRepository.getDatabaseRef().addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 searchList.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     ExchangeHistory history = data.getValue(ExchangeHistory.class);
 
+                    //We only want to display the transactions that include the current user in the exchange history
                     if (history.getOwnerId() != null && (history.getOwnerId().equals(user.getEmail()) || history.getBuyerId().equals(user.getEmail()))){
                         searchList.add(history);
                     }
@@ -102,26 +105,32 @@ public class Visualization extends Fragment {
             //error handler
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                //Method left empty because we don't handle onCancel event
             }
         });
 
         exchangeAdapter = new ExchangeAdaptor(getActivity(), searchList);
-        System.out.println(searchList);
 
     }
-        protected String getEmail(){
+
+    /**
+     * This method is used to get the corresponding user email to display
+     * @return email string
+     */
+    protected String getEmail(){
         return encodeUserEmail(user.getEmail());
     }
 
 
+    /**
+     * Method used to convert an email into a key in the database by replacing period with comma
+     * @param email email to be translated
+     * @return translated email string
+     */
     public static String encodeUserEmail(String email){
         return email.replace(".", ",");
     }
 
-    public static String decodeUserEmail(String email){
-        return email.replace(",", ".");
-    }
 
 
 }

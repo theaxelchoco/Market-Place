@@ -22,6 +22,14 @@ public class UserAdapter extends ArrayAdapter<String> {
     }
 
 
+    /**
+     * Method used to format the listview in way particular to our desire. In this case, we want to format our listview
+     * to display information about the specific user
+     * @param position index representing the location of the particular item in the list view
+     * @param convertView The view of the screen
+     * @param parent The view that holds this one
+     * @return list view formatted correctly
+     */
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

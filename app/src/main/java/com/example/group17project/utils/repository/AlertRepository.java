@@ -6,6 +6,9 @@ import com.example.group17project.utils.model.ProductInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * class to interact with firebase to handle alert data
+ */
 public class AlertRepository {
   private static final DatabaseReference databaseRef =
       FirebaseDatabase.getInstance("https://w23-csci3130-group-17-default-rtdb.firebaseio.com")
