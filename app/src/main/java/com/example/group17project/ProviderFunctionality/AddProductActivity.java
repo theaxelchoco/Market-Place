@@ -240,6 +240,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     setMarketErrorLbl(marketError);
   }
 
+  //Getters and setters
   protected void setMarketErrorLbl(String message) {
     marketErrorLbl.setText(message);
   }
