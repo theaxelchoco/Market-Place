@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 
 /**
- *
+ * This class represents a particular exchange that will be showcased in the user history
  */
 public class ExchangeHistory {
 

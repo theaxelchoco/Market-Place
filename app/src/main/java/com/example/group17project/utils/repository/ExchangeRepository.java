@@ -7,6 +7,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
+/**
+ * class to interact with firebase to handle exchange history data
+ */
 public class ExchangeRepository {
   private final DatabaseReference databaseRef;
 

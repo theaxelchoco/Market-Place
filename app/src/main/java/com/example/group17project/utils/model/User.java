@@ -1,5 +1,9 @@
 package com.example.group17project.utils.model;
 
+/**
+ * This is a singleton class which represents the user, containing their details
+ * like email, rating, pValuation, and rValuation
+ */
 public class User {
   private static User instance = null;
 

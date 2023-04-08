@@ -78,6 +78,13 @@ public class Product {
     }
   }
 
+  /**
+   * This method is used whenever a transaction is completed, assigning buyer details to the corresponding product
+   * @param product name of product
+   * @param val market value of the product
+   * @param buyerID email of the buyer
+   * @param date date of the transaction
+   */
   public void completeTransaction(String product, String val, String buyerID, Date date){
     buyer = buyerID;
     buyerItem = product;
@@ -85,6 +92,7 @@ public class Product {
     transactionDate = date;
   }
 
+  //Getters and setters
   public String getBuyer() {
     return buyer;
   }
