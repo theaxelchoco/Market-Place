@@ -23,13 +23,7 @@ public class Filter extends Observer {
     this.type = type;
     this.preferredExchange = preferredExchange;
     this.priceRange = priceRange;
-    if(location.isEmpty()){
-      this.location = User.getInstance().getUserLocation();
-    }
-    else{
-      this.location = location;
-    }
-
+    this.location = location;
   }
 
   public Filter() {
