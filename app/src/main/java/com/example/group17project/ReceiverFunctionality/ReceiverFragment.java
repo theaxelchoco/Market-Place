@@ -158,6 +158,7 @@ public class ReceiverFragment extends Fragment {
           assert product != null;
           product.setDateAvailable(dateAvailable);
 
+          //Based off their filter, we match certain products to display in the list adapter
           if (isFilterMatch(product, keyword, filter) && !product.getOwnerID().equals(User.getInstance().getEmail()) && product.getStatus().equals(Product.Status.AVAILABLE)) {
             searchResult.add(product);
           }

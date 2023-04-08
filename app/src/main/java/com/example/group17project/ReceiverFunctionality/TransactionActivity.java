@@ -157,6 +157,7 @@ public class TransactionActivity extends AppCompatActivity {
       product.setStatus(Product.Status.SOLD_OUT);
       product.completeTransaction(tradeItem, marketValue, user.getEmail(), currentDate);
 
+      //Once the user has engaged in a transaction, we make sure to add it in the exchange history table
       ExchangeHistory history = new ExchangeHistory(ownerId, user.getEmail());
       history.setDetails(String.format("Owner: %s | Owner Item: %s | Location: %s | Owner Price: %d | Date: %s | Buyer: %s| Buyer Item: %s | Buyer Price: %s "
           , ownerId, name, location, price, dateFormat.format(date), user.getEmail(), tradeItem, marketValue));
